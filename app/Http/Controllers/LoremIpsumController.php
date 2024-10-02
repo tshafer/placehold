@@ -10,6 +10,35 @@ class LoremIpsumController extends Controller
 {
     private $words = [
         'lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit',
+        'sed', 'do', 'eiusmod', 'tempor', 'incididunt', 'ut', 'labore', 'et', 'dolore',
+        'magna', 'aliqua', 'enim', 'ad', 'minim', 'veniam', 'quis', 'nostrud',
+        'exercitation', 'ullamco', 'laboris', 'nisi', 'aliquip', 'ex', 'ea',
+        'commodo', 'consequat', 'duis', 'aute', 'irure', 'in', 'reprehenderit',
+        'voluptate', 'velit', 'esse', 'cillum', 'eu', 'fugiat', 'nulla',
+        'pariatur', 'excepteur', 'sint', 'occaecat', 'cupidatat', 'non', 'proident',
+        'sunt', 'culpa', 'qui', 'officia', 'deserunt', 'mollit', 'anim', 'id',
+        'est', 'laborum', 'perspiciatis', 'unde', 'omnis', 'iste', 'natus',
+        'error', 'voluptatem', 'accusantium', 'doloremque', 'laudantium',
+        'totam', 'rem', 'aperiam', 'eaque', 'ipsa', 'quae', 'ab', 'illo', 'inventore',
+        'veritatis', 'quasi', 'architecto', 'beatae', 'vitae', 'dicta',
+        'explicabo', 'nemo', 'ipsam', 'quia', 'voluptas',
+        'aspernatur', 'odit', 'fugit', 'consequuntur',
+        'magni', 'dolores', 'eos', 'ratione', 'sequi', 'nesciunt',
+        'neque', 'porro', 'quisquam', 'adipisci',
+        'numquam', 'eius', 'modi', 'tempora', 'incidunt',
+        'magnam', 'aliquam', 'quaerat', 'minima',
+        'nostrum', 'exercitationem', 'ullam', 'corporis', 'suscipit',
+        'laboriosam', 'aliquid', 'commodi',
+        'autem', 'vel', 'eum', 'iure',
+        'quam', 'nihil', 'molestiae',
+        'illum', 'quo',
+        'at', 'vero', 'accusamus', 'iusto', 'odio',
+        'dignissimos', 'ducimus', 'blanditiis', 'praesentium', 'voluptatum',
+        'deleniti', 'atque', 'corrupti', 'quos', 'quas', 'molestias',
+        'excepturi', 'occaecati', 'cupiditate', 'provident', 'similique',
+        'mollitia', 'animi',
+        'dolorum', 'fuga', 'harum', 'quidem', 'rerum',
+        'facilis', 'expedita', 'distinctio', 'nam', 'libero',
 
     ];
 
@@ -18,7 +47,7 @@ class LoremIpsumController extends Controller
      */
     public function __invoke(Request $request): JsonResponse
     {
-        $paragraphs = $request->input('paragraphs', 1);
+        $paragraphs = $request->input('paragraphs', 3);
         $minWords = $request->input('minWords', 5);
         $maxWords = $request->input('maxWords', 20);
         $startWithLoremIpsum = $request->input('startWithLoremIpsum', true);
@@ -43,7 +72,9 @@ class LoremIpsumController extends Controller
             }
 
             if ($seed !== null) {
-                mt_srand($seed);
+                mt_srand((int) $seed);
+            } else {
+                mt_srand();
             }
 
             $result = [];
@@ -69,7 +100,7 @@ class LoremIpsumController extends Controller
                     'maxWords' => $maxWords,
                     'totalWords' => array_sum(array_map('str_word_count', $result)),
                     'format' => $format,
-                    'seed' => $seed,
+                    'seed' => $seed ?? mt_rand(),
                 ],
             ]);
         } catch (\Exception $e) {
@@ -137,7 +168,7 @@ class LoremIpsumController extends Controller
         switch ($format) {
             case 'html':
                 return '<p>'.implode('</p><p>', $paragraphs).'</p>';
-d            case 'text':
+            case 'text':
                 return implode("\n\n", $paragraphs);
             case 'json':
             default:
