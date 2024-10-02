@@ -7,12 +7,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-if (request()->getHost() === 'lorem.placehold.cloud' || request()->getHost() === 'localhost') {
+Route::domain('lorem.placehold.cloud')->group(function () {
     Route::get('/', LoremIpsumController::class)
         ->middleware('throttle:60,1');
-}
+});
 
-if (request()->getHost() === 'placehold.cloud' || request()->getHost() === 'localhost') {
-    Route::get('/placeholder/{size?}/{background_color?}/{text_color?}', PlaceholderController::class)
-        ->middleware('throttle:60,1');
-}
+Route::get('/placeholder/{size?}/{background_color?}/{text_color?}', PlaceholderController::class)
+    ->middleware('throttle:60,1');
