@@ -78,6 +78,7 @@ class PlaceholderController extends Controller
         $invert = $request->query('invert', false);
         $aiCat = $request->query('ai_cat', false);
         $aiRobot = $request->query('ai_robot', false);
+        $aiDog = $request->query('ai_dog', false);
 
         // Generate a unique cache key based on the request parameters
         $cacheKey = hash('sha256', json_encode(array_merge($request->all(), [
@@ -96,6 +97,7 @@ class PlaceholderController extends Controller
             'grayscale' => $grayscale,
             'invert' => $invert,
             'aiCat' => $aiCat,
+            'aiDog' => $aiDog,
         ])));
 
         // Try to retrieve the image from cache
@@ -117,7 +119,8 @@ class PlaceholderController extends Controller
             $grayscale,
             $invert,
             $aiCat,
-            $aiRobot) {
+            $aiRobot,
+            $aiDog) {
             if ($aiCat) {
                 $response = Http::get('https://api.thecatapi.com/v1/images/search');
                 if ($response->successful()) {
@@ -131,6 +134,21 @@ class PlaceholderController extends Controller
                     ];
                 } else {
                     throw new \RuntimeException('Failed to fetch AI cat image');
+                }
+            }
+            if ($aiDog) {
+                $response = Http::get('https://api.thedogapi.com/v1/images/search');
+                if ($response->successful()) {
+                    $dogImageUrl = $response->json()[0]['url'];
+                    $dogImageContent = file_get_contents($dogImageUrl);
+                    $contentType = 'image/jpeg'; // Assuming the dog image is in JPEG format
+
+                    return [
+                        'content' => $dogImageContent,
+                        'contentType' => $contentType,
+                    ];
+                } else {
+                    throw new \RuntimeException('Failed to fetch AI dog image');
                 }
             }
             if ($aiRobot) {
