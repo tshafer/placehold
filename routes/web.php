@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\LoremIpsumController;
 use App\Http\Controllers\PlaceholderController;
+use App\Http\Controllers\WeatherController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('weather', WeatherController::class);
 
 Route::get('lorem', LoremIpsumController::class)
     ->middleware('throttle:60,1');
