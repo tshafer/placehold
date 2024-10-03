@@ -2,7 +2,7 @@
     <div class="container mx-auto px-4 py-12">
         <h1 class="text-6xl font-extrabold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-pink-300">Image Placeholder API</h1>
 
-        <div class="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 p-8 rounded-2xl shadow-lg">
+        <div class="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 p-8 rounded-2xl shadow-lg bg-no-repeat bg-cover">
             <h2 class="text-3xl font-semibold mb-6 text-white">Usage Guide</h2>
             <p class="text-xl text-white/90 mb-8">Create custom placeholder images with our powerful API. Here's how to get started:</p>
 
@@ -33,11 +33,11 @@
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                         @foreach([
                             ['name' => 'text', 'description' => 'Custom text (max 100 chars)', 'value' => 'Hello+World'],
-                            ['name' => 'format', 'description' => 'Image format (png, jpg, gif, webp, svg)', 'value' => 'png'],
+                            ['name' => 'format', 'description' => 'Image format (png, jpg, gif, webp, svg)', 'value' => 'webp'],
                             ['name' => 'quality', 'description' => 'Image quality (0-100)', 'value' => '90'],
-                            ['name' => 'font', 'description' => 'Font type (arial, couri, times, tron)', 'value' => 'arial'],
-                            ['name' => 'text_size', 'description' => 'Size of text (1-500)', 'value' => '30'],
-                            ['name' => 'watermark', 'description' => 'Watermark text', 'value' => 'Copyright'],
+                            ['name' => 'font', 'description' => 'Font type (arial, couri, times, tron)', 'value' => 'couri'],
+                            ['name' => 'text_size', 'description' => 'Size of text (1-500)', 'value' => '34'],
+                            ['name' => 'watermark', 'description' => 'Watermark text', 'value' => 'placehold.cloud'],
                             ['name' => 'watermark_size', 'description' => 'Size of watermark (1-100)', 'value' => '20'],
                             ['name' => 'watermark_opacity', 'description' => 'Opacity of watermark (0-100)', 'value' => '50'],
                             ['name' => 'blur', 'description' => 'Blur effect (0-100)', 'value' => '10'],

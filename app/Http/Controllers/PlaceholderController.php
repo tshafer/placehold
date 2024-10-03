@@ -73,13 +73,13 @@ class PlaceholderController extends Controller
         $textSize = $request->query('text_size', null);
         $watermark = $request->query('watermark', 'placehold.cloud');
         $watermarkSize = $request->query('watermark_size', 10);
-        $watermarkOpacity = $request->query('watermark_opacity', 10);
-        $blur = $request->query('blur', 0);
-        $grayscale = $request->query('grayscale', false);
-        $invert = $request->query('invert', false);
-        $cat = $request->query('cat', false);
-        $robot = $request->query('robot', false);
-        $dog = $request->query('dog', false);
+        $watermarkOpacity = $request->query('watermark_opacity', 90);
+        $blur = $request->integer('blur', 0);
+        $grayscale = $request->boolean('grayscale', false);
+        $invert = $request->boolean('invert', false);
+        $cat = $request->boolean('cat', false);
+        $robot = $request->boolean('robot', false);
+        $dog = $request->boolean('dog', false);
 
         // Generate a unique cache key based on the request parameters
         $cacheKey = hash('sha256', json_encode(array_merge($request->all(), [
@@ -101,7 +101,7 @@ class PlaceholderController extends Controller
             'dog' => $dog,
         ])));
 
-        Cache::clear();
+        Cache::forget($cacheKey);
         // Try to retrieve the image from cache
         $cachedImage = Cache::remember($cacheKey, now()->addWeek(), function () use (
             $format,
@@ -313,12 +313,12 @@ class PlaceholderController extends Controller
         }
 
         // Apply grayscale effect
-        if ($grayscale) {
+        if ($grayscale === true) {
             imagefilter($image, IMG_FILTER_GRAYSCALE);
         }
 
         // Apply invert effect
-        if ($invert) {
+        if ($invert === true) {
             imagefilter($image, IMG_FILTER_NEGATE);
         }
 
