@@ -37,7 +37,7 @@ class PlaceholderController extends Controller
         ]), [
             'width' => ['required', 'integer', 'min:1', 'max:2000'],
             'height' => ['required', 'integer', 'min:1', 'max:2000'],
-            'text' => ['nullable', 'string', 'max:100', 'regex:/^[\w\s\-.,!?]*$/'],
+            'text' => ['nullable', 'string', 'max:100'],
             'background_color' => ['nullable', 'regex:/^[0-9A-Fa-f]{6}$/'],
             'text_color' => ['nullable', 'regex:/^[0-9A-Fa-f]{6}$/'],
             'border_color' => ['nullable', 'regex:/^[0-9A-Fa-f]{6}$/'],
@@ -49,8 +49,8 @@ class PlaceholderController extends Controller
             'watermark_size' => ['nullable', 'integer', 'min:1', 'max:100'],
             'watermark_opacity' => ['nullable', 'integer', 'min:0', 'max:100'],
             'blur' => ['nullable', 'integer', 'min:0', 'max:100'],
-            'grayscale' => ['nullable', 'boolean'],
-            'invert' => ['nullable', 'boolean'],
+            'grayscale' => ['nullable', 'regex:/^(true|false|1|0)$/i'],
+            'invert' => ['nullable', 'regex:/^(true|false|1|0)$/i'],
         ]);
 
         if ($validator->fails()) {
@@ -62,6 +62,7 @@ class PlaceholderController extends Controller
         $height = max(1, $height);
 
         $text = $request->query('text', 'Placeholder');
+        $text = urldecode($text);
         $backgroundColor = $this->hexToRgb($background_color);
         $textColorArray = $this->hexToRgb($text_color);
 
@@ -76,9 +77,9 @@ class PlaceholderController extends Controller
         $blur = $request->query('blur', 0);
         $grayscale = $request->query('grayscale', false);
         $invert = $request->query('invert', false);
-        $aiCat = $request->query('ai_cat', false);
-        $aiRobot = $request->query('ai_robot', false);
-        $aiDog = $request->query('ai_dog', false);
+        $cat = $request->query('cat', false);
+        $robot = $request->query('robot', false);
+        $dog = $request->query('dog', false);
 
         // Generate a unique cache key based on the request parameters
         $cacheKey = hash('sha256', json_encode(array_merge($request->all(), [
@@ -96,12 +97,13 @@ class PlaceholderController extends Controller
             'blur' => $blur,
             'grayscale' => $grayscale,
             'invert' => $invert,
-            'aiCat' => $aiCat,
-            'aiDog' => $aiDog,
+            'cat' => $cat,
+            'dog' => $dog,
         ])));
 
+        Cache::clear();
         // Try to retrieve the image from cache
-        $cachedImage = Cache::remember($cacheKey, 0, function () use (
+        $cachedImage = Cache::remember($cacheKey, now()->addWeek(), function () use (
             $format,
             $width,
             $height,
@@ -118,64 +120,74 @@ class PlaceholderController extends Controller
             $blur,
             $grayscale,
             $invert,
-            $aiCat,
-            $aiRobot,
-            $aiDog) {
-            if ($aiCat) {
-                $response = Http::get('https://api.thecatapi.com/v1/images/search');
-                if ($response->successful()) {
-                    $catImageUrl = $response->json()[0]['url'];
-                    $catImageContent = file_get_contents($catImageUrl);
-                    $contentType = 'image/jpeg'; // Assuming the cat image is in JPEG format
+            $cat,
+            $robot,
+            $dog) {
+            try {
+                if ($cat === true) {
+                    $response = Http::get('https://api.thecatapi.com/v1/images/search');
+                    if ($response->successful()) {
+                        $catImageUrl = $response->json()[0]['url'];
+                        $catImageContent = file_get_contents($catImageUrl);
+                        $contentType = 'image/jpeg'; // Assuming the cat image is in JPEG format
 
-                    return [
-                        'content' => $catImageContent,
-                        'contentType' => $contentType,
-                    ];
-                } else {
-                    throw new \RuntimeException('Failed to fetch AI cat image');
+                        return [
+                            'content' => $catImageContent,
+                            'contentType' => $contentType,
+                        ];
+                    } else {
+                        throw new \RuntimeException('Failed to fetch AI cat image');
+                    }
                 }
-            }
-            if ($aiDog) {
-                $response = Http::get('https://api.thedogapi.com/v1/images/search');
-                if ($response->successful()) {
-                    $dogImageUrl = $response->json()[0]['url'];
-                    $dogImageContent = file_get_contents($dogImageUrl);
-                    $contentType = 'image/jpeg'; // Assuming the dog image is in JPEG format
+                if ($dog === true) {
+                    $response = Http::get('https://api.thedogapi.com/v1/images/search');
+                    if ($response->successful()) {
+                        $dogImageUrl = $response->json()[0]['url'];
+                        $dogImageContent = file_get_contents($dogImageUrl);
+                        $contentType = 'image/jpeg'; // Assuming the dog image is in JPEG format
 
-                    return [
-                        'content' => $dogImageContent,
-                        'contentType' => $contentType,
-                    ];
-                } else {
-                    throw new \RuntimeException('Failed to fetch AI dog image');
+                        return [
+                            'content' => $dogImageContent,
+                            'contentType' => $contentType,
+                        ];
+                    } else {
+                        throw new \RuntimeException('Failed to fetch AI dog image');
+                    }
                 }
-            }
-            if ($aiRobot) {
-                $response = Http::get('https://robohash.org/'.uniqid());
-                if ($response->successful()) {
-                    $robotImageContent = $response->body();
+                if ($robot === true) {
+                    $response = Http::get('https://robohash.org/'.uniqid());
+                    if ($response->successful()) {
+                        $robotImageContent = $response->body();
 
-                    return [
-                        'content' => $robotImageContent,
-                        'contentType' => 'image/png',
-                    ];
-                } else {
-                    throw new \RuntimeException('Failed to fetch AI robot image');
+                        return [
+                            'content' => $robotImageContent,
+                            'contentType' => 'image/png',
+                        ];
+                    } else {
+                        throw new \RuntimeException('Failed to fetch AI robot image');
+                    }
                 }
-            }
-            if ($format === 'svg') {
-                $imageContent = $this->generateSvg($width, $height, $text, $backgroundColor, $textColorArray, $borderColor, $textSize, $watermark, $watermarkSize, $watermarkOpacity);
-                $contentType = 'image/svg+xml';
-            } else {
-                $imageContent = $this->generateRasterImage($width, $height, $text, $backgroundColor, $textColorArray, $borderColor, $format, $quality, $font, $textSize, $watermark, $watermarkSize, $watermarkOpacity, $blur, $grayscale, $invert);
-                $contentType = $this->getContentType($format);
-            }
+                if ($format === 'svg') {
+                    $imageContent = $this->generateSvg($width, $height, $text, $backgroundColor, $textColorArray, $borderColor, $textSize, $watermark, $watermarkSize, $watermarkOpacity);
+                    $contentType = 'image/svg+xml';
+                } else {
+                    $imageContent = $this->generateRasterImage($width, $height, $text, $backgroundColor, $textColorArray, $borderColor, $format, $quality, $font, $textSize, $watermark, $watermarkSize, $watermarkOpacity, $blur, $grayscale, $invert);
+                    $contentType = $this->getContentType($format);
+                }
 
-            return [
-                'content' => $imageContent,
-                'contentType' => $contentType,
-            ];
+                return [
+                    'content' => $imageContent,
+                    'contentType' => $contentType,
+                ];
+            } catch (\Exception $e) {
+                // Generate a backup image if the original generation fails
+                $backupImageContent = $this->generateBackupImage($width, $height, $text, $backgroundColor, $textColorArray);
+
+                return [
+                    'content' => $backupImageContent,
+                    'contentType' => 'image/png',
+                ];
+            }
         });
 
         // Return as an image response
@@ -376,5 +388,33 @@ class PlaceholderController extends Controller
             default:
                 return 'image/png';
         }
+    }
+
+    private function generateBackupImage($width, $height, $text, $backgroundColor, $textColorArray)
+    {
+        $image = imagecreatetruecolor($width, $height);
+        $bgColor = imagecolorallocate($image, $backgroundColor[0], $backgroundColor[1], $backgroundColor[2]);
+        $textColor = imagecolorallocate($image, $textColorArray[0], $textColorArray[1], $textColorArray[2]);
+
+        imagefill($image, 0, 0, $bgColor);
+
+        $fontSize = min($width, $height) / 10;
+        $fontPath = resource_path('fonts/arial.ttf');
+
+        $textBox = imagettfbbox($fontSize, 0, $fontPath, $text);
+        $textWidth = abs($textBox[4] - $textBox[0]);
+        $textHeight = abs($textBox[5] - $textBox[1]);
+        $textX = ($width - $textWidth) / 2;
+        $textY = ($height + $textHeight) / 2;
+
+        imagettftext($image, $fontSize, 0, $textX, $textY, $textColor, $fontPath, $text);
+
+        ob_start();
+        imagepng($image);
+        $imageContent = ob_get_clean();
+
+        imagedestroy($image);
+
+        return $imageContent;
     }
 }
