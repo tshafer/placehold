@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -13,6 +15,8 @@ class RecipeController extends Controller
 
     private const DEFAULT_NUMBER = 10;
 
+    private const CACHE_TTL = 3600; // 1 hour in seconds
+
     public function __invoke(Request $request)
     {
         $validated = $this->validateRequest($request);
@@ -21,7 +25,11 @@ class RecipeController extends Controller
             return $validated;
         }
 
-        return $this->fetchRecipe($validated);
+        $cacheKey = $this->generateCacheKey($validated);
+
+        return Cache::remember($cacheKey, self::CACHE_TTL, function () use ($validated) {
+            return $this->fetchRecipe($validated);
+        });
     }
 
     private function validateRequest(Request $request)
@@ -38,6 +46,13 @@ class RecipeController extends Controller
         }
 
         return $validator->validated();
+    }
+
+    private function generateCacheKey(array $params): string
+    {
+        $id = Arr::random(range(1, 200000));
+
+        return 'recipe_'.$id;
     }
 
     private function fetchRecipe(array $params)

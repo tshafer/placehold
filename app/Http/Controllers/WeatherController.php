@@ -32,7 +32,7 @@ class WeatherController extends Controller
 
         $cacheKey = $this->generateCacheKey($validated);
 
-        return Cache::remember($cacheKey, $validated['cache_time'] ?? self::DEFAULT_CACHE_TIME, function () use ($validated) {
+        return Cache::remember($cacheKey, self::DEFAULT_CACHE_TIME, function () use ($validated) {
             return $this->fetchWeatherData($validated);
         });
     }
@@ -44,7 +44,6 @@ class WeatherController extends Controller
             'country' => 'required|string|size:2',
             'units' => 'in:metric,imperial,standard',
             'lang' => 'string|size:2',
-            'cache_time' => 'integer|min:0',
             'forecast_days' => 'integer|min:1|max:7',
             'include_hourly' => 'boolean',
             'include_alerts' => 'boolean',
