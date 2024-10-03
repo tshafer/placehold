@@ -80,7 +80,7 @@ class PlaceholderController extends Controller
         $cat = $request->boolean('cat', false);
         $robot = $request->boolean('robot', false);
         $dog = $request->boolean('dog', false);
-
+        $clear = $request->boolean('clear', false);
         // Generate a unique cache key based on the request parameters
         $cacheKey = hash('sha256', json_encode(array_merge($request->all(), [
             'size' => $size,
@@ -101,7 +101,9 @@ class PlaceholderController extends Controller
             'dog' => $dog,
         ])));
 
-        Cache::forget($cacheKey);
+        if ($clear === true) {
+            Cache::clear();
+        }
         // Try to retrieve the image from cache
         $cachedImage = Cache::remember($cacheKey, now()->addWeek(), function () use (
             $format,
