@@ -23,5 +23,5 @@ Route::get('lorem', LoremIpsumController::class)
     ->middleware('throttle:60,1');
 
 Route::get('/p/{size?}/{background_color?}/{text_color?}', PlaceholderController::class)
-    ->middleware('throttle:60,1')
+    ->middleware('throttle:120,1')
     ->name('placeholder');
