@@ -69,7 +69,7 @@
                             {{ route('placeholder', ['size' => '300x200', 'background_color' => 'FF5733', 'text_color' => 'FFFFFF', 'text' => 'Hello+World', 'format' => 'png', 'quality' => '90', 'font' => 'arial', 'text_size' => '30', 'watermark' => 'Copyright', 'watermark_size' => '20', 'watermark_opacity' => '50', 'blur' => '5', 'grayscale' => 'false', 'invert' => 'false', 'cat' => 'false', 'dog' => 'false', 'robot' => 'false']) }}
                         </code>
                     </div>
-                    <img src="{{ route('placeholder', ['size' => '300x200', 'background_color' => 'FF5733', 'text_color' => 'FFFFFF', 'text' => 'Hello+World', 'format' => 'png', 'quality' => '90', 'font' => 'arial', 'text_size' => '30', 'watermark' => 'Copyright', 'watermark_size' => '20', 'watermark_opacity' => '50', 'blur' => '5', 'grayscale' => 'false', 'invert' => 'false', 'cat' => 'false', 'dog' => 'false', 'robot' => 'false']) }}" alt="Advanced example" class="rounded shadow-sm w-full md:w-1/2 mx-auto">
+                    <img style="width: 300px; height: 200px;" src="{{ route('placeholder', ['size' => '300x200', 'background_color' => 'FF5733', 'text_color' => 'FFFFFF', 'text' => 'Hello+World', 'format' => 'png', 'quality' => '90', 'font' => 'arial', 'text_size' => '30', 'watermark' => 'Copyright', 'watermark_size' => '20', 'watermark_opacity' => '50', 'blur' => '5', 'grayscale' => 'false', 'invert' => 'false', 'cat' => 'false', 'dog' => 'false', 'robot' => 'false']) }}" alt="Advanced example" class="rounded shadow-sm w-full md:w-1/2 mx-auto">
                 </section>
 
                 <section>
