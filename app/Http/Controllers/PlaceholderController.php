@@ -65,7 +65,6 @@ class PlaceholderController extends Controller
         $text = urldecode($text);
         $backgroundColor = $this->hexToRgb($background_color);
         $textColorArray = $this->hexToRgb($text_color);
-
         $borderColor = $this->hexToRgb($request->query('border_color', '969696'));
         $format = $request->query('format', 'png');
         $quality = $request->query('quality', 90);
@@ -156,6 +155,7 @@ class PlaceholderController extends Controller
                         throw new \RuntimeException('Failed to fetch AI dog image');
                     }
                 }
+
                 if ($robot === true) {
                     $response = Http::get('https://robohash.org/'.uniqid());
                     if ($response->successful()) {

@@ -43,9 +43,9 @@
                             ['name' => 'blur', 'description' => 'Blur effect (0-100)', 'value' => '10'],
                             ['name' => 'grayscale', 'description' => 'Apply grayscale (true/false)', 'value' => 'true'],
                             ['name' => 'invert', 'description' => 'Invert colors (true/false)', 'value' => 'true'],
-                            ['name' => 'cat', 'description' => 'Generate cat image (true/false)', 'value' => 'true'],
-                            ['name' => 'dog', 'description' => 'Generate dog image (true/false)', 'value' => 'true'],
-                            ['name' => 'robot', 'description' => 'Generate robot image (true/false)', 'value' => 'true'],
+                           // ['name' => 'cat', 'description' => 'Generate cat image (true/false)', 'value' => 'true'],
+                            //['name' => 'dog', 'description' => 'Generate dog image (true/false)', 'value' => 'true'],
+                            //['name' => 'robot', 'description' => 'Generate robot image (true/false)', 'value' => 'true'],
                         ] as $param)
                             <div class="bg-white/5 p-4 rounded-lg">
                                 <h4 class="text-lg font-semibold mb-2 text-white">{{ $param['name'] }}</h4>
