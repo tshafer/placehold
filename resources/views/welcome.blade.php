@@ -1,7 +1,7 @@
 <x-layout>
         <div class="container mx-auto px-4 py-12">
-            <h1 class="text-6xl font-extrabold mb-6 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-pink-300 animate-pulse">Welcome to placehold.cloud!</h1>
-            <p class="text-2xl mb-12 text-center text-white/90">Your friendly neighborhood solution for all things placeholder</p>
+            <h1 class="text-6xl font-extrabold mb-6 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-pink-300 animate-pulse font-vt323">Welcome to placehold.cloud!</h1>
+            <p class="text-2xl mb-12 text-center text-white/90 animate-fadeInUp">Your friendly neighborhood solution for all things <span class="animate-pulse">placeholder</span></p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <a href="/image" class="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 hover:bg-white/20">
