@@ -1,2 +1,22 @@
 User-agent: *
 Disallow:
+
+# Allow all search engine bots to access the entire site
+Allow: /
+
+# Specify the sitemap location
+Sitemap: https://placehold.cloud/sitemap.xml
+
+# Crawl-delay directive (optional, adjust as needed)
+Crawl-delay: 10
+
+# Disallow access to specific directories (if needed)
+# Disallow: /private/
+# Disallow: /admin/
+
+# Allow access to specific files or directories (if needed)
+# Allow: /public/images/
+
+# Block specific bots (if needed)
+# User-agent: Googlebot
+# Disallow: /

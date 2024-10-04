@@ -39,6 +39,9 @@
         <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Jersey+25&display=swap" rel="stylesheet">
 
+        <!-- Sitemap -->
+        <link rel="sitemap" type="application/xml" href="{{ asset('sitemap.xml') }}">
+
     </head>
     <body class="font-jersey-25 antialiased text-white min-h-screen flex flex-col bg-gradient-to-l from-indigo-600 via-purple-600 to-pink-500">
         <header class="w-full bg-white bg-opacity-10 backdrop-blur-md border-b border-white border-opacity-20 py-4 sticky top-0 z-10">
