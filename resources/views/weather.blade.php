@@ -1,30 +1,41 @@
 <x-layout>
     <div class="container mx-auto px-4 py-12">
-        <h1 class="text-4xl font-bold mb-8 text-center text-white">Weather API Documentation</h1>
+        <h1 class="text-6xl font-extrabold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-pink-300">Weather API</h1>
 
-        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl shadow-lg mb-8">
-            <h2 class="text-2xl font-semibold mb-4 text-white">Endpoint</h2>
-            <code class="block bg-gray-800 text-green-400 p-4 rounded">GET {{ route('weather', ['city' => 'London', 'country' => 'GB']) }}</code>
-        </div>
+        <div class="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 p-8 rounded-2xl shadow-lg bg-no-repeat bg-cover">
+            <h2 class="text-3xl font-semibold mb-6 text-white">Usage Guide</h2>
+            <p class="text-xl text-white/90 mb-8">Get accurate weather data with our powerful API. Here's how to get started:</p>
 
-        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl shadow-lg mb-8">
-            <h2 class="text-2xl font-semibold mb-4 text-white">Query Parameters</h2>
-            <ul class="list-disc list-inside text-white/90">
-                <li><strong>city</strong> (required): Name of the city</li>
-                <li><strong>country</strong> (required): Two-letter country code</li>
-                <li><strong>units</strong> (optional): Units of measurement (metric, imperial, or standard)</li>
-                <li><strong>lang</strong> (optional): Two-letter language code</li>
-                <li><strong>forecast_days</strong> (optional): Number of forecast days (1-7)</li>
-                <li><strong>include_hourly</strong> (optional): Include hourly forecast (boolean)</li>
-                <li><strong>include_alerts</strong> (optional): Include weather alerts (boolean)</li>
-                <li><strong>include_historical</strong> (optional): Include historical data (boolean)</li>
-                <li><strong>include_uv_index</strong> (optional): Include UV index (boolean)</li>
-            </ul>
-        </div>
+            <div class="space-y-12">
+                <section>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">Basic Usage</h3>
+                    <div class="bg-black/30 p-4 rounded-lg">
+                        <code class="text-green-300 text-sm break-all">
+                            {{ route('weather', ['city' => 'London', 'country' => 'GB']) }}
+                        </code>
+                    </div>
+                    <p class="text-white/90 mt-4">This request will return weather data for London, UK.</p>
+                </section>
 
-        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl shadow-lg mb-8">
-            <h2 class="text-2xl font-semibold mb-4 text-white">Response Format</h2>
-            <pre class="bg-gray-800 text-green-400 p-4 rounded overflow-x-auto">
+                <section>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">Query Parameters</h3>
+                    <ul class="list-disc list-inside text-white/90 space-y-2 ml-4">
+                        <li><span class="font-semibold">city</span>: Name of the city (required)</li>
+                        <li><span class="font-semibold">country</span>: Two-letter country code (required)</li>
+                        <li><span class="font-semibold">units</span>: Units of measurement (metric, imperial, or standard) (optional)</li>
+                        <li><span class="font-semibold">lang</span>: Two-letter language code (optional)</li>
+                        <li><span class="font-semibold">forecast_days</span>: Number of forecast days (1-7) (optional)</li>
+                        <li><span class="font-semibold">include_hourly</span>: Include hourly forecast (boolean) (optional)</li>
+                        <li><span class="font-semibold">include_alerts</span>: Include weather alerts (boolean) (optional)</li>
+                        <li><span class="font-semibold">include_historical</span>: Include historical data (boolean) (optional)</li>
+                        <li><span class="font-semibold">include_uv_index</span>: Include UV index (boolean) (optional)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">Response Format</h3>
+                    <div class="bg-black/30 p-4 rounded-lg">
+                        <pre class="text-green-300 text-sm overflow-x-auto">
 {
     "status": "success",
     "data": {
@@ -56,26 +67,43 @@
     "lang": "en",
     "timestamp": "YYYY-MM-DD HH:MM:SS"
 }
-            </pre>
-        </div>
+                        </pre>
+                    </div>
+                </section>
 
-        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl shadow-lg mb-8">
-            <h2 class="text-2xl font-semibold mb-4 text-white">Example Usage</h2>
-            <code class="block bg-gray-800 text-green-400 p-4 rounded mb-4">
-GET {{ route('weather', ['city' => 'London', 'country' => 'GB', 'units' => 'metric', 'forecast_days' => 3]) }}
-            </code>
-            <p class="text-white/90">This request will return weather data for London, UK, in metric units, with a 3-day forecast.</p>
-        </div>
+                <section>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">Example Usage</h3>
+                    <p class="text-white/90 mb-4">Here's an example of how to use the API with parameters:</p>
+                    <div class="bg-black/30 p-4 rounded-lg mb-4">
+                        <code class="text-green-300 text-sm break-all">
+                            {{ route('weather', ['city' => 'London', 'country' => 'GB', 'units' => 'metric', 'forecast_days' => 3]) }}
+                        </code>
+                    </div>
+                    <p class="text-white/90">This request will return weather data for London, UK, in metric units, with a 3-day forecast.</p>
+                </section>
 
-        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl shadow-lg">
-            <h2 class="text-2xl font-semibold mb-4 text-white">Error Handling</h2>
-            <p class="text-white/90 mb-4">In case of an error, the API will return a JSON response with an error message:</p>
-            <pre class="bg-gray-800 text-green-400 p-4 rounded overflow-x-auto">
+                <section>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">Error Handling</h3>
+                    <p class="text-white/90 mb-4">In case of an error, the API will return a JSON response with an error message:</p>
+                    <div class="bg-black/30 p-4 rounded-lg">
+                        <pre class="text-green-300 text-sm overflow-x-auto">
 {
     "status": "error",
     "message": "Error description"
 }
-            </pre>
+                        </pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">API Limits</h3>
+                    <p class="text-white/90 mb-4">To ensure fair usage, this API is rate-limited. Please adhere to the following limits:</p>
+                    <ul class="list-disc list-inside text-white/90 space-y-2 ml-4">
+                        <li><span class="font-semibold">60 requests</span> per minute</li>
+                        <li><span class="font-semibold">1000 requests</span> per day</li>
+                    </ul>
+                </section>
+            </div>
         </div>
     </div>
 </x-layout>

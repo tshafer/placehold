@@ -1,25 +1,36 @@
 <x-layout>
     <div class="container mx-auto px-4 py-12">
-        <h1 class="text-4xl font-bold mb-8 text-center text-white">Recipe API Documentation</h1>
+        <h1 class="text-6xl font-extrabold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-pink-300">Recipe API</h1>
 
-        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl shadow-lg mb-8">
-            <h2 class="text-2xl font-semibold mb-4 text-white">Endpoint</h2>
-            <code class="block bg-gray-800 text-green-400 p-4 rounded">GET {{ route('recipe') }}</code>
-        </div>
+        <div class="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 p-8 rounded-2xl shadow-lg bg-no-repeat bg-cover">
+            <h2 class="text-3xl font-semibold mb-6 text-white">Usage Guide</h2>
+            <p class="text-xl text-white/90 mb-8">Get delicious recipes with our powerful API. Here's how to get started:</p>
 
-        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl shadow-lg mb-8">
-            <h2 class="text-2xl font-semibold mb-4 text-white">Query Parameters</h2>
-            <ul class="list-disc list-inside text-white/90">
-                <li><strong>query</strong> (optional): Search query for recipes</li>
-                <li><strong>category</strong> (optional): Recipe category</li>
-                <li><strong>area</strong> (optional): Recipe area/cuisine</li>
-                <li><strong>number</strong> (optional): Number of recipes to return (1-25, default: 10)</li>
-            </ul>
-        </div>
+            <div class="space-y-12">
+                <section>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">Basic Usage</h3>
+                    <div class="bg-black/30 p-4 rounded-lg">
+                        <code class="text-green-300 text-sm break-all">
+                            {{ route('recipe') }}
+                        </code>
+                    </div>
+                    <p class="text-white/90 mt-4">This request will return random recipes from our database.</p>
+                </section>
 
-        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl shadow-lg mb-8">
-            <h2 class="text-2xl font-semibold mb-4 text-white">Response Format</h2>
-            <pre class="bg-gray-800 text-green-400 p-4 rounded overflow-x-auto">
+                <section>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">Query Parameters</h3>
+                    <ul class="list-disc list-inside text-white/90 space-y-2 ml-4">
+                        <li><span class="font-semibold">query</span>: Search query for recipes (optional)</li>
+                        <li><span class="font-semibold">category</span>: Recipe category (optional)</li>
+                        <li><span class="font-semibold">area</span>: Recipe area/cuisine (optional)</li>
+                        <li><span class="font-semibold">number</span>: Number of recipes to return (1-25, default: 10) (optional)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">Response Format</h3>
+                    <div class="bg-black/30 p-4 rounded-lg">
+                        <pre class="text-green-300 text-sm overflow-x-auto">
 {
     "status": "success",
     "data": [
@@ -44,26 +55,43 @@
     ],
     "timestamp": "YYYY-MM-DD HH:MM:SS"
 }
-            </pre>
-        </div>
+                        </pre>
+                    </div>
+                </section>
 
-        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl shadow-lg mb-8">
-            <h2 class="text-2xl font-semibold mb-4 text-white">Example Usage</h2>
-            <code class="block bg-gray-800 text-green-400 p-4 rounded mb-4">
-GET {{ route('recipe', ['number' => 5, 'category' => 'Dessert']) }}
-            </code>
-            <p class="text-white/90">This request will return 5 random dessert recipes.</p>
-        </div>
+                <section>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">Example Usage</h3>
+                    <p class="text-white/90 mb-4">Here's an example of how to use the API with parameters:</p>
+                    <div class="bg-black/30 p-4 rounded-lg mb-4">
+                        <code class="text-green-300 text-sm break-all">
+                            {{ route('recipe', ['number' => 5, 'category' => 'Dessert']) }}
+                        </code>
+                    </div>
+                    <p class="text-white/90">This request will return 5 random dessert recipes.</p>
+                </section>
 
-        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl shadow-lg">
-            <h2 class="text-2xl font-semibold mb-4 text-white">Error Handling</h2>
-            <p class="text-white/90 mb-4">In case of an error, the API will return a JSON response with an error message:</p>
-            <pre class="bg-gray-800 text-green-400 p-4 rounded overflow-x-auto">
+                <section>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">Error Handling</h3>
+                    <p class="text-white/90 mb-4">In case of an error, the API will return a JSON response with an error message:</p>
+                    <div class="bg-black/30 p-4 rounded-lg">
+                        <pre class="text-green-300 text-sm overflow-x-auto">
 {
     "status": "error",
     "message": "Error description"
 }
-            </pre>
+                        </pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">API Limits</h3>
+                    <p class="text-white/90 mb-4">To ensure fair usage, this API is rate-limited. Please adhere to the following limits:</p>
+                    <ul class="list-disc list-inside text-white/90 space-y-2 ml-4">
+                        <li><span class="font-semibold">60 requests</span> per minute</li>
+                        <li><span class="font-semibold">1000 requests</span> per day</li>
+                    </ul>
+                </section>
+            </div>
         </div>
     </div>
 </x-layout>

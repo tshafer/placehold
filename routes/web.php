@@ -15,6 +15,12 @@ Route::view('jokes', 'jokes');
 Route::view('quotes', 'quotes');
 Route::view('weather', 'weather');
 Route::view('recipes', 'recipes');
+Route::view('cookie-policy', 'cookie-policy');
+Route::view('terms-of-service', 'terms-of-service');
+Route::view('privacy-policy', 'privacy-policy');
+Route::view('imprint', 'imprint');
+Route::view('about-us', 'about-us');
+Route::view('api', 'api');
 
 Route::get('w', WeatherController::class)
     ->middleware('throttle:120,1')

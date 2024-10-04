@@ -10,33 +10,165 @@
         <meta http-equiv="Pragma" content="no-cache">
         <meta http-equiv="Expires" content="0">
 
-        <title>placehold.cloud</title>
+        <title>placehold.cloud - Custom Placeholder Image Generator</title>
 
         @vite('resources/css/app.css')
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ url('/') }}">
+        <meta property="og:title" content="placehold.cloud - Custom Placeholder Image Generator">
+        <meta property="og:description" content="Generate custom placeholder images with our powerful API. Create images with specific sizes, colors, text, and effects.">
+        <meta property="og:image" content="{{ asset('og-image.jpg') }}">
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="{{ url('/') }}">
+        <meta property="twitter:title" content="placehold.cloud - Custom Placeholder Image Generator">
+        <meta property="twitter:description" content="Generate custom placeholder images with our powerful API. Create images with specific sizes, colors, text, and effects.">
+        <meta property="twitter:image" content="{{ asset('twitter-image.jpg') }}">
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+        <!-- Tailwind CSS -->
+        <style>
+            @keyframes logoSpin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            @keyframes pulse {
+                0%, 100% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0.5;
+                }
+            }
+            @keyframes bounce {
+                0%, 100% {
+                    transform: translateY(-25%);
+                    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+                }
+                50% {
+                    transform: translateY(0);
+                    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+                }
+            }
+        </style>
     </head>
     <body class="font-sans antialiased text-white min-h-screen flex flex-col bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500">
-        <header class="w-full bg-white/10 backdrop-blur-md border-b border-white/20 py-4">
+        <header class="w-full bg-white bg-opacity-10 backdrop-blur-md border-b border-white border-opacity-20 py-4 sticky top-0 z-10">
             <div class="container mx-auto px-4 flex justify-between items-center">
-                <a href="/" class="text-2xl font-bold text-white">placehold.cloud</a>
+                <a href="/" class="text-2xl font-bold text-white flex items-center">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-2 hover:animate-[logoSpin_2s_linear_infinite]">
+                        <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
+                        <path d="M20 8L28 16H12L20 8Z" fill="white"/>
+                        <path d="M8 20L16 28V12L8 20Z" fill="white"/>
+                        <path d="M32 20L24 28V12L32 20Z" fill="white"/>
+                        <path d="M20 32L28 24H12L20 32Z" fill="white"/>
+                        <defs>
+                            <linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#4F46E5"/>
+                                <stop offset="0.5" stop-color="#9333EA"/>
+                                <stop offset="1" stop-color="#EC4899"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span class="animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]">placehold.cloud</span>
+                </a>
                 <nav>
                     <ul class="flex space-x-6">
-                        <li><a href="/image" class="text-white hover:text-white/80">Image</a></li>
-                        <li><a href="/lorem-ipsum" class="text-white hover:text-white/80">Lorem Ipsum</a></li>
-                        <li><a href="/quotes" class="text-white hover:text-white/80">Quotes</a></li>
-                        <li><a href="/jokes" class="text-white hover:text-white/80">Jokes</a></li>
-                        <li><a href="/weather" class="text-white hover:text-white/80">Weather</a></li>
-                        <li><a href="/quotes" class="text-white hover:text-white/80">Quotes</a></li>
+                        <li><a href="/image" class="flex items-center transition-all duration-300 hover:text-gray-100 hover:transform hover:-translate-y-0.5">
+                            <svg class="w-6 h-6 mr-2 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                            <span>Image</span>
+                        </a></li>
+                        <li><a href="/lorem-ipsum" class="flex items-center transition-all duration-300 hover:text-gray-100 hover:transform hover:-translate-y-0.5">
+                            <svg class="w-6 h-6 mr-2 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                            <span>Lorem Ipsum</span>
+                        </a></li>
+                        <li><a href="/quotes" class="flex items-center transition-all duration-300 hover:text-gray-100 hover:transform hover:-translate-y-0.5">
+                            <svg class="w-6 h-6 mr-2 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            <span>Quotes</span>
+                        </a></li>
+                        <li><a href="/jokes" class="flex items-center transition-all duration-300 hover:text-gray-100 hover:transform hover:-translate-y-0.5">
+                            <svg class="w-6 h-6 mr-2 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                            <span>Jokes</span>
+                        </a></li>
+                        <li><a href="/weather" class="flex items-center transition-all duration-300 hover:text-gray-100 hover:transform hover:-translate-y-0.5">
+                            <svg class="w-6 h-6 mr-2 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"/></svg>
+                            <span>Weather</span>
+                        </a></li>
+                        <li><a href="/recipes" class="flex items-center transition-all duration-300 hover:text-gray-100 hover:transform hover:-translate-y-0.5">
+                            <svg class="w-6 h-6 mr-2 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                            <span>Recipes</span>
+                        </a></li>
+                        <li><a href="/api" class="flex items-center transition-all duration-300 hover:text-gray-100 hover:transform hover:-translate-y-0.5">
+                            <svg class="w-6 h-6 mr-2 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                            <span>API Docs</span>
+                        </a></li>
                     </ul>
                 </nav>
             </div>
         </header>
-        <main class="flex-grow flex items-center justify-center">
+        <main class="flex-grow flex items-center justify-center py-12">
             {{ $slot }}
         </main>
-        <footer class="w-full bg-white/10 backdrop-blur-md border-t border-white/20 py-4">
-            <div class="container mx-auto px-4 text-center">
-                <p class="text-white/80">&copy; {{ date('Y') }} placehold.cloud. All rights reserved.</p>
+        <footer class="w-full bg-white bg-opacity-10 backdrop-blur-md border-t border-white border-opacity-20 py-8">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-wrap justify-between items-center">
+                    <div class="w-full md:w-1/2 mb-6 md:mb-0">
+                        <h3 class="text-xl font-bold mb-2">placehold.cloud</h3>
+                        <p class="text-white text-opacity-80">Your go-to solution for placeholder content and APIs.</p>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <h4 class="text-lg font-semibold mb-2">Quick Links</h4>
+                        <ul class="space-y-2">
+                            <li><a href="/about-us" class="text-white text-opacity-80 hover:text-white transition duration-300">About Us</a></li>
+                            <li><a href="/privacy-policy" class="text-white text-opacity-80 hover:text-white transition duration-300">Privacy Policy</a></li>
+                            <li><a href="/terms-of-service" class="text-white text-opacity-80 hover:text-white transition duration-300">Terms of Service</a></li>
+                            <li><a href="/cookie-policy" class="text-white text-opacity-80 hover:text-white transition duration-300">Cookie Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-8 pt-8 border-t border-white border-opacity-20 text-center">
+                    <p class="text-white text-opacity-80">&copy; {{ date('Y') }} placehold.cloud. All rights reserved.</p>
+                </div>
             </div>
         </footer>
+
+        <!-- Cookie Consent -->
+        <div id="cookie-consent" class="fixed bottom-0 left-0 w-full bg-gray-900 text-white py-4 px-6 flex justify-between items-center">
+            <p>We use cookies to improve your experience. By using our site, you agree to our use of cookies. For more information, please see our <a href="/cookie-policy" class="underline">Cookie Policy</a>.</p>
+            <button id="accept-cookies" class="bg-white text-gray-900 px-4 py-2 rounded hover:bg-gray-200 transition duration-300 animate-[bounce_1s_infinite]">Accept</button>
+        </div>
+
+        <!-- Scripts -->
+        <script>
+            // Cookie Consent
+            document.getElementById('accept-cookies').addEventListener('click', function() {
+                document.getElementById('cookie-consent').style.display = 'none';
+                // Set a cookie to remember user's choice
+                document.cookie = "cookie_consent=accepted; max-age=" + 60*60*24*365 + "; path=/";
+            });
+
+            // Check if user has already accepted cookies
+            if (document.cookie.indexOf('cookie_consent=accepted') > -1) {
+                document.getElementById('cookie-consent').style.display = 'none';
+            }
+        </script>
     </body>
 </html>
