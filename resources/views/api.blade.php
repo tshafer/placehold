@@ -6,7 +6,7 @@
             <section class="mb-12">
                 <h2 class="text-3xl font-semibold mb-6 text-white">Introduction</h2>
                 <p class="text-xl text-white/90">
-                    Welcome to the placehold.cloud API documentation. Our API allows you to generate custom placeholder images, lorem ipsum text, quotes, jokes, weather information, and recipes programmatically. This comprehensive guide will help you integrate our services into your applications with ease.
+                    Welcome to the placehold.cloud API documentation. Our API allows you to generate custom placeholder images, lorem ipsum text, quotes, jokes, weather information, recipes, and holdicons programmatically. This comprehensive guide will help you integrate our services into your applications with ease.
                 </p>
             </section>
 
@@ -109,6 +109,21 @@
                             <li>limit (optional): Number of recipes to return (default: 1, max: 10)</li>
                         </ul>
                         <p class="text-white/90 mt-2"><strong>Example:</strong> <code class="bg-white/20 px-2 py-1 rounded">/recipes?category=dinner&cuisine=Italian&diet=vegetarian&limit=5</code></p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 text-white">7. Holdicons</h3>
+                        <p class="text-white/90 mb-2"><strong>Endpoint:</strong> <code class="bg-white/20 px-2 py-1 rounded">/holdicons/{size}</code></p>
+                        <p class="text-white/90 mb-2"><strong>Method:</strong> GET</p>
+                        <p class="text-white/90 mb-2"><strong>Parameters:</strong></p>
+                        <ul class="list-disc list-inside text-white/90 ml-4">
+                            <li>size (required): Size of the icon in pixels (e.g., 32, 64, 128)</li>
+                            <li>text (optional): Text to generate an icon from (if not provided, a random icon will be generated)</li>
+                            <li>color (optional): Color of the icon (hex code without #)</li>
+                            <li>background (optional): Background color (hex code without #)</li>
+                        </ul>
+                        <p class="text-white/90">Returns a random icon or an icon generated based on the provided text.</p>
+                        <p class="text-white/90 mt-2"><strong>Example:</strong> <code class="bg-white/20 px-2 py-1 rounded">/holdicons/64?text=ABC&color=ffffff&background=000000</code></p>
                     </div>
                 </div>
             </section>

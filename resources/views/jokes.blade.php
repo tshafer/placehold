@@ -22,10 +22,10 @@
                     <div class="bg-black/30 p-4 rounded-lg">
                         <pre class="text-green-300 text-sm overflow-x-auto">
 {
-    "joke": "string" // For single-part jokes
-    // OR
-    "setup": "string",
-    "delivery": "string" // For two-part jokes
+    "body": "string",
+    "title": "string",
+    "category": "string",
+    "rating": "string"
 }
                         </pre>
                     </div>
@@ -44,12 +44,23 @@ fetch('{{ route('joke') }}')
                 </section>
 
                 <section>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">Random Joke Example</h3>
+                    <div class="bg-black/30 p-4 rounded-lg">
+                        @php
+                        $jokeService = app(\App\Services\JokeService::class);
+                        $randomJoke = $jokeService->getRandomJoke();
+                        @endphp
+                        <pre class="text-green-300 text-sm overflow-x-auto">
+@json($randomJoke, JSON_PRETTY_PRINT)
+                        </pre>
+                    </div>
+                </section>
+
+                <section>
                     <h3 class="text-2xl font-semibold mb-4 text-white">Notes</h3>
                     <ul class="list-disc list-inside text-white/90 space-y-2 ml-4">
-                        <li>The API uses caching to improve performance and reduce load on the external joke service.</li>
-                        <li>If the external joke API is unavailable, a fallback joke is returned to ensure continuous service.</li>
-                        <li>Jokes are randomly selected from a pool of {{ \App\Http\Controllers\JokesController::MAX_JOKE_ID }} jokes.</li>
-                        <li>The response format may vary between single-part and two-part jokes.</li>
+                        <li>Jokes are randomly selected from our database.</li>
+                        <li>The response format includes body, title, category, and rating fields.</li>
                         <li>No authentication is required to use this endpoint.</li>
                         <li>The API adheres to rate limiting to prevent abuse. Please use responsibly.</li>
                     </ul>
@@ -57,16 +68,26 @@ fetch('{{ route('joke') }}')
 
                 <section>
                     <h3 class="text-2xl font-semibold mb-4 text-white">Error Handling</h3>
-                    <p class="text-white/90 mb-4">In case of an error, the API will return an appropriate Joke.</p>
+                    <p class="text-white/90 mb-4">In case of an error, the API will return an appropriate error response.</p>
                 </section>
 
                 <section>
                     <h3 class="text-2xl font-semibold mb-4 text-white">API Limits</h3>
                     <p class="text-white/90 mb-4">To ensure fair usage, this API is rate-limited. Please adhere to the following limits:</p>
                     <ul class="list-disc list-inside text-white/90 space-y-2 ml-4">
-                        <li><span class="font-semibold">60 requests</span> per minute</li>
-                        <li><span class="font-semibold">1000 requests</span> per day</li>
+                        <li><span class="font-semibold">120 requests</span> per minute</li>
                     </ul>
+                </section>
+
+                <section>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">Category Filter</h3>
+                    <p class="text-white/90 mb-4">You can filter jokes by category by adding a query parameter:</p>
+                    <div class="bg-black/30 p-4 rounded-lg">
+                        <code class="text-green-300 text-sm break-all">
+                            {{ route('joke') }}?category=YourCategory
+                        </code>
+                    </div>
+                    <p class="text-white/90 mt-4">Replace 'YourCategory' with the desired category. Use 'Any' to get jokes from all categories.</p>
                 </section>
 
                 <section>

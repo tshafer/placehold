@@ -110,6 +110,14 @@
                         </code>
                     </div>
                     <img src="{{ route('holdicon') }}?width=180&height=180&cat=true&background_color=00FF00&text_color=000000" alt="Example 3" class="mb-4 rounded shadow-sm">
+
+                    <p class="text-white/90 mb-4">Generate a 200x200 dog icon with custom colors:</p>
+                    <div class="bg-black/30 p-4 rounded-lg mb-4">
+                        <code class="text-green-300 text-sm break-all">
+                            {{ route('holdicon') }}?width=200&height=200&dog=true&background_color=0000FF&text_color=FFFFFF
+                        </code>
+                    </div>
+                    <img src="{{ route('holdicon') }}?width=200&height=200&dog=true&background_color=0000FF&text_color=FFFFFF" alt="Example 4" class="mb-4 rounded shadow-sm">
                 </section>
 
                 <section>

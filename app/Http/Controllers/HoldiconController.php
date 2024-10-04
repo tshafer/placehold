@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\CatService;
 use App\Services\DogService;
 use App\Services\DrawText;
+use App\Services\RandomAnimalService;
 use App\Services\RobotService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -16,11 +17,13 @@ class HoldiconController extends Controller
         public CatService $catService,
         public DogService $dogService,
         public RobotService $robotService,
-        public DrawText $drawText
+        public DrawText $drawText,
+        public RandomAnimalService $randomAnimalService
     ) {}
 
     public function __invoke(Request $request)
     {
+
         $seed = $request->input('seed', '');
         $width = $request->input('width', 128);
         $height = $request->input('height', $width);
@@ -30,22 +33,23 @@ class HoldiconController extends Controller
         $isRobot = $request->boolean('robot', false);
         $isCat = $request->boolean('cat', false);
         $isDog = $request->boolean('dog', false);
+        $isRandomAnimal = $request->boolean('random_animal', false);
         $noCache = $request->boolean('no_cache', false);
 
-        $cacheKey = "icon_{$seed}_{$width}_{$height}_{$backgroundColor}_{$textColor}_{$text}_{$isRobot}_{$isCat}_{$isDog}";
+        $cacheKey = "icon_{$seed}_{$width}_{$height}_{$backgroundColor}_{$textColor}_{$text}_{$isRobot}_{$isCat}_{$isDog}_{$isRandomAnimal}";
 
         if ($noCache) {
             Cache::forget($cacheKey);
 
-            return $this->generateImage($width, $height, $backgroundColor, $textColor, $text, $isRobot, $isCat, $isDog, $seed);
+            return $this->generateImage($width, $height, $backgroundColor, $textColor, $text, $isRobot, $isCat, $isDog, $isRandomAnimal, $seed);
         }
 
-        return Cache::remember($cacheKey, now()->addDays(7), function () use ($width, $height, $backgroundColor, $textColor, $text, $isRobot, $isCat, $isDog, $seed) {
-            return $this->generateImage($width, $height, $backgroundColor, $textColor, $text, $isRobot, $isCat, $isDog, $seed);
+        return Cache::remember($cacheKey, now()->addDays(7), function () use ($width, $height, $backgroundColor, $textColor, $text, $isRobot, $isCat, $isDog, $isRandomAnimal, $seed) {
+            return $this->generateImage($width, $height, $backgroundColor, $textColor, $text, $isRobot, $isCat, $isDog, $isRandomAnimal, $seed);
         });
     }
 
-    private function generateImage($width, $height, $backgroundColor, $textColor, $text, $isRobot, $isCat, $isDog, $seed)
+    private function generateImage($width, $height, $backgroundColor, $textColor, $text, $isRobot, $isCat, $isDog, $isRandomAnimal, $seed)
     {
         $image = imagecreatetruecolor($width, $height);
         $bgColor = $this->hexToRgb($backgroundColor);
@@ -63,6 +67,8 @@ class HoldiconController extends Controller
             $this->catService->drawCat($image, $size, $txt, $bg, $seed);
         } elseif ($isDog) {
             $this->dogService->drawDog($image, $size, $txt, $bg, $seed);
+        } elseif ($isRandomAnimal) {
+            $this->randomAnimalService->drawRandomAnimal($image, $size, $txt, $bg, $seed);
         } else {
             $this->drawText->drawText($image, $text, $size, $txt, $bg, [
                 'font' => resource_path('fonts/arial.ttf'),
