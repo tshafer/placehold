@@ -6,6 +6,11 @@
             <h2 class="text-3xl font-semibold mb-6 text-white">Usage Guide</h2>
             <p class="text-xl text-white/90 mb-8">Get random jokes with our powerful API. Here's how to get started:</p>
 
+            @php
+                $jokeCount = \App\Models\Joke::count();
+            @endphp
+            <p class="text-2xl text-white/90 mb-8">Currently, we have {{ number_format($jokeCount) }} jokes in our database!</p>
+
             <div class="space-y-12">
                 <section>
                     <h3 class="text-2xl font-semibold mb-4 text-white">Basic Usage</h3>

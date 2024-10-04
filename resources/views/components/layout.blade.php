@@ -42,6 +42,16 @@
         <!-- Sitemap -->
         <link rel="sitemap" type="application/xml" href="{{ asset('sitemap.xml') }}">
 
+        <style>
+            @keyframes menuHover {
+                0% { transform: translateY(0); }
+                50% { transform: translateY(-5px); }
+                100% { transform: translateY(0); }
+            }
+            .menu-item:hover {
+                animation: menuHover 0.3s ease-in-out;
+            }
+        </style>
     </head>
     <body class="font-jersey-25 antialiased text-white min-h-screen flex flex-col bg-gradient-to-l from-indigo-600 via-purple-600 to-pink-500">
         <header class="w-full bg-white bg-opacity-10 backdrop-blur-md border-b border-white border-opacity-20 py-4 sticky top-0 z-10">
@@ -65,38 +75,48 @@
                 </a>
                 <nav>
                     <ul class="flex space-x-6">
-                        <li><a href="/image" class="flex items-center transition-all duration-300 hover:text-gray-100 hover:transform hover:-translate-y-0.5">
-                            <svg class="w-6 h-6 mr-2 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-                            <span>Image</span>
-                        </a></li>
-                        <li><a href="/lorem-ipsum" class="flex items-center transition-all duration-300 hover:text-gray-100 hover:transform hover:-translate-y-0.5">
-                            <svg class="w-6 h-6 mr-2 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                            <span>Lorem Ipsum</span>
-                        </a></li>
-                        <li><a href="/quotes" class="flex items-center transition-all duration-300 hover:text-gray-100 hover:transform hover:-translate-y-0.5">
-                            <svg class="w-6 h-6 mr-2 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                            <span>Quotes</span>
-                        </a></li>
-                        <li><a href="/jokes" class="flex items-center transition-all duration-300 hover:text-gray-100 hover:transform hover:-translate-y-0.5">
-                            <svg class="w-6 h-6 mr-2 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-                            <span>Jokes</span>
-                        </a></li>
-                        <li><a href="/weather" class="flex items-center transition-all duration-300 hover:text-gray-100 hover:transform hover:-translate-y-0.5">
-                            <svg class="w-6 h-6 mr-2 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"/></svg>
-                            <span>Weather</span>
-                        </a></li>
-                        <li><a href="/recipes" class="flex items-center transition-all duration-300 hover:text-gray-100 hover:transform hover:-translate-y-0.5">
-                            <svg class="w-6 h-6 mr-2 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-                            <span>Recipes</span>
-                        </a></li>
-                        <li><a href="/holdicon" class="flex items-center transition-all duration-300 hover:text-gray-100 hover:transform hover:-translate-y-0.5">
-                            <svg class="w-6 h-6 mr-2 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="12" cy="12" r="3"/><path d="M12 5v1.5M12 17.5V19M5 12h1.5M17.5 12H19"/></svg>
-                            <span>Holdicon</span>
-                        </a></li>
-                        <!-- <li><a href="/api" class="flex items-center transition-all duration-300 hover:text-gray-100 hover:transform hover:-translate-y-0.5">
-                            <svg class="w-6 h-6 mr-2 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                            <span>API Docs</span>
-                        </a></li> -->
+                        @php
+                            $currentRoute = request()->path();
+                            $pages = [
+                                'image' => '/image',
+                                'lorem-ipsum' => '/lorem-ipsum',
+                                'quotes' => '/quotes',
+                                'jokes' => '/jokes',
+                                'weather' => '/weather',
+                                'recipes' => '/recipes',
+                                'holdicon' => '/holdicon',
+                            ];
+                        @endphp
+                        @foreach ($pages as $name => $url)
+                            <li>
+                                <a href="{{ $url }}" class="menu-item flex items-center transition-all duration-300 hover:text-yellow-300 {{ $currentRoute === $name ? 'text-yellow-300 font-bold scale-120' : '' }}">
+                                    @switch($name)
+                                        @case('image')
+                                            <svg class="w-6 h-6 mr-2 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                                            @break
+                                        @case('lorem-ipsum')
+                                            <svg class="w-6 h-6 mr-2 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                                            @break
+                                        @case('quotes')
+                                            <svg class="w-6 h-6 mr-2 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                            @break
+                                        @case('jokes')
+                                            <svg class="w-6 h-6 mr-2 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                                            @break
+                                        @case('weather')
+                                            <svg class="w-6 h-6 mr-2 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"/></svg>
+                                            @break
+                                        @case('recipes')
+                                            <svg class="w-6 h-6 mr-2 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                                            @break
+                                        @case('holdicon')
+                                            <svg class="w-6 h-6 mr-2 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="12" cy="12" r="3"/><path d="M12 5v1.5M12 17.5V19M5 12h1.5M17.5 12H19"/></svg>
+                                            @break
+                                    @endswitch
+                                    <span>{{ ucfirst($name) }}</span>
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </nav>
             </div>
