@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HoldiconController;
 use App\Http\Controllers\JokesController;
 use App\Http\Controllers\LoremIpsumController;
 use App\Http\Controllers\PlaceholderController;
@@ -15,6 +16,7 @@ Route::view('jokes', 'jokes');
 Route::view('quotes', 'quotes');
 Route::view('weather', 'weather');
 Route::view('recipes', 'recipes');
+Route::view('holdicon', 'holdicon');
 Route::view('cookie-policy', 'cookie-policy');
 Route::view('terms-of-service', 'terms-of-service');
 Route::view('privacy-policy', 'privacy-policy');
@@ -45,3 +47,7 @@ Route::get('l', LoremIpsumController::class)
 Route::get('/p/{size?}/{background_color?}/{text_color?}', PlaceholderController::class)
     ->middleware('throttle:120,1')
     ->name('placeholder');
+
+Route::get('h', HoldiconController::class)
+    ->middleware('throttle:120,1')
+    ->name('holdicon');

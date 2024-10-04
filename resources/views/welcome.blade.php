@@ -28,6 +28,10 @@
                     <h2 class="text-3xl font-semibold mb-4 text-white">Recipe Roundup</h2>
                     <p class="text-white/80">Cook up a storm with our delicious recipe suggestions!</p>
                 </a>
+                <a href="/holdicon" class="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 hover:bg-white/20">
+                    <h2 class="text-3xl font-semibold mb-4 text-white">Holdicon Magic</h2>
+                    <p class="text-white/80">Create custom placeholder icons with text, robots, cats, or dogs!</p>
+                </a>
             </div>
 
             <div class="mt-20 text-center">
