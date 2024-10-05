@@ -1,16 +1,16 @@
 <x-layout>
     <div class="container mx-auto px-4 py-12">
-        <h1 class="text-6xl font-extrabold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-pink-300">Image Placeholder API</h1>
+        <h1 class="text-6xl font-extrabold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-pink-300 dark:from-blue-300 dark:to-pink-200">Image Placeholder API</h1>
 
-        <div class="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 p-8 rounded-2xl shadow-lg bg-no-repeat bg-cover">
+        <div class="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 p-8 rounded-2xl shadow-lg bg-no-repeat bg-cover dark:from-indigo-800 dark:via-purple-800 dark:to-pink-700">
             <h2 class="text-3xl font-semibold mb-6 text-white">Usage Guide</h2>
             <p class="text-xl text-white/90 mb-8">Create custom placeholder images with our powerful API. Here's how to get started:</p>
 
             <div class="space-y-12">
                 <section>
                     <h3 class="text-2xl font-semibold mb-4 text-white">Basic Usage</h3>
-                    <div class="bg-black/30 p-4 rounded-lg">
-                        <code class="text-green-300 text-sm break-all">
+                    <div class="bg-black/30 p-4 rounded-lg dark:bg-black/50">
+                        <code class="text-green-300 text-sm break-all dark:text-green-400">
                             {{ route('placeholder', ['size' => '300x200', 'background_color' => 'FF5733', 'text_color' => 'FFFFFF']) }}
                         </code>
                     </div>
@@ -47,11 +47,11 @@
                             //['name' => 'dog', 'description' => 'Generate dog image (true/false)', 'value' => 'true'],
                             //['name' => 'robot', 'description' => 'Generate robot image (true/false)', 'value' => 'true'],
                         ] as $param)
-                            <div class="bg-white/5 p-4 rounded-lg">
+                            <div class="bg-white/5 p-4 rounded-lg dark:bg-white/10">
                                 <h4 class="text-lg font-semibold mb-2 text-white">{{ $param['name'] }}</h4>
                                 <p class="text-white/80 mb-2">{{ $param['description'] }}</p>
-                                <div class="bg-black/20 p-2 rounded">
-                                    <code class="text-green-300 text-xs break-all">
+                                <div class="bg-black/20 p-2 rounded dark:bg-black/40">
+                                    <code class="text-green-300 text-xs break-all dark:text-green-400">
                                         {{ route('placeholder', array_merge(['size' => '300x200', 'background_color' => 'FF5733', 'text_color' => 'FFFFFF'], [$param['name'] => $param['value']])) }}
                                     </code>
                                 </div>
@@ -64,8 +64,8 @@
                 <section>
                     <h3 class="text-2xl font-semibold mb-4 text-white">Advanced Example</h3>
                     <p class="text-white/90 mb-4">Combine multiple parameters for more complex placeholder images:</p>
-                    <div class="bg-black/30 p-4 rounded-lg mb-4">
-                        <code class="text-green-300 text-sm break-all">
+                    <div class="bg-black/30 p-4 rounded-lg mb-4 dark:bg-black/50">
+                        <code class="text-green-300 text-sm break-all dark:text-green-400">
                             {{ route('placeholder', ['size' => '300x200', 'background_color' => 'FF5733', 'text_color' => 'FFFFFF', 'text' => 'Hello+World', 'format' => 'png', 'quality' => '90', 'font' => 'arial', 'text_size' => '30', 'watermark' => 'Copyright', 'watermark_size' => '20', 'watermark_opacity' => '50', 'blur' => '5', 'grayscale' => 'false', 'invert' => 'false', 'cat' => 'false', 'dog' => 'false', 'robot' => 'false']) }}
                         </code>
                     </div>

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HoldiconController;
+use App\Http\Controllers\IconsController;
 use App\Http\Controllers\JokesController;
 use App\Http\Controllers\LoremIpsumController;
 use App\Http\Controllers\PlaceholderController;
@@ -23,6 +25,13 @@ Route::view('privacy-policy', 'privacy-policy');
 Route::view('imprint', 'imprint');
 Route::view('about-us', 'about-us');
 Route::view('api', 'api');
+Route::view('icons', 'icons');
+Route::view('contact', 'contact');
+Route::post('contact', action: [ContactController::class, 'store'])->name('contact.submit');
+Route::get('/download-all-icons', [IconsController::class, 'downloadAllIcons'])
+
+    ->middleware('throttle:10,1')
+    ->name('download.all.icons');
 
 Route::get('w', WeatherController::class)
     ->middleware('throttle:120,1')
