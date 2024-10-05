@@ -1,8 +1,9 @@
-<header x-data="{ darkMode: localStorage.getItem('darkMode') === 'true' }"
+<header
+        x-data="{ mobileMenuOpen: false }"
         :class="{ 'bg-white bg-opacity-10': !darkMode, 'bg-gray-900 bg-opacity-50': darkMode }"
         class="w-full backdrop-blur-md border-b border-white border-opacity-20 py-4 sticky top-0 z-10 transition-colors duration-300">
             <div class="container mx-auto px-4 flex justify-between items-center">
-                <a href="/" class="text-2xl font-bold flex items-center" :class="{ 'text-white': !darkMode, 'text-gray-200': darkMode }">
+                <a href="/" class="text-2xl font-bold flex items-center" :class="{ 'text-white': !darkMode, 'text-gray-100': darkMode }">
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-2 hover:animate-[logoSpinTakeoff_0.5s_linear_infinite]">
                         <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
                         <path d="M20 8L28 16H12L20 8Z" fill="white"/>
@@ -17,10 +18,10 @@
                             </linearGradient>
                         </defs>
                     </svg>
-                    <span class="text-2xl tracking-wide font-vt323 font-bold neon-text">placehold.cloud</span>
+                    <span class="text-2xl tracking-wide font-vt323 font-bold neon-text" :class="{ 'text-white': !darkMode, 'text-gray-100': darkMode }">placehold.cloud</span>
                 </a>
-                <nav>
-                    <ul class="flex space-x-6">
+                <nav class="hidden lg:flex items-center">
+                    <ul class="flex space-x-6 mr-6">
                         @php
                             $currentRoute = request()->path();
                             $pages = [
@@ -38,11 +39,11 @@
                         @foreach ($pages as $name => $url)
                             <li>
                                 <a href="{{ $url }}" class="menu-item flex items-center transition-all duration-300 neon-text"
-                                   :class="{ 'hover:text-yellow-300': !darkMode, 'hover:text-yellow-200': darkMode,
+                                   :class="{ 'hover:text-yellow-300': !darkMode, 'hover:text-yellow-100': darkMode,
                                              'text-yellow-300': (!darkMode && '{{ $currentRoute }}' === '{{ $name }}'),
-                                             'text-yellow-200': (darkMode && '{{ $currentRoute }}' === '{{ $name }}'),
+                                             'text-yellow-100': (darkMode && '{{ $currentRoute }}' === '{{ $name }}'),
                                              'text-white': (!darkMode && '{{ $currentRoute }}' !== '{{ $name }}'),
-                                             'text-gray-300': (darkMode && '{{ $currentRoute }}' !== '{{ $name }}') }"
+                                             'text-gray-200': (darkMode && '{{ $currentRoute }}' !== '{{ $name }}') }"
                                    :class="{'font-bold scale-120': '{{ $currentRoute }}' === '{{ $name }}'}">
                                     @switch($name)
                                         @case('image')
@@ -84,6 +85,62 @@
                             </li>
                         @endforeach
                     </ul>
+                    <button x-cloak @click="darkMode = !darkMode" class="p-2 rounded-full transition-colors duration-300" :class="{ 'bg-gray-200 hover:bg-gray-300': !darkMode, 'bg-gray-700 hover:bg-gray-600': darkMode }">
+                        <svg x-show="!darkMode" class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                        <svg x-show="darkMode" class="w-6 h-6 text-yellow-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    </button>
                 </nav>
+                <div class="md:hidden flex items-center">
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-white focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90" class="lg:hidden absolute top-full left-0 right-0 bg-gray-900 bg-opacity-95 backdrop-blur-md">
+                <ul class="px-4 py-2 space-y-2">
+                    @foreach ($pages as $name => $url)
+                        <li>
+                            <a href="{{ $url }}" class="flex items-center py-2 px-3 rounded-lg text-white hover:text-yellow-300 transition-colors duration-300 group" :class="{ 'hover:bg-white/10': !darkMode, 'hover:bg-gray-700': darkMode }">
+                                @switch($name)
+                                    @case('lorem-ipsum')
+                                        <svg class="w-5 h-5 mr-3 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                                        @break
+                                    @case('quotes')
+                                        <svg class="w-5 h-5 mr-3 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                        @break
+                                    @case('jokes')
+                                        <svg class="w-5 h-5 mr-3 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                                        @break
+                                    @case('weather')
+                                        <svg class="w-5 h-5 mr-3 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"/></svg>
+                                        @break
+                                    @case('recipes')
+                                        <svg class="w-5 h-5 mr-3 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                                        @break
+                                    @case('holdicon')
+                                        <svg class="w-5 h-5 mr-3 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="12" cy="12" r="3"/><path d="M12 5v1.5M12 17.5V19M5 12h1.5M17.5 12H19"/></svg>
+                                        @break
+                                    @case('icons')
+                                        <svg class="w-5 h-5 mr-3 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><circle cx="15.5" cy="8.5" r="1.5"/><circle cx="12" cy="15.5" r="1.5"/><path d="M20 14.5v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2"/></svg>
+                                        @break
+                                    @case('contact')
+                                        <svg class="w-5 h-5 mr-3 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                        @break
+                                    @default
+                                        <svg class="w-5 h-5 mr-3 transition-transform duration-300 group-hover:animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                                @endswitch
+                                <span>{{ ucfirst($name) }}</span>
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+                <div class="px-4 py-2">
+                    <button @click="darkMode = !darkMode" class="w-full text-left py-2 text-white hover:text-yellow-300 transition-colors duration-300">
+                        <span x-show="!darkMode">Switch to Dark Mode</span>
+                        <span x-show="darkMode">Switch to Light Mode</span>
+                    </button>
+                </div>
             </div>
         </header>
