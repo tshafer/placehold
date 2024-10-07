@@ -147,11 +147,11 @@ function activateKonamiCode() {
 let matrixInterval;
 let matrixCanvas;
 
-document.addEventListener('keydown', ({ key }) => {
-    if (key.toLowerCase() === 'm') {
-        matrixCanvas ? cancelMatrixEffect() : createMatrixEffect();
-    }
-});
+// document.addEventListener('keydown', ({ key }) => {
+//     if (key.toLowerCase() === 'm') {
+//         matrixCanvas ? cancelMatrixEffect() : createMatrixEffect();
+//     }
+// });
 
 function createMatrixEffect() {
     matrixCanvas = document.createElement('canvas');
@@ -227,11 +227,11 @@ function createRainbowWave() {
 }
 
 // Fireworks effect on 'f' key press
-document.addEventListener('keydown', ({ key }) => {
-    if (key.toLowerCase() === 'f') {
-        createFireworks();
-    }
-});
+// document.addEventListener('keydown', ({ key }) => {
+//     if (key.toLowerCase() === 'f') {
+//         createFireworks();
+//     }
+// });
 
 function createFireworks() {
     const fireworksContainer = document.createElement('div');

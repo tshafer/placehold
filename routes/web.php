@@ -9,9 +9,10 @@ use App\Http\Controllers\PlaceholderController;
 use App\Http\Controllers\QuotesController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\WeatherController;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome');
+Route::view('/', 'welcome')->name('home');
 Route::view('image', 'image');
 Route::view('lorem-ipsum', 'loreum');
 Route::view('jokes', 'jokes');
@@ -28,6 +29,15 @@ Route::view('api', 'api');
 Route::view('icons', 'icons');
 Route::view('contact', 'contact');
 Route::post('contact', action: [ContactController::class, 'store'])->name('contact.submit');
+
+Route::post('toggle-dark-mode', function () {
+    $currentMode = Cookie::get('darkMode', 'false');
+    $newMode = $currentMode === 'true' ? 'false' : 'true';
+    Cookie::queue(Cookie::make('darkMode', $newMode, 1000));
+
+    return redirect()->back();
+})->name('toggle-dark-mode');
+
 Route::get('/download-all-icons', [IconsController::class, 'downloadAllIcons'])
 
     ->middleware('throttle:10,1')

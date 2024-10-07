@@ -1,18 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full" x-data="{ isOpen: false, darkMode: localStorage.getItem('darkMode') === 'true' }" x-init="
-    if (localStorage.getItem('darkMode') === 'true') {
-        darkMode = true;
-        document.documentElement.classList.add('dark');
-    }
-    $watch('darkMode', val => {
-        localStorage.setItem('darkMode', val);
-        if (val) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    });
-">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full {{ Cookie::get('darkMode', 'false') === 'true' ? 'dark' : '' }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">

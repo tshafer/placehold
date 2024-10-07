@@ -22,6 +22,6 @@ class ContactController extends Controller
         });
 
         // Redirect back with success message
-        return redirect()->back()->with('success', 'Thank you for your message. We will get back to you soon!');
+        return redirect()->route('home')->with('success', 'Thank you for your message. We will get back to you soon!');
     }
 }

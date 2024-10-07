@@ -1,25 +1,25 @@
-<footer x-data="{ darkMode: localStorage.getItem('darkMode') === 'true' }"
-        :class="{ 'bg-white bg-opacity-10': !darkMode, 'bg-gray-900': darkMode }"
+<footer
+        :class="{ 'bg-white bg-opacity-10': '{{ Cookie::get('darkMode', 'false') }}' === 'false', 'bg-gray-900': '{{ Cookie::get('darkMode', 'false') }}' === 'true' }"
         class="w-full backdrop-blur-md border-t border-white border-opacity-20 py-8 transition-colors duration-300">
     <div class="container mx-auto px-4">
         <div class="flex flex-wrap justify-between items-center">
             <div class="w-full md:w-1/2 mb-6 md:mb-0">
-                <h3 class="text-xl font-bold mb-2 font-vt323" :class="{ 'text-white': !darkMode, 'text-gray-200': darkMode }">placehold.cloud</h3>
+                <h3 class="text-xl font-bold mb-2 font-vt323" :class="{ 'text-white': '{{ Cookie::get('darkMode', 'false') }}' === 'false', 'text-gray-200': '{{ Cookie::get('darkMode', 'false') }}' === 'true' }">placehold.cloud</h3>
                 <p class="text-green-400 animate-[pulse_1s_ease-in-out_infinite] transition-colors duration-300">Your go-to solution for placeholder content and APIs.</p>
             </div>
             <div class="w-full md:w-1/2">
-                <h4 class="text-lg font-semibold mb-2" :class="{ 'text-white': !darkMode, 'text-gray-200': darkMode }">Quick Links</h4>
+                <h4 class="text-lg font-semibold mb-2" :class="{ 'text-white': '{{ Cookie::get('darkMode', 'false') }}' === 'false', 'text-gray-200': '{{ Cookie::get('darkMode', 'false') }}' === 'true' }">Quick Links</h4>
                 <ul class="space-y-2">
-                    <li><a href="/about-us" :class="{ 'text-white text-opacity-80 hover:text-white': !darkMode, 'text-gray-400 hover:text-gray-200': darkMode }" class="transition duration-300">About Us</a></li>
-                    <li><a href="/privacy-policy" :class="{ 'text-white text-opacity-80 hover:text-white': !darkMode, 'text-gray-400 hover:text-gray-200': darkMode }" class="transition duration-300">Privacy Policy</a></li>
-                    <li><a href="/terms-of-service" :class="{ 'text-white text-opacity-80 hover:text-white': !darkMode, 'text-gray-400 hover:text-gray-200': darkMode }" class="transition duration-300">Terms of Service</a></li>
-                    <li><a href="/cookie-policy" :class="{ 'text-white text-opacity-80 hover:text-white': !darkMode, 'text-gray-400 hover:text-gray-200': darkMode }" class="transition duration-300">Cookie Policy</a></li>
-                    <li><a href="/contact" :class="{ 'text-white text-opacity-80 hover:text-white': !darkMode, 'text-gray-400 hover:text-gray-200': darkMode }" class="transition duration-300">Contact Us</a></li>
+                    <li><a href="/about-us" :class="{ 'text-white text-opacity-80 hover:text-white': '{{ Cookie::get('darkMode', 'false') }}' === 'false', 'text-gray-400 hover:text-gray-200': '{{ Cookie::get('darkMode', 'false') }}' === 'true' }" class="transition duration-300">About Us</a></li>
+                    <li><a href="/privacy-policy" :class="{ 'text-white text-opacity-80 hover:text-white': '{{ Cookie::get('darkMode', 'false') }}' === 'false', 'text-gray-400 hover:text-gray-200': '{{ Cookie::get('darkMode', 'false') }}' === 'true' }" class="transition duration-300">Privacy Policy</a></li>
+                    <li><a href="/terms-of-service" :class="{ 'text-white text-opacity-80 hover:text-white': '{{ Cookie::get('darkMode', 'false') }}' === 'false', 'text-gray-400 hover:text-gray-200': '{{ Cookie::get('darkMode', 'false') }}' === 'true' }" class="transition duration-300">Terms of Service</a></li>
+                    <li><a href="/cookie-policy" :class="{ 'text-white text-opacity-80 hover:text-white': '{{ Cookie::get('darkMode', 'false') }}' === 'false', 'text-gray-400 hover:text-gray-200': '{{ Cookie::get('darkMode', 'false') }}' === 'true' }" class="transition duration-300">Cookie Policy</a></li>
+                    <li><a href="/contact" :class="{ 'text-white text-opacity-80 hover:text-white': '{{ Cookie::get('darkMode', 'false') }}' === 'false', 'text-gray-400 hover:text-gray-200': '{{ Cookie::get('darkMode', 'false') }}' === 'true' }" class="transition duration-300">Contact Us</a></li>
                 </ul>
             </div>
         </div>
         <div class="mt-8 pt-8 border-t border-white border-opacity-20 text-center">
-            <p :class="{ 'text-white text-opacity-80': !darkMode, 'text-gray-400': darkMode }">&copy; {{ date('Y') }} placehold.cloud. All rights reserved.</p>
+            <p :class="{ 'text-white text-opacity-80': '{{ Cookie::get('darkMode', 'false') }}' === 'false', 'text-gray-400': '{{ Cookie::get('darkMode', 'false') }}' === 'true' }">&copy; {{ date('Y') }} placehold.cloud. All rights reserved.</p>
         </div>
     </div>
 </footer>
