@@ -63,8 +63,13 @@ class PlaceholderController extends Controller
 
         $text = $request->query('text', 'Placeholder');
         $text = urldecode($text);
-        $backgroundColor = $this->hexToRgb($background_color);
-        $textColorArray = $this->hexToRgb($text_color);
+
+        // Support both full and short parameter names (bg/fg)
+        $bgColor = $request->query('bg', $background_color);
+        $fgColor = $request->query('fg', $text_color);
+
+        $backgroundColor = $this->hexToRgb($bgColor);
+        $textColorArray = $this->hexToRgb($fgColor);
         $borderColor = $this->hexToRgb($request->query('border_color', '969696'));
         $format = $request->query('format', 'png');
         $quality = $request->query('quality', 90);
@@ -84,8 +89,8 @@ class PlaceholderController extends Controller
         $cacheKey = hash('sha256', json_encode(array_merge($request->all(), [
             'size' => $size,
             'format' => $format,
-            'background_color' => $background_color,
-            'text_color' => $text_color,
+            'background_color' => $bgColor,
+            'text_color' => $fgColor,
             'border_color' => $request->query('border_color', '969696'),
             'quality' => $quality,
             'font' => $font,

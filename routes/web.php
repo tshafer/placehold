@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome')->name('home');
+
+// Short format: /640x320?text=...&bg=...&fg=...
+// This must come before other routes to avoid conflicts
+Route::get('/{size}', PlaceholderController::class)
+    ->where('size', '^\d+x\d+$')
+    ->middleware('throttle:120,1')
+    ->name('placeholder.short');
+
 Route::view('image', 'image');
 Route::view('lorem-ipsum', 'loreum');
 Route::view('jokes', 'jokes');
