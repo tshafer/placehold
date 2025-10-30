@@ -30,6 +30,8 @@ Route::view('icons', 'icons');
 Route::view('contact', 'contact');
 Route::post('contact', action: [ContactController::class, 'store'])->name('contact.submit');
 
+Route::view('error-reporter', 'error-reporter');
+
 Route::post('toggle-dark-mode', function () {
     $currentMode = Cookie::get('darkMode', 'false');
     $newMode = $currentMode === 'true' ? 'false' : 'true';

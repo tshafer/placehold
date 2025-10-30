@@ -1,68 +1,80 @@
 <x-layout>
-    <div class="container mx-auto px-4 py-12">
-        <div class="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 dark:from-indigo-800 dark:via-purple-800 dark:to-pink-700 p-8 rounded-2xl shadow-lg bg-no-repeat bg-cover">
-        <h1 class="text-6xl font-extrabold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-pink-300 dark:from-blue-300 dark:to-pink-200">Random Quotes API</h1>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div class="mb-8">
+            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-2">Random Quotes API</h1>
+            <p class="text-gray-600 dark:text-gray-400">Get inspiring quotes with our free API</p>
+        </div>
 
-            <h2 class="text-3xl font-semibold mb-6 text-white dark:text-gray-200">Usage Guide</h2>
-            <p class="text-xl text-white/90 dark:text-gray-300 mb-8">Get random quotes with our powerful API. Here's how to get started:</p>
-
-            <div class="space-y-12">
+        <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-8">
+            <div class="space-y-8">
                 <section>
-                    <h3 class="text-2xl font-semibold mb-4 text-white dark:text-gray-200">Basic Usage</h3>
-                    <div class="bg-black/30 dark:bg-white/10 p-4 rounded-lg">
-                        <code class="text-green-300 dark:text-green-400 text-sm break-all">
-                            {{ route('quote') }}
+                    <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 0 002-2V6a2 0 00-2-2H5a2 0 00-2 2v12a2 0 002 2z"/>
+                        </svg>
+                        Basic Usage
+                    </h3>
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <code class="text-green-400 text-sm break-all font-mono">
+                            GET {{ route('quote') }}
                         </code>
                     </div>
-                    <p class="text-white/90 dark:text-gray-300 mt-4">This request will return a random quote from the Quotable API.</p>
+                    <p class="text-gray-600 dark:text-gray-400 mt-3">Returns a random quote from the Quotable API.</p>
                 </section>
 
                 <section>
-                    <h3 class="text-2xl font-semibold mb-4 text-white dark:text-gray-200">Response Format</h3>
-                    <div class="bg-black/30 dark:bg-white/10 p-4 rounded-lg">
-                        <pre class="text-green-300 dark:text-green-400 text-sm overflow-x-auto">
-{
-    "status": "success",
-    "data": [
-        {
-            "_id": "IARxwjpiXK",
-            "content": "I had three chairs in my house; one for solitude, two for friendship, three for society.",
-            "author": "Henry David Thoreau",
-            "tags": [
-                "Friendship"
-            ],
-            "authorSlug": "henry-david-thoreau",
-            "length": 88,
-            "dateAdded": "2019-08-08",
-            "dateModified": "2023-04-14"
-        }
-    ],
-    "timestamp": "YYYY-MM-DD HH:MM:SS"
-}
-                        </pre>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Response Format</h3>
+                    <div class="bg-gray-900 p-4 rounded-lg overflow-x-auto">
+                        <pre class="text-green-400 text-sm font-mono"><code>{
+  "status": "success",
+  "data": [
+    {
+      "_id": "IARxwjpiXK",
+      "content": "I had three chairs in my house; one for solitude, two for friendship, three for society.",
+      "author": "Henry David Thoreau",
+      "tags": ["Friendship"],
+      "authorSlug": "henry-david-thoreau",
+      "length": 88,
+      "dateAdded": "2019-08-08",
+      "dateModified": "2023-04-14"
+    }
+  ],
+  "timestamp": "YYYY-MM-DD HH:MM:SS"
+}</code></pre>
                     </div>
                 </section>
 
                 <section>
-                    <h3 class="text-2xl font-semibold mb-4 text-white dark:text-gray-200">Rate Limiting</h3>
-                    <p class="text-white/90 dark:text-gray-300 mb-4">To ensure fair usage, this API is rate-limited. Please adhere to the following limits:</p>
-                    <ul class="list-disc list-inside text-white/90 dark:text-gray-300 space-y-2 ml-4">
-                        <li><span class="font-semibold">5 requests</span> per second</li>
-                        <li><span class="font-semibold">3600 requests</span> per hour</li>
-                    </ul>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Rate Limiting</h3>
+                    <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">To ensure fair usage, this API is rate-limited:</p>
+                        <ul class="list-disc list-inside mt-3 space-y-2 text-gray-700 dark:text-gray-300 text-sm ml-4">
+                            <li><span class="font-semibold">5 requests</span> per second</li>
+                            <li><span class="font-semibold">3600 requests</span> per hour</li>
+                        </ul>
+                    </div>
                 </section>
 
                 <section>
-                    <h3 class="text-2xl font-semibold mb-4 text-white dark:text-gray-200">Error Handling</h3>
-                    <p class="text-white/90 dark:text-gray-300 mb-4">In case of an error, the API will return a JSON response with an error message:</p>
-                    <div class="bg-black/30 dark:bg-white/10 p-4 rounded-lg">
-                        <pre class="text-green-300 dark:text-green-400 text-sm overflow-x-auto">
-{
-    "status": "error",
-    "message": "An error occurred while fetching the quote"
-}
-                        </pre>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Error Handling</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">In case of an error, the API returns a JSON response with an error message:</p>
+                    <div class="bg-gray-900 p-4 rounded-lg overflow-x-auto">
+                        <pre class="text-green-400 text-sm font-mono"><code>{
+  "status": "error",
+  "message": "An error occurred while fetching the quote"
+}</code></pre>
                     </div>
+                </section>
+
+                <section>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Try It Now</h3>
+                    <a href="{{ route('quote') }}" target="_blank" 
+                       class="inline-flex items-center px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors shadow-lg">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                        Test the API
+                    </a>
                 </section>
             </div>
         </div>

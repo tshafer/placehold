@@ -1,33 +1,64 @@
-<footer
-        :class="{ 'bg-white bg-opacity-10': '{{ Cookie::get('darkMode', 'false') }}' === 'false', 'bg-gray-900': '{{ Cookie::get('darkMode', 'false') }}' === 'true' }"
-        class="w-full backdrop-blur-md border-t border-white border-opacity-20 py-8 transition-colors duration-300">
-    <div class="container mx-auto px-4">
-        <div class="flex flex-wrap justify-between items-center">
-            <div class="w-full md:w-1/2 mb-6 md:mb-0">
-                <h3 class="text-xl font-bold mb-2 font-vt323" :class="{ 'text-white': '{{ Cookie::get('darkMode', 'false') }}' === 'false', 'text-gray-200': '{{ Cookie::get('darkMode', 'false') }}' === 'true' }">placehold.cloud</h3>
-                <p class="text-green-400 animate-[pulse_1s_ease-in-out_infinite] transition-colors duration-300">Your go-to solution for placeholder content and APIs.</p>
+<footer class="w-full bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 mt-16">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div class="col-span-1 md:col-span-2">
+                <a href="/" class="flex items-center space-x-2 mb-4">
+                    <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
+                        <rect width="40" height="40" rx="8" class="fill-gray-900 dark:fill-white"/>
+                        <path d="M20 8L28 16H12L20 8Z" class="fill-white dark:fill-gray-900"/>
+                        <path d="M8 20L16 28V12L8 20Z" class="fill-white dark:fill-gray-900"/>
+                        <path d="M32 20L24 28V12L32 20Z" class="fill-white dark:fill-gray-900"/>
+                        <path d="M20 32L28 24H12L20 32Z" class="fill-white dark:fill-gray-900"/>
+                    </svg>
+                    <span class="text-xl font-bold text-gray-900 dark:text-white">placehold.cloud</span>
+                </a>
+                <p class="text-gray-600 dark:text-gray-400 mb-4 max-w-md">
+                    Your go-to solution for placeholder content and APIs. Free, fast, and production-ready.
+                </p>
             </div>
-            <div class="w-full md:w-1/2">
-                <h4 class="text-lg font-semibold mb-2" :class="{ 'text-white': '{{ Cookie::get('darkMode', 'false') }}' === 'false', 'text-gray-200': '{{ Cookie::get('darkMode', 'false') }}' === 'true' }">Quick Links</h4>
+
+            <div>
+                <h4 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Tools</h4>
                 <ul class="space-y-2">
-                    <li><a href="/about-us" :class="{ 'text-white text-opacity-80 hover:text-white': '{{ Cookie::get('darkMode', 'false') }}' === 'false', 'text-gray-400 hover:text-gray-200': '{{ Cookie::get('darkMode', 'false') }}' === 'true' }" class="transition duration-300">About Us</a></li>
-                    <li><a href="/privacy-policy" :class="{ 'text-white text-opacity-80 hover:text-white': '{{ Cookie::get('darkMode', 'false') }}' === 'false', 'text-gray-400 hover:text-gray-200': '{{ Cookie::get('darkMode', 'false') }}' === 'true' }" class="transition duration-300">Privacy Policy</a></li>
-                    <li><a href="/terms-of-service" :class="{ 'text-white text-opacity-80 hover:text-white': '{{ Cookie::get('darkMode', 'false') }}' === 'false', 'text-gray-400 hover:text-gray-200': '{{ Cookie::get('darkMode', 'false') }}' === 'true' }" class="transition duration-300">Terms of Service</a></li>
-                    <li><a href="/cookie-policy" :class="{ 'text-white text-opacity-80 hover:text-white': '{{ Cookie::get('darkMode', 'false') }}' === 'false', 'text-gray-400 hover:text-gray-200': '{{ Cookie::get('darkMode', 'false') }}' === 'true' }" class="transition duration-300">Cookie Policy</a></li>
-                    <li><a href="/contact" :class="{ 'text-white text-opacity-80 hover:text-white': '{{ Cookie::get('darkMode', 'false') }}' === 'false', 'text-gray-400 hover:text-gray-200': '{{ Cookie::get('darkMode', 'false') }}' === 'true' }" class="transition duration-300">Contact Us</a></li>
+                    <li><a href="/image" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Images</a></li>
+                    <li><a href="/lorem-ipsum" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Text</a></li>
+                    <li><a href="/quotes" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Quotes</a></li>
+                    <li><a href="/jokes" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Jokes</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Company</h4>
+                <ul class="space-y-2">
+                    <li><a href="/about-us" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">About</a></li>
+                    <li><a href="/api" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">API Docs</a></li>
+                    <li><a href="/contact" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Contact</a></li>
+                    <li><a href="/privacy-policy" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Privacy</a></li>
                 </ul>
             </div>
         </div>
-        <div class="mt-8 pt-8 border-t border-white border-opacity-20 text-center">
-            <p :class="{ 'text-white text-opacity-80': '{{ Cookie::get('darkMode', 'false') }}' === 'false', 'text-gray-400': '{{ Cookie::get('darkMode', 'false') }}' === 'true' }">&copy; {{ date('Y') }} placehold.cloud. All rights reserved.</p>
+
+        <div class="border-t border-gray-200 dark:border-gray-800 pt-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    &copy; {{ date('Y') }} placehold.cloud. All rights reserved.
+                </p>
+                <p class="text-gray-600 dark:text-gray-400 text-sm mt-4 md:mt-0">
+                    Built with Laravel 12
+                </p>
+            </div>
         </div>
     </div>
 </footer>
 
 <!-- Cookie Consent -->
 <div id="cookie-consent" x-data="{ show: !localStorage.getItem('cookieConsent') }" x-show="show" x-transition
-     class="fixed bottom-0 left-0 w-full bg-gray-900 text-white py-4 px-6 flex justify-between items-center">
-    <p>We use cookies to improve your experience. By using our site, you agree to our use of cookies. For more information, please see our <a href="/cookie-policy" class="underline">Cookie Policy</a>.</p>
-    <button @click="localStorage.setItem('cookieConsent', 'true'); show = false"
-            class="bg-white text-gray-900 px-4 py-2 rounded hover:bg-gray-200 transition duration-300 animate-[bounce_1s_infinite]">Accept</button>
+     class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white py-4 px-6 shadow-lg z-50">
+    <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+        <p class="text-sm">We use cookies to improve your experience. By using our site, you agree to our <a href="/cookie-policy" class="underline hover:text-gray-300">Cookie Policy</a>.</p>
+        <button @click="localStorage.setItem('cookieConsent', 'true'); show = false"
+                class="bg-white text-gray-900 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors text-sm font-medium whitespace-nowrap">
+            Accept
+        </button>
+    </div>
 </div>

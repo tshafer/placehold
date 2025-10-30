@@ -3,14 +3,15 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Generate custom placeholder images with our powerful API. Create images with specific sizes, colors, text, and effects.">
-        <meta name="keywords" content="placeholder images, image generator, API, custom images">
+        <meta name="description" content="{{ $description ?? 'Generate custom placeholder images, text, quotes, and more with placehold.cloud. Free, fast, and production-ready API for developers and designers.' }}">
+        <meta name="keywords" content="{{ $keywords ?? 'placeholder images, lorem ipsum generator, API, custom images, developer tools, design tools, free API, JSON placeholder, placeholder text' }}">
         <meta name="author" content="placehold.cloud">
+        <meta name="theme-color" content="#6366f1">
         <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
         <meta http-equiv="Pragma" content="no-cache">
         <meta http-equiv="Expires" content="0">
 
-        <title>placehold.cloud - Custom Placeholder Image Generator</title>
+        <title>{{ $title ?? 'placehold.cloud - The Ultimate Placeholder Generator' }}</title>
 
         @vite('resources/css/app.css')
         @vite('resources/js/app.js')
@@ -37,6 +38,7 @@
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link rel="preload" href="https://fonts.googleapis.com/css2?family=VT323&display=swap" as="style">
         <link rel="preload" href="https://fonts.googleapis.com/css2?family=Jersey+25&display=swap" as="style">
         <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
@@ -95,9 +97,9 @@
             }
         </style>
     </head>
-    <body class="font-jersey-25 antialiased text-white dark:text-gray-200 min-h-screen flex flex-col bg-gradient-to-l from-indigo-600 via-purple-600 to-pink-500 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700">
+    <body class="antialiased bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col">
         @include('partials.header')
-        <main class="flex-grow flex items-center justify-center py-12">
+        <main class="flex-grow py-8">
             {{ $slot }}
         </main>
          @include('partials.footer')

@@ -1,147 +1,154 @@
 <x-layout>
-    <div class="container mx-auto px-4 py-12">
-        <div class="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 dark:from-indigo-800 dark:via-purple-800 dark:to-pink-700 p-8 rounded-2xl shadow-lg bg-no-repeat bg-cover">
-            <h1 class="text-6xl font-extrabold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-pink-300 dark:from-blue-300 dark:to-pink-200">API Documentation</h1>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div class="mb-8">
+            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-2">API Documentation</h1>
+            <p class="text-gray-600 dark:text-gray-400">Comprehensive guide to our placeholder APIs</p>
+        </div>
 
+        <!-- Quick Start Banner -->
+        <div class="bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 rounded-xl p-8 mb-8">
+                <h2 class="text-2xl font-bold mb-2 flex items-center text-gray-900 dark:text-white">
+                    <svg class="w-6 h-6 mr-2 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                    Quick Start
+                </h2>
+                <p class="text-lg mb-4 text-gray-600 dark:text-gray-400">Generate your first placeholder image in seconds:</p>
+                <div class="bg-gray-900 p-4 rounded-lg mb-4">
+                    <code class="text-green-400 text-sm font-mono">GET https://placehold.cloud/p/500x300/FF5733/FFFFFF</code>
+                </div>
+                <p class="text-sm text-gray-600 dark:text-gray-400">No API key required • Free forever • Production-ready</p>
+            </div>
 
+        <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-8">
             <section class="mb-12">
-                <h2 class="text-3xl font-semibold mb-6 text-white dark:text-gray-200">Introduction</h2>
-                <p class="text-xl text-white/90 dark:text-gray-300">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">Introduction</h2>
+                <p class="text-gray-600 dark:text-gray-400">
                     Welcome to the placehold.cloud API documentation. Our API allows you to generate custom placeholder images, lorem ipsum text, quotes, jokes, weather information, recipes, and holdicons programmatically. This comprehensive guide will help you integrate our services into your applications with ease.
                 </p>
             </section>
 
             <section class="mb-12">
-                <h2 class="text-3xl font-semibold mb-6 text-white dark:text-gray-200">Authentication</h2>
-                <p class="text-xl text-white/90 dark:text-gray-300">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">Authentication</h2>
+                <p class="text-gray-600 dark:text-gray-400">
                     No authentication is required to use our API. However, please be mindful of our rate limits and fair usage policy. We recommend including your application name in the User-Agent header for better request tracking and support.
                 </p>
             </section>
 
             <section class="mb-12">
-                <h2 class="text-3xl font-semibold mb-6 text-white dark:text-gray-200">Base URL</h2>
-                <p class="text-xl text-white/90 dark:text-gray-300">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">Base URL</h2>
+                <p class="text-gray-600 dark:text-gray-400 mb-4">
                     All API requests should be made to:
-                    <code class="bg-white/20 dark:bg-gray-700 px-2 py-1 rounded">https://api.placehold.cloud/v1</code>
                 </p>
+                <div class="bg-gray-900 p-4 rounded-lg mb-4">
+                    <code class="text-green-400 text-sm font-mono">https://placehold.cloud</code>
+                </div>
+                <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
+                    <p class="text-gray-700 dark:text-gray-300 flex items-start gap-2">
+                        <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span class="text-sm">All endpoints are public and can be accessed directly via GET requests. No authentication required!</span>
+                    </p>
+                </div>
             </section>
 
             <section class="mb-12">
-                <h2 class="text-3xl font-semibold mb-6 text-white dark:text-gray-200">Endpoints</h2>
+                <h2 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">Endpoints</h2>
 
                 <div class="space-y-8">
                     <div>
-                        <h3 class="text-2xl font-semibold mb-4 text-white dark:text-gray-200">1. Placeholder Images</h3>
-                        <p class="text-white/90 dark:text-gray-300 mb-2"><strong>Endpoint:</strong> <code class="bg-white/20 dark:bg-gray-700 px-2 py-1 rounded">/image/{width}/{height}</code></p>
-                        <p class="text-white/90 dark:text-gray-300 mb-2"><strong>Method:</strong> GET</p>
-                        <p class="text-white/90 dark:text-gray-300 mb-2"><strong>Parameters:</strong></p>
-                        <ul class="list-disc list-inside text-white/90 dark:text-gray-300 ml-4">
-                            <li>width (required): Width of the image in pixels</li>
-                            <li>height (required): Height of the image in pixels</li>
-                            <li>background (optional): Background color (hex code without #)</li>
-                            <li>text (optional): Custom text to display on the image</li>
-                            <li>font (optional): Font family for the text (default: Arial)</li>
-                            <li>format (optional): Image format (jpg, png, webp; default: png)</li>
-                        </ul>
-                        <p class="text-white/90 dark:text-gray-300 mt-2"><strong>Example:</strong> <code class="bg-white/20 dark:bg-gray-700 px-2 py-1 rounded">/image/300/200?background=ff0000&text=Hello%20World&font=Roboto&format=webp</code></p>
+                        <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">1. Placeholder Images</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2"><strong>Endpoint:</strong> <code class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white px-2 py-1 rounded font-mono text-sm">/p/{size}/{background}/{text_color}</code></p>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2"><strong>Method:</strong> GET</p>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2"><strong>Parameters:</strong></p>
+                        <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 space-y-2">
+                            <div class="flex gap-4"><span class="font-mono text-sm text-gray-900 dark:text-white w-32">size</span><span class="text-gray-700 dark:text-gray-300 text-sm">Dimensions (e.g., 500x300)</span></div>
+                            <div class="flex gap-4"><span class="font-mono text-sm text-gray-900 dark:text-white w-32">format</span><span class="text-gray-700 dark:text-gray-300 text-sm">png, jpg, webp, gif, svg</span></div>
+                            <div class="flex gap-4"><span class="font-mono text-sm text-gray-900 dark:text-white w-32">text</span><span class="text-gray-700 dark:text-gray-300 text-sm">Custom text</span></div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 mt-4"><strong>Example:</strong></p>
+                        <div class="bg-gray-900 p-4 rounded-lg mt-2">
+                            <code class="text-green-400 text-sm font-mono break-all">/p/500x300/FF5733/FFFFFF?text=Hello+World</code>
+                        </div>
                     </div>
 
                     <div>
-                        <h3 class="text-2xl font-semibold mb-4 text-white dark:text-gray-200">2. Lorem Ipsum</h3>
-                        <p class="text-white/90 dark:text-gray-300 mb-2"><strong>Endpoint:</strong> <code class="bg-white/20 dark:bg-gray-700 px-2 py-1 rounded">/lorem-ipsum</code></p>
-                        <p class="text-white/90 dark:text-gray-300 mb-2"><strong>Method:</strong> GET</p>
-                        <p class="text-white/90 dark:text-gray-300 mb-2"><strong>Parameters:</strong></p>
-                        <ul class="list-disc list-inside text-white/90 dark:text-gray-300 ml-4">
-                            <li>paragraphs (optional): Number of paragraphs to generate (default: 1)</li>
-                            <li>words (optional): Number of words per paragraph (default: 100)</li>
-                            <li>format (optional): Output format (html, text; default: text)</li>
-                        </ul>
-                        <p class="text-white/90 dark:text-gray-300 mt-2"><strong>Example:</strong> <code class="bg-white/20 dark:bg-gray-700 px-2 py-1 rounded">/lorem-ipsum?paragraphs=3&words=50&format=html</code></p>
+                        <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">2. Lorem Ipsum</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2"><strong>Endpoint:</strong> <code class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white px-2 py-1 rounded font-mono text-sm">GET /l</code></p>
+                        <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 space-y-2">
+                            <div class="flex gap-4"><span class="font-mono text-sm text-gray-900 dark:text-white w-32">paragraphs</span><span class="text-gray-700 dark:text-gray-300 text-sm">Number of paragraphs (1-100)</span></div>
+                            <div class="flex gap-4"><span class="font-mono text-sm text-gray-900 dark:text-white w-32">format</span><span class="text-gray-700 dark:text-gray-300 text-sm">json, html, text</span></div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 mt-4"><strong>Example:</strong></p>
+                        <div class="bg-gray-900 p-4 rounded-lg mt-2">
+                            <code class="text-green-400 text-sm font-mono break-all">/l?paragraphs=3&format=json</code>
+                        </div>
                     </div>
 
                     <div>
-                        <h3 class="text-2xl font-semibold mb-4 text-white dark:text-gray-200">3. Quotes</h3>
-                        <p class="text-white/90 dark:text-gray-300 mb-2"><strong>Endpoint:</strong> <code class="bg-white/20 dark:bg-gray-700 px-2 py-1 rounded">/quotes</code></p>
-                        <p class="text-white/90 dark:text-gray-300 mb-2"><strong>Method:</strong> GET</p>
-                        <p class="text-white/90 dark:text-gray-300 mb-2"><strong>Parameters:</strong></p>
-                        <ul class="list-disc list-inside text-white/90 dark:text-gray-300 ml-4">
-                            <li>category (optional): Specific category of quotes (e.g., inspirational, funny, love)</li>
-                            <li>author (optional): Filter quotes by author name</li>
-                        </ul>
-                        <p class="text-white/90 dark:text-gray-300">Returns a random quote or a quote matching the specified criteria.</p>
-                        <p class="text-white/90 dark:text-gray-300 mt-2"><strong>Example:</strong> <code class="bg-white/20 dark:bg-gray-700 px-2 py-1 rounded">/quotes?category=inspirational&author=Einstein</code></p>
+                        <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">3. Quotes</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2"><strong>Endpoint:</strong> <code class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white px-2 py-1 rounded font-mono text-sm">GET /q</code></p>
+                        <p class="text-gray-600 dark:text-gray-400">Returns a random inspirational quote.</p>
+                        <div class="bg-gray-900 p-4 rounded-lg mt-4">
+                            <code class="text-green-400 text-sm font-mono break-all">/q</code>
+                        </div>
                     </div>
 
                     <div>
-                        <h3 class="text-2xl font-semibold mb-4 text-white dark:text-gray-200">4. Jokes</h3>
-                        <p class="text-white/90 dark:text-gray-300 mb-2"><strong>Endpoint:</strong> <code class="bg-white/20 dark:bg-gray-700 px-2 py-1 rounded">/jokes</code></p>
-                        <p class="text-white/90 dark:text-gray-300 mb-2"><strong>Method:</strong> GET</p>
-                        <p class="text-white/90 dark:text-gray-300 mb-2"><strong>Parameters:</strong></p>
-                        <ul class="list-disc list-inside text-white/90 dark:text-gray-300 ml-4">
-                            <li>category (optional): Joke category (e.g., programming, general, knock-knock)</li>
-                            <li>lang (optional): Language of the joke (default: en)</li>
-                        </ul>
-                        <p class="text-white/90 dark:text-gray-300">Returns a random joke or a joke from the specified category.</p>
-                        <p class="text-white/90 dark:text-gray-300 mt-2"><strong>Example:</strong> <code class="bg-white/20 dark:bg-gray-700 px-2 py-1 rounded">/jokes?category=programming&lang=en</code></p>
+                        <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">4. Jokes</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2"><strong>Endpoint:</strong> <code class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white px-2 py-1 rounded font-mono text-sm">GET /j</code></p>
+                        <p class="text-gray-600 dark:text-gray-400">Returns a random joke from our database.</p>
+                        <div class="bg-gray-900 p-4 rounded-lg mt-4">
+                            <code class="text-green-400 text-sm font-mono break-all">/j</code>
+                        </div>
                     </div>
 
                     <div>
-                        <h3 class="text-2xl font-semibold mb-4 text-white dark:text-gray-200">5. Weather</h3>
-                        <p class="text-white/90 dark:text-gray-300 mb-2"><strong>Endpoint:</strong> <code class="bg-white/20 dark:bg-gray-700 px-2 py-1 rounded">/weather</code></p>
-                        <p class="text-white/90 dark:text-gray-300 mb-2"><strong>Method:</strong> GET</p>
-                        <p class="text-white/90 dark:text-gray-300 mb-2"><strong>Parameters:</strong></p>
-                        <ul class="list-disc list-inside text-white/90 dark:text-gray-300 ml-4">
-                            <li>city (required): Name of the city</li>
-                            <li>country (optional): Country code (e.g., US, GB, FR)</li>
-                            <li>units (optional): Units of measurement (metric, imperial; default: metric)</li>
-                        </ul>
-                        <p class="text-white/90 dark:text-gray-300 mt-2"><strong>Example:</strong> <code class="bg-white/20 dark:bg-gray-700 px-2 py-1 rounded">/weather?city=London&country=GB&units=metric</code></p>
+                        <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">5. Weather</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2"><strong>Endpoint:</strong> <code class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white px-2 py-1 rounded font-mono text-sm">GET /w</code></p>
+                        <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 space-y-2">
+                            <div class="flex gap-4"><span class="font-mono text-sm text-gray-900 dark:text-white w-32">city</span><span class="text-gray-700 dark:text-gray-300 text-sm">City name (required)</span></div>
+                            <div class="flex gap-4"><span class="font-mono text-sm text-gray-900 dark:text-white w-32">country</span><span class="text-gray-700 dark:text-gray-300 text-sm">Country code (required)</span></div>
+                        </div>
+                        <div class="bg-gray-900 p-4 rounded-lg mt-4">
+                            <code class="text-green-400 text-sm font-mono break-all">/w?city=London&country=GB</code>
+                        </div>
                     </div>
 
                     <div>
-                        <h3 class="text-2xl font-semibold mb-4 text-white dark:text-gray-200">6. Recipes</h3>
-                        <p class="text-white/90 dark:text-gray-300 mb-2"><strong>Endpoint:</strong> <code class="bg-white/20 dark:bg-gray-700 px-2 py-1 rounded">/recipes</code></p>
-                        <p class="text-white/90 dark:text-gray-300 mb-2"><strong>Method:</strong> GET</p>
-                        <p class="text-white/90 dark:text-gray-300 mb-2"><strong>Parameters:</strong></p>
-                        <ul class="list-disc list-inside text-white/90 dark:text-gray-300 ml-4">
-                            <li>category (optional): Category of recipes (e.g., breakfast, lunch, dinner)</li>
-                            <li>cuisine (optional): Cuisine type (e.g., Italian, Mexican, Chinese)</li>
-                            <li>diet (optional): Dietary restrictions (e.g., vegetarian, vegan, gluten-free)</li>
-                            <li>limit (optional): Number of recipes to return (default: 1, max: 10)</li>
-                        </ul>
-                        <p class="text-white/90 dark:text-gray-300 mt-2"><strong>Example:</strong> <code class="bg-white/20 dark:bg-gray-700 px-2 py-1 rounded">/recipes?category=dinner&cuisine=Italian&diet=vegetarian&limit=5</code></p>
+                        <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">6. Recipes</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2"><strong>Endpoint:</strong> <code class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white px-2 py-1 rounded font-mono text-sm">GET /r</code></p>
+                        <p class="text-gray-600 dark:text-gray-400">Returns random recipes from TheMealDB API.</p>
+                        <div class="bg-gray-900 p-4 rounded-lg mt-4">
+                            <code class="text-green-400 text-sm font-mono break-all">/r</code>
+                        </div>
                     </div>
 
                     <div>
-                        <h3 class="text-2xl font-semibold mb-4 text-white dark:text-gray-200">7. Holdicons</h3>
-                        <p class="text-white/90 dark:text-gray-300 mb-2"><strong>Endpoint:</strong> <code class="bg-white/20 dark:bg-gray-700 px-2 py-1 rounded">/holdicons/{size}</code></p>
-                        <p class="text-white/90 dark:text-gray-300 mb-2"><strong>Method:</strong> GET</p>
-                        <p class="text-white/90 dark:text-gray-300 mb-2"><strong>Parameters:</strong></p>
-                        <ul class="list-disc list-inside text-white/90 dark:text-gray-300 ml-4">
-                            <li>size (required): Size of the icon in pixels (e.g., 32, 64, 128)</li>
-                            <li>text (optional): Text to generate an icon from (if not provided, a random icon will be generated)</li>
-                            <li>color (optional): Color of the icon (hex code without #)</li>
-                            <li>background (optional): Background color (hex code without #)</li>
-                        </ul>
-                        <p class="text-white/90 dark:text-gray-300">Returns a random icon or an icon generated based on the provided text.</p>
-                        <p class="text-white/90 dark:text-gray-300 mt-2"><strong>Example:</strong> <code class="bg-white/20 dark:bg-gray-700 px-2 py-1 rounded">/holdicons/64?text=ABC&color=ffffff&background=000000</code></p>
+                        <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">7. Holdicons</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2"><strong>Endpoint:</strong> <code class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white px-2 py-1 rounded font-mono text-sm">GET /h</code></p>
+                        <p class="text-gray-600 dark:text-gray-400">Generate placeholder icons with text, cats, dogs, or robots.</p>
+                        <div class="bg-gray-900 p-4 rounded-lg mt-4">
+                            <code class="text-green-400 text-sm font-mono break-all">/h?width=128&height=128&text=Hi</code>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <section class="mb-12">
-                <h2 class="text-3xl font-semibold mb-6 text-white dark:text-gray-200">Rate Limits</h2>
-                <p class="text-xl text-white/90 dark:text-gray-300">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">Rate Limits</h2>
+                <p class="text-gray-600 dark:text-gray-400">
                     To ensure fair usage, we limit requests to 100 per hour per IP address. If you exceed this limit, you'll receive a 429 Too Many Requests response. The response will include a Retry-After header indicating how long to wait before making another request.
                 </p>
             </section>
 
             <section class="mb-12">
-                <h2 class="text-3xl font-semibold mb-6 text-white dark:text-gray-200">Error Handling</h2>
-                <p class="text-xl text-white/90 dark:text-gray-300 mb-4">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">Error Handling</h2>
+                <p class="text-gray-600 dark:text-gray-400 mb-4">
                     Our API uses conventional HTTP response codes to indicate the success or failure of an API request. In general:
                 </p>
-                <ul class="list-disc list-inside text-white/90 dark:text-gray-300 ml-4">
+                <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 ml-4 space-y-1">
                     <li>2xx range indicate success</li>
                     <li>4xx range indicate an error that failed given the information provided (e.g., a required parameter was omitted)</li>
                     <li>5xx range indicate an error with our servers</li>
@@ -149,9 +156,10 @@
             </section>
 
             <section>
-                <h2 class="text-3xl font-semibold mb-6 text-white dark:text-gray-200">Support</h2>
-                <p class="text-xl text-white/90 dark:text-gray-300">
-                    If you have any questions or need assistance with our API, please don't hesitate to contact our support team at api-support@placehold.cloud. We're here to help you integrate our services seamlessly into your applications.
+                <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">Support</h2>
+                <p class="text-gray-600 dark:text-gray-400">
+                    If you have any questions or need assistance with our API, please don't hesitate to contact our support team at 
+                    <a href="mailto:support@placehold.cloud" class="text-gray-900 dark:text-white hover:underline">support@placehold.cloud</a>. We're here to help you integrate our services seamlessly into your applications.
                 </p>
             </section>
         </div>

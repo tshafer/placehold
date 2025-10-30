@@ -1,126 +1,88 @@
 <x-layout>
-    <div x-cloak x-data="{ selectedIcon: null, searchQuery: '' }" class="container mx-auto px-4 py-12 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 shadow-2xl rounded-3xl">
-        <h1 class="text-6xl font-extrabold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-pink-300">Holdicon SVG Icons</h1>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div class="mb-8">
+            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-2">SVG Icon Library</h1>
+            <p class="text-gray-600 dark:text-gray-400">Browse and download our collection of beautiful icons</p>
+        </div>
 
         <!-- Download All Icons Button -->
-        <div class="flex justify-center mb-8">
-            <a href="{{ route('download.all.icons') }}" class="text-white px-6 py-3 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full text-lg font-bold hover:from-neon-purple hover:to-neon-blue transition-all duration-300 shadow-neon flex items-center space-x-3 group relative overflow-hidden">
-                <span class="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></span>
-                <svg class="w-6 h-6 relative z-10 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+        <div class="mb-8 flex justify-center">
+            <a href="{{ route('download.all.icons') }}" 
+               class="inline-flex items-center px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors shadow-lg">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                 </svg>
-                <span class="relative z-10 group-hover:animate-pulse">DOWNLOAD ALL ICONS</span>
+                Download All Icons
             </a>
         </div>
 
         <!-- Search Bar -->
-        <div class="mb-8 relative group">
-            <input x-model="searchQuery" type="text" placeholder="Search icons..."
-                class="w-full px-4 py-2 rounded-full bg-white/10 text-white placeholder-white/50 border-2 border-white/30 focus:outline-none focus:border-neon-blue transition-all duration-300 shadow-neon group-hover:shadow-neon-lg"
-                x-on:input="searchQuery = $event.target.value.toLowerCase()"
-                x-on:focus="$el.classList.add('animate-glow')"
-                x-on:blur="$el.classList.remove('animate-glow')">
-            <div class="absolute inset-0 bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink opacity-0 group-hover:opacity-20 rounded-full transition-opacity duration-300 pointer-events-none animate-gradient-x"></div>
-            <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 text-white/50 group-hover:text-white transition-all duration-300 pointer-events-none animate-float" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
+        <div x-data="{ searchQuery: '' }" class="mb-8">
+            <div class="relative">
+                <input x-model="searchQuery" type="text" placeholder="Search icons..."
+                       class="w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent">
+                <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+            </div>
         </div>
 
-        <div class="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-8">
-            @php
-                $colors = ['text-neon-pink', 'text-neon-blue', 'text-neon-green', 'text-neon-yellow', 'text-neon-purple', 'text-neon-orange', 'text-neon-red', 'text-neon-cyan'];
-                $bgColors = [
-                    'bg-gradient-to-br from-purple-800 to-indigo-900',
-                    'bg-gradient-to-br from-pink-800 to-red-900',
-                    'bg-gradient-to-br from-blue-800 to-teal-900',
-                    'bg-gradient-to-br from-green-800 to-yellow-900',
-                    'bg-gradient-to-br from-orange-800 to-pink-900'
-                ];
-            @endphp
+        <!-- Icons Grid -->
+        <div x-data="{ selectedIcon: null }" class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6">
             @foreach (File::files(resource_path('svg')) as $file)
                 @php
                     $iconName = pathinfo($file, PATHINFO_FILENAME);
                     $svgContent = file_get_contents($file);
-                    $randomColor = $colors[array_rand($colors)];
-                    $randomBgColor = $bgColors[array_rand($bgColors)];
+                    $randomBg = 'bg-gray-100 dark:bg-gray-800';
+                    $randomText = 'text-gray-900 dark:text-white';
                 @endphp
-                <div x-show="searchQuery === '' || '{{ strtolower($iconName) }}'.includes(searchQuery.toLowerCase())" class="flex flex-col items-center group cursor-pointer transform transition duration-300 hover:scale-110" @click="selectedIcon = { name: '{{ $iconName }}', content: `{{ $svgContent }}` }">
-                    <div class="{{ $randomBgColor }} rounded-xl p-4 shadow-neon transition-all duration-300 group-hover:shadow-neon-lg group-hover:rotate-6">
-                        {!! preg_replace('/<svg /', '<svg class="h-12 w-12 transition-all duration-300 ' . $randomColor . ' group-hover:animate-pulse" ', $svgContent) !!}
+                <div x-show="searchQuery === '' || '{{ strtolower($iconName) }}'.includes(searchQuery.toLowerCase())" 
+                     x-on:click="selectedIcon = { name: '{{ $iconName }}', content: `{{ $svgContent }}` }"
+                     class="flex flex-col items-center p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-gray-400 dark:hover:border-gray-600 hover:shadow-lg transition-all cursor-pointer group">
+                    <div class="{{ $randomBg }} rounded-lg p-4 mb-3 group-hover:scale-110 transition-transform">
+                        {!! preg_replace('/<svg /', '<svg class="h-8 w-8 ' . $randomText . '" ', $svgContent) !!}
                     </div>
-                    <span class="mt-3 text-sm font-bold transition-all duration-300 group-hover:text-{{ $randomColor }} group-hover:translate-y-1 font-retro text-white tracking-widest">{{ strtoupper($iconName) }}</span>
-                    <a href="{{ asset('svg/' . $iconName . '.svg') }}" download class="text-white/80 mt-2 px-4 py-2 bg-gradient-to-r from-{{ $randomColor }} to-neon-blue rounded-full text-xs font-bold text-black hover:from-neon-blue hover:to-{{ $randomColor }} transition-all duration-300 group-hover:animate-pulse shadow-neon flex items-center space-x-2" @click.stop>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                        </svg>
-                        <span>DOWNLOAD</span>
+                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300 text-center">{{ $iconName }}</span>
+                    <a href="{{ asset('svg/' . $iconName . '.svg') }}" download 
+                       x-on:click.stop
+                       class="mt-2 px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded text-xs hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                        Download
                     </a>
                 </div>
             @endforeach
         </div>
 
-        <!-- Additional Icons -->
-        <!-- <div class="mt-12">
-            <h2 class="text-4xl font-bold mb-6 text-center text-white">More Icons</h2>
-            <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-                <div x-show="searchQuery === '' || 'mail'.includes(searchQuery.toLowerCase())" class="flex flex-col items-center group cursor-pointer transform transition duration-300 hover:scale-105" @click="selectedIcon = { name: 'Mail', content: `<svg class='h-10 w-10 text-lime-300 transition-all duration-300 group-hover:animate-bounce' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' /></svg>` }">
-                    <div class="bg-black/30 rounded-lg p-3 shadow-inner transition-all duration-300 group-hover:shadow-lg group-hover:scale-110 group-hover:rotate-3">
-                        <svg class="h-10 w-10 text-lime-300 transition-all duration-300 group-hover:animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                    </div>
-                    <span class="mt-2 text-sm font-semibold transition-all duration-300 group-hover:text-white/90 group-hover:translate-y-1 font-sans text-white/70">MAIL</span>
-                </div>
-            </div>
-        </div> -->
-
-
-
         <!-- Modal -->
-        <div x-show="selectedIcon" x-transition:enter="ease-out duration-300"
-        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-        x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0" class="fixed inset-0 z-50 overflow-y-auto"
-        aria-labelledby="modal-title" role="dialog" aria-modal="true">
-            <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-                <div class="fixed inset-0 bg-gradient-to-br from-purple-800 to-pink-600 bg-opacity-75 transition-opacity"
-                aria-hidden="true" @click="$refs.modal.classList.add('opacity-0', 'scale-95'); setTimeout(() => selectedIcon = null, 200)"></div>
-
-                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-
-                <div x-show="selectedIcon" x-transition:enter="ease-out duration-300"
-                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                x-transition:leave="ease-in duration-200"
-                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                class="inline-block align-bottom bg-black rounded-lg text-left overflow-hidden shadow-neon transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl sm:w-full border-4 border-neon-pink"
-                x-ref="modal">
-                    <div class="bg-gradient-to-r from-neon-blue to-neon-purple px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                        <div class="sm:flex sm:items-start">
-                            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
-                                <h3 class="text-2xl leading-6 font-bold text-white font-retro tracking-widest" id="modal-title">
-                                    SVG Code for <span x-text="selectedIcon?.name || ''" class="text-neon-yellow"></span>
-                                </h3>
-                                <div class="mt-4 flex justify-center mb-4">
-                                    <div class="w-24 h-24 bg-gradient-to-r from-neon-blue to-neon-purple rounded-lg flex items-center justify-center p-4">
-                                        <div x-html="selectedIcon?.content" class="w-full h-full text-white"></div>
-                                    </div>
-                                </div>
-                                <div class="mt-4 relative">
-                                    <pre class="text-sm text-neon-green bg-black p-4 rounded-md overflow-x-auto border-2 border-neon-cyan text-wrap leading-relaxed"><code x-text="selectedIcon?.content || ''"></code></pre>
-                                    <button @click="if (selectedIcon) { navigator.clipboard.writeText(selectedIcon.content); $el.textContent = 'Copied!'; setTimeout(() => $el.textContent = 'Copy', 2000) }"
-                                    class="text-neon-blue absolute top-2 right-2 px-3 py-1 rounded-full text-xs font-bold hover:bg-neon-yellow transition-all duration-300 shadow-neon z-10">
-                                        Copy
-                                    </button>
-                                </div>
-                            </div>
+        <div x-show="selectedIcon" 
+             x-on:click="selectedIcon = null"
+             x-transition
+             class="fixed inset-0 z-50 overflow-y-auto bg-black/50 flex items-center justify-center p-4">
+            <div x-on:click.stop
+                 x-transition
+                 class="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-3xl w-full">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white">
+                            <span x-text="selectedIcon?.name || ''" class="font-mono text-gray-900 dark:text-white"></span>
+                        </h3>
+                        <button x-on:click="selectedIcon = null" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div class="flex justify-center mb-6">
+                        <div class="bg-gray-100 dark:bg-gray-900 rounded-lg p-8">
+                            <div x-html="selectedIcon?.content" class="w-24 h-24 text-gray-900 dark:text-white"></div>
                         </div>
                     </div>
-                    <div class="bg-gradient-to-r from-neon-purple to-neon-pink px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                        <button type="button" @click="$refs.modal.classList.add('opacity-0', 'scale-95'); setTimeout(() => { selectedIcon = null; $refs.modal.classList.remove('opacity-0', 'scale-95'); }, 200)"
-                        class="w-full inline-flex justify-center rounded-md border-4 border-neon-pink shadow-neon-blue px-6 py-3 bg-gradient-to-r from-neon-purple to-neon-blue text-xl font-bold text-white hover:from-neon-blue hover:to-neon-purple focus:outline-none focus:ring-4 focus:ring-offset-4 focus:ring-neon-yellow sm:ml-3 sm:w-auto transition-all duration-300 font-retro tracking-widest uppercase transform hover:scale-105">
-                            <span class="mr-2">&#9733;</span>CLOSE<span class="ml-2">&#9733;</span>
+                    
+                    <div class="relative">
+                        <pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code x-text="selectedIcon?.content || ''" class="text-green-400 text-sm font-mono"></code></pre>
+                        <button x-on:click="navigator.clipboard.writeText(selectedIcon.content); $event.target.textContent = 'Copied!'; setTimeout(() => $event.target.textContent = 'Copy', 2000)"
+                                class="absolute top-2 right-2 px-3 py-1 bg-gray-900 dark:bg-gray-100 hover:bg-gray-800 dark:hover:bg-gray-200 text-white dark:text-gray-900 rounded text-sm font-medium transition-colors">
+                            Copy
                         </button>
                     </div>
                 </div>

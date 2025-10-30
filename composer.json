@@ -5,9 +5,9 @@
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "intervention/image": "^3.8",
-        "laravel/framework": "^11.9",
+        "laravel/framework": "^12.36",
         "laravel/tinker": "^2.9",
         "meyfa/php-svg": "^0.16.0",
         "spatie/image": "^3.7",
@@ -29,6 +29,12 @@
             "Database\\Seeders\\": "database/seeders/"
         }
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://satis.shafer.llc"
+        }
+    ],
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
