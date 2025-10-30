@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ColorsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HoldiconController;
 use App\Http\Controllers\IconsController;
@@ -19,6 +20,7 @@ Route::view('jokes', 'jokes');
 Route::view('quotes', 'quotes');
 Route::view('weather', 'weather');
 Route::view('recipes', 'recipes');
+Route::view('colors', 'colors');
 Route::view('holdicon', 'holdicon');
 Route::view('cookie-policy', 'cookie-policy');
 Route::view('terms-of-service', 'terms-of-service');
@@ -72,3 +74,7 @@ Route::get('/p/{size?}/{background_color?}/{text_color?}', PlaceholderController
 Route::get('h', HoldiconController::class)
     ->middleware('throttle:120,1')
     ->name('holdicon');
+
+Route::get('c', ColorsController::class)
+    ->middleware('throttle:120,1')
+    ->name('colors');

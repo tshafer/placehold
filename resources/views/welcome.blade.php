@@ -122,6 +122,16 @@
                 <p class="text-gray-600 dark:text-gray-400">Discover delicious cooking ideas.</p>
             </a>
 
+            <a href="/colors" class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 hover:shadow-lg transition-all group">
+                <div class="flex items-center mb-3">
+                    <svg class="w-8 h-8 mr-3 text-gray-900 dark:text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                    </svg>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Color Palettes</h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400">Generate beautiful color palettes and hex codes.</p>
+            </a>
+
             <a href="/holdicon" class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 hover:shadow-lg transition-all group">
                 <div class="flex items-center mb-3">
                     <svg class="w-8 h-8 mr-3 text-gray-900 dark:text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
