@@ -24,6 +24,10 @@
                     <li><a href="/lorem-ipsum" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Text</a></li>
                     <li><a href="/quotes" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Quotes</a></li>
                     <li><a href="/jokes" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Jokes</a></li>
+                    <li><a href="/weather" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Weather</a></li>
+                    <li><a href="/recipes" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Recipes</a></li>
+                    <li><a href="/holdicon" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Holdicons</a></li>
+                    <li><a href="/icons" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Icons</a></li>
                 </ul>
             </div>
 

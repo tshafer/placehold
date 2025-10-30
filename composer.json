@@ -8,6 +8,7 @@
         "php": "^8.3",
         "intervention/image": "^3.8",
         "laravel/framework": "^12.36",
+        "laravel/octane": "^2.13",
         "laravel/tinker": "^2.9",
         "meyfa/php-svg": "^0.16.0",
         "spatie/image": "^3.7",
