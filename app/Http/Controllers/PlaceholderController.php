@@ -41,7 +41,7 @@ class PlaceholderController extends Controller
             'background_color' => ['nullable', 'regex:/^[0-9A-Fa-f]{6}$/'],
             'text_color' => ['nullable', 'regex:/^[0-9A-Fa-f]{6}$/'],
             'border_color' => ['nullable', 'regex:/^[0-9A-Fa-f]{6}$/'],
-            'format' => ['nullable', Rule::in(['png', 'jpg', 'gif', 'webp', 'svg'])],
+            'format' => ['nullable', Rule::in(['png', 'jpg', 'jpeg', 'gif', 'webp', 'avif', 'bmp', 'ico', 'svg'])],
             'quality' => ['nullable', 'integer', 'min:0', 'max:100'],
             'font' => ['nullable', 'string', Rule::in(['arial', 'couri', 'times', 'tron'])],
             'text_size' => ['nullable', 'integer', 'min:1', 'max:500'],
@@ -333,6 +333,7 @@ class PlaceholderController extends Controller
         ob_start();
         switch ($format) {
             case 'jpg':
+            case 'jpeg':
                 imagejpeg($image, null, $quality);
                 break;
             case 'gif':
@@ -340,6 +341,17 @@ class PlaceholderController extends Controller
                 break;
             case 'webp':
                 imagewebp($image, null, $quality);
+                break;
+            case 'avif':
+                imageavif($image, null, $quality);
+                break;
+            case 'bmp':
+                imagebmp($image, null, false);
+                break;
+            case 'ico':
+                // ICO files need specific dimensions and format
+                // For now, we'll output as ICO-compatible PNG
+                imagepng($image, null, 9 - round($quality / 10));
                 break;
             default:
                 imagepng($image, null, 9 - round($quality / 10));
@@ -387,11 +399,20 @@ class PlaceholderController extends Controller
     {
         switch ($format) {
             case 'jpg':
+            case 'jpeg':
                 return 'image/jpeg';
             case 'gif':
                 return 'image/gif';
             case 'webp':
                 return 'image/webp';
+            case 'avif':
+                return 'image/avif';
+            case 'bmp':
+                return 'image/bmp';
+            case 'ico':
+                return 'image/x-icon';
+            case 'svg':
+                return 'image/svg+xml';
             default:
                 return 'image/png';
         }

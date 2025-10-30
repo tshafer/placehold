@@ -14,17 +14,22 @@
                     Quick Start
                 </h2>
                 <p class="text-lg mb-4 text-gray-600 dark:text-gray-400">Generate your first placeholder image in seconds:</p>
-                <div class="bg-gray-900 p-4 rounded-lg mb-4">
-                    <code class="text-green-400 text-sm font-mono">GET https://placehold.cloud/p/500x300/FF5733/FFFFFF</code>
+                <div class="space-y-2 mb-4">
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <code class="text-green-400 text-sm font-mono">GET https://placehold.cloud/640x320?text=Hello</code>
+                    </div>
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <code class="text-green-400 text-sm font-mono">GET https://placehold.cloud/p/500x300/FF5733/FFFFFF</code>
+                    </div>
                 </div>
-                <p class="text-sm text-gray-600 dark:text-gray-400">No API key required • Free forever • Production-ready</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">No API key required • Free forever • 9 image formats • Production-ready</p>
             </div>
 
         <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-8">
             <section class="mb-12">
                 <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">Introduction</h2>
                 <p class="text-gray-600 dark:text-gray-400">
-                    Welcome to the placehold.cloud API documentation. Our API allows you to generate custom placeholder images, lorem ipsum text, quotes, jokes, weather information, recipes, and holdicons programmatically. This comprehensive guide will help you integrate our services into your applications with ease.
+                    Welcome to the placehold.cloud API documentation. Our API allows you to generate custom placeholder images (9 formats), lorem ipsum text, quotes, jokes, weather information, recipes, colors, and holdicons programmatically. This comprehensive guide will help you integrate our services into your applications with ease.
                 </p>
             </section>
 
@@ -59,17 +64,27 @@
                 <div class="space-y-8">
                     <div>
                         <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">1. Placeholder Images</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-2"><strong>Endpoint:</strong> <code class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white px-2 py-1 rounded font-mono text-sm">/p/{size}/{background}/{text_color}</code></p>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2"><strong>Endpoints:</strong> <code class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white px-2 py-1 rounded font-mono text-sm">/p/{size}/{background}/{text_color}</code> or <code class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white px-2 py-1 rounded font-mono text-sm">/{size}</code></p>
                         <p class="text-gray-600 dark:text-gray-400 mb-2"><strong>Method:</strong> GET</p>
                         <p class="text-gray-600 dark:text-gray-400 mb-2"><strong>Parameters:</strong></p>
                         <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 space-y-2">
-                            <div class="flex gap-4"><span class="font-mono text-sm text-gray-900 dark:text-white w-32">size</span><span class="text-gray-700 dark:text-gray-300 text-sm">Dimensions (e.g., 500x300)</span></div>
-                            <div class="flex gap-4"><span class="font-mono text-sm text-gray-900 dark:text-white w-32">format</span><span class="text-gray-700 dark:text-gray-300 text-sm">png, jpg, webp, gif, svg</span></div>
+                            <div class="flex gap-4"><span class="font-mono text-sm text-gray-900 dark:text-white w-32">size</span><span class="text-gray-700 dark:text-gray-300 text-sm">Dimensions (e.g., 500x300 or just 640x320)</span></div>
+                            <div class="flex gap-4"><span class="font-mono text-sm text-gray-900 dark:text-white w-32">format</span><span class="text-gray-700 dark:text-gray-300 text-sm">png, jpg, jpeg, webp, gif, avif, bmp, ico, svg</span></div>
                             <div class="flex gap-4"><span class="font-mono text-sm text-gray-900 dark:text-white w-32">text</span><span class="text-gray-700 dark:text-gray-300 text-sm">Custom text</span></div>
+                            <div class="flex gap-4"><span class="font-mono text-sm text-gray-900 dark:text-white w-32">bg</span><span class="text-gray-700 dark:text-gray-300 text-sm">Background color (short alias)</span></div>
+                            <div class="flex gap-4"><span class="font-mono text-sm text-gray-900 dark:text-white w-32">fg</span><span class="text-gray-700 dark:text-gray-300 text-sm">Text color (short alias)</span></div>
                         </div>
-                        <p class="text-gray-600 dark:text-gray-400 mt-4"><strong>Example:</strong></p>
-                        <div class="bg-gray-900 p-4 rounded-lg mt-2">
-                            <code class="text-green-400 text-sm font-mono break-all">/p/500x300/FF5733/FFFFFF?text=Hello+World</code>
+                        <p class="text-gray-600 dark:text-gray-400 mt-4"><strong>Examples:</strong></p>
+                        <div class="space-y-2">
+                            <div class="bg-gray-900 p-4 rounded-lg">
+                                <code class="text-green-400 text-sm font-mono break-all">/p/500x300/FF5733/FFFFFF?text=Hello+World</code>
+                            </div>
+                            <div class="bg-gray-900 p-4 rounded-lg">
+                                <code class="text-green-400 text-sm font-mono break-all">/640x320?text=Case+Study&bg=efefef&fg=374151</code>
+                            </div>
+                            <div class="bg-gray-900 p-4 rounded-lg">
+                                <code class="text-green-400 text-sm font-mono break-all">/500x300?text=Preview&format=webp</code>
+                            </div>
                         </div>
                     </div>
 
@@ -126,7 +141,20 @@
                     </div>
 
                     <div>
-                        <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">7. Holdicons</h3>
+                        <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">7. Colors</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2"><strong>Endpoint:</strong> <code class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white px-2 py-1 rounded font-mono text-sm">GET /c</code></p>
+                        <p class="text-gray-600 dark:text-gray-400">Generate color palettes, hex codes, and named colors.</p>
+                        <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 space-y-2">
+                            <div class="flex gap-4"><span class="font-mono text-sm text-gray-900 dark:text-white w-32">type</span><span class="text-gray-700 dark:text-gray-300 text-sm">palette, hex, or named (default: palette)</span></div>
+                            <div class="flex gap-4"><span class="font-mono text-sm text-gray-900 dark:text-white w-32">count</span><span class="text-gray-700 dark:text-gray-300 text-sm">Number of results (1-10, default: 5)</span></div>
+                        </div>
+                        <div class="bg-gray-900 p-4 rounded-lg mt-4">
+                            <code class="text-green-400 text-sm font-mono break-all">/c?type=palette&count=3</code>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">8. Holdicons</h3>
                         <p class="text-gray-600 dark:text-gray-400 mb-2"><strong>Endpoint:</strong> <code class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white px-2 py-1 rounded font-mono text-sm">GET /h</code></p>
                         <p class="text-gray-600 dark:text-gray-400">Generate placeholder icons with text, cats, dogs, or robots.</p>
                         <div class="bg-gray-900 p-4 rounded-lg mt-4">

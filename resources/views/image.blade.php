@@ -101,8 +101,12 @@
                             class="w-full bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 p-3 rounded-lg focus:ring-2 focus:ring-gray-500">
                             <option value="png">PNG</option>
                             <option value="jpg">JPG</option>
+                            <option value="jpeg">JPEG</option>
                             <option value="webp">WebP</option>
+                            <option value="avif">AVIF</option>
                             <option value="gif">GIF</option>
+                            <option value="bmp">BMP</option>
+                            <option value="ico">ICO</option>
                             <option value="svg">SVG</option>
                         </select>
                     </div>
@@ -172,12 +176,25 @@
             <div class="space-y-6">
                 <section>
                     <h3 class="text-lg font-semibold mb-3 text-gray-900 dark:text-white">Basic Usage</h3>
-                    <div class="bg-gray-900 p-4 rounded-lg">
-                        <code class="text-green-400 text-sm break-all">
-                            {{ route('placeholder', ['size' => '300x200', 'background_color' => 'FF5733', 'text_color' => 'FFFFFF']) }}
-                        </code>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Two URL formats are supported:</p>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-gray-700 dark:text-gray-300 mb-2 font-medium">Short format:</p>
+                            <div class="bg-gray-900 p-4 rounded-lg">
+                                <code class="text-green-400 text-sm break-all">
+                                    /640x320?text=Hello&bg=efefef&fg=374151
+                                </code>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-gray-700 dark:text-gray-300 mb-2 font-medium">Full format:</p>
+                            <div class="bg-gray-900 p-4 rounded-lg">
+                                <code class="text-green-400 text-sm break-all">
+                                    {{ route('placeholder', ['size' => '300x200', 'background_color' => 'FF5733', 'text_color' => 'FFFFFF']) }}
+                                </code>
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 mt-3">This generates a 300x200 pixel image with an orange background and white text.</p>
                 </section>
 
                 <section>
@@ -188,11 +205,15 @@
                             <span class="text-gray-600 dark:text-gray-400 text-sm">Dimensions (e.g., '300x200' or '300' for square)</span>
                         </div>
                         <div class="flex gap-4 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg">
-                            <span class="font-mono text-sm font-semibold text-gray-900 dark:text-white w-32">background_color</span>
+                            <span class="font-mono text-sm font-semibold text-gray-900 dark:text-white w-32">format</span>
+                            <span class="text-gray-600 dark:text-gray-400 text-sm">png, jpg, jpeg, webp, avif, gif, bmp, ico, svg</span>
+                        </div>
+                        <div class="flex gap-4 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg">
+                            <span class="font-mono text-sm font-semibold text-gray-900 dark:text-white w-32">background_color/bg</span>
                             <span class="text-gray-600 dark:text-gray-400 text-sm">Hex code for background (default: 'C8C8C8')</span>
                         </div>
                         <div class="flex gap-4 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg">
-                            <span class="font-mono text-sm font-semibold text-gray-900 dark:text-white w-32">text_color</span>
+                            <span class="font-mono text-sm font-semibold text-gray-900 dark:text-white w-32">text_color/fg</span>
                             <span class="text-gray-600 dark:text-gray-400 text-sm">Hex code for text (default: '323232')</span>
                         </div>
                     </div>
