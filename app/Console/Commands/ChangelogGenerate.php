@@ -8,13 +8,15 @@ use Illuminate\Support\Facades\Process;
 class ChangelogGenerate extends Command
 {
     protected $signature = 'changelog:generate
-        {version : Semantic version for this release (e.g. 1.6.0)}
+        {version? : Semantic version (e.g. 1.6.0). Omit to auto-increment from latest in changelog.}
         {--title= : Release title (auto-generated from commits if omitted)}
         {--tag=New : Release tag: New, Improved, Fix, or Launch}
-        {--since= : Git ref to diff from (defaults to latest git tag, or all commits)}
+        {--since= : Git ref to diff from (default: latest tag or previous version when auto-incrementing)}
+        {--minor : Bump minor version when auto-incrementing (1.6.0 -> 1.7.0)}
+        {--major : Bump major version when auto-incrementing (1.6.0 -> 2.0.0)}
         {--dry-run : Preview without writing}';
 
-    protected $description = 'Generate a changelog entry from conventional git commits';
+    protected $description = 'Generate a changelog entry from conventional git commits. Run with no version to auto-increment from last.';
 
     private const TYPE_MAP = [
         'feat'     => 'New Features',
@@ -31,9 +33,22 @@ class ChangelogGenerate extends Command
 
     public function handle(): int
     {
-        $version = $this->argument('version');
         $tag = $this->option('tag');
         $since = $this->option('since');
+
+        $version = $this->argument('version');
+        if ($version === null) {
+            $previous = $this->getLatestVersionFromChangelog();
+            if ($previous === null) {
+                $this->error('No version in changelog. Specify version explicitly (e.g. 1.0.0).');
+                return self::FAILURE;
+            }
+            $version = $this->incrementVersion($previous);
+            $this->info("Auto-incremented version: {$previous} -> {$version}");
+            if (! $since) {
+                $since = 'v'.$previous;
+            }
+        }
 
         if (! $since) {
             $result = Process::run('git describe --tags --abbrev=0 2>/dev/null');
@@ -159,5 +174,40 @@ class ChangelogGenerate extends Command
         }
 
         file_put_contents($path, json_encode($existing, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+    }
+
+    private function getLatestVersionFromChangelog(): ?string
+    {
+        $path = storage_path('app/changelog.json');
+        if (! file_exists($path)) {
+            return null;
+        }
+        $data = json_decode(file_get_contents($path), true);
+        if (! is_array($data) || empty($data)) {
+            return null;
+        }
+        $first = $data[0];
+        $v = $first['version'] ?? null;
+
+        return is_string($v) && preg_match('/^\d+\.\d+\.\d+$/', $v) ? $v : null;
+    }
+
+    private function incrementVersion(string $version): string
+    {
+        if (! preg_match('/^(\d+)\.(\d+)\.(\d+)$/', $version, $m)) {
+            return '1.0.0';
+        }
+        $major = (int) $m[1];
+        $minor = (int) $m[2];
+        $patch = (int) $m[3];
+
+        if ($this->option('major')) {
+            return ($major + 1).'.0.0';
+        }
+        if ($this->option('minor')) {
+            return "{$major}.".($minor + 1).'.0';
+        }
+
+        return "{$major}.{$minor}.".($patch + 1);
     }
 }

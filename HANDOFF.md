@@ -103,6 +103,16 @@ php artisan queue:work            # if using async video/PDF callbacks
 php artisan test                  # full test suite
 ```
 
+## Release & deploy
+
+**Script:** `./scripts/release.sh <version>` — generates changelog (from conventional commits), commits changelog, tags `v<version>`, pushes branch and tag. Optional: `--skip-changelog`, `--since=v1.6.0` to only include commits since that tag.
+
+**GitHub Actions:** `.github/workflows/release.yml` runs on tag push (`v*`). It checks out the tag, runs `composer install` and `php artisan test`; if tests pass, it POSTs to the Ploi deploy webhook. Add secret **PLOI_DEPLOY_WEBHOOK** in repo Settings → Secrets with the Ploi Quick Deploy URL. Flow: run `./scripts/release.sh 1.7.0`; workflow runs tests on that tag, then triggers Ploi.
+
+**Ploi:** By default Ploi deploys from a **branch** (e.g. `main`). When you run the release script you push to that branch and push the tag; the same commit is on both, so triggering a deploy deploys the tagged code. In Ploi: Site → Repository → set branch to `main` (or your default). To trigger deploy from the script, set `PLOI_DEPLOY_WEBHOOK_URL` in `.env` (copy the “Quick Deploy” webhook from Ploi → Repository tab). Then `./scripts/release.sh 1.7.0` will tag, push, and hit the webhook.
+
+**Deploy from a specific tag on the server:** If you want the server to always run a specific tag (e.g. `v1.7.0`) instead of the branch tip, use a custom deploy script in Ploi. In Ploi → Site → Deployment Script, you can add after “Pull from repository” something like: `git fetch --tags && git checkout v1.7.0` (or pass the tag from an env var). To have the server run the tagged release (not just branch tip), in Ploi deploy script use: `git fetch --tags` then `git checkout $(git tag -l 'v*' --sort=-version:refname | head -1)` so each deploy checks out the newest tag. Then `composer install`, `php artisan migrate --force`, restart Octane as usual.
+
 ---
 
 *Revisit this file when you return in ~3 months; update “Last reviewed” and add/remove items as you ship.*

@@ -56,18 +56,49 @@
         <p class="text-on-surface-variant text-sm mb-6">We provide an <strong class="text-on-surface">MCP (Model Context Protocol)</strong> server so AI assistants can call placehold.cloud as tools — no need to construct URLs or parse responses yourself.</p>
         <div class="space-y-4 mb-6">
             <p class="text-on-surface-variant text-sm font-headline font-bold">Tools exposed:</p>
-            <ul class="space-y-2 text-on-surface-variant text-sm">
-                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_image</code> — Generate placeholder image URL (size, text, bg, fg, format).</li>
-                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_quote</code> — Random quote.</li>
-                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_joke</code> — Random joke.</li>
-                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_lorem</code> — Lorem ipsum (paragraphs, format).</li>
-                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_uuid</code> — Generate UUID(s).</li>
-                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_colors</code> — Color palettes / hex / named.</li>
+            <ul class="space-y-2 text-on-surface-variant text-sm columns-1 sm:columns-2 gap-x-6 list-disc list-inside">
+                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_image</code> — Placeholder image URL</li>
+                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_quote</code> — Random quote</li>
+                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_joke</code> — Random joke</li>
+                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_lorem</code> — Lorem ipsum text</li>
+                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_uuid</code> — UUID(s)</li>
+                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_colors</code> — Color palettes / hex / named</li>
+                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_weather</code> — Weather (city, country)</li>
+                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_recipe</code> — Random recipe(s)</li>
+                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_holdicon</code> — Holdicon URL (text/cat/dog/robot)</li>
+                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_avatar</code> — Identicon avatar URL</li>
+                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_qr</code> — QR code URL</li>
+                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_pdf</code> — PDF document URL</li>
+                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_csv</code> — CSV/JSON data</li>
+                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_markdown</code> — Markdown placeholder</li>
+                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_video</code> — MP4 video URL</li>
+                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_base64</code> — Encode/decode base64</li>
+                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_hash</code> — Hash string</li>
+                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_color_convert</code> — Hex to RGB/complement/contrast</li>
+                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_json_users</code> — Fake users</li>
+                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_json_posts</code> — Fake posts</li>
+                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_json_comments</code> — Fake comments</li>
+                <li><code class="font-mono text-xs text-primary bg-surface-container-lowest px-1 py-0.5">placehold_json_todos</code> — Fake todos</li>
             </ul>
         </div>
-        <p class="text-on-surface-variant text-sm font-headline font-bold mb-2">Easiest: connect by URL</p>
-        <p class="text-on-surface-variant text-sm mb-4">If we host the MCP server on our side, you can point Cursor or Claude at a URL (e.g. <code class="font-mono text-xs bg-surface-container-lowest px-1">https://placehold.cloud/mcp</code>) and use the tools with no install. Add the server by URL in your MCP settings instead of by command.</p>
-        <p class="text-outline text-xs">Add the server by URL in your MCP settings; no install or local setup required.</p>
+        <p class="text-on-surface-variant text-sm font-headline font-bold mb-2">Connect by URL</p>
+        <p class="text-on-surface-variant text-sm mb-4">Point Cursor or Claude at <code class="font-mono text-xs bg-surface-container-lowest px-1">https://placehold.cloud/mcp</code>. No install required. Use the JSON below in your MCP settings.</p>
+
+        <p class="text-on-surface-variant text-sm font-headline font-bold mb-2 mt-6">Cursor — copy into MCP settings (e.g. Settings → MCP)</p>
+        <pre class="code-block overflow-x-auto text-tertiary text-xs font-mono p-4 mb-4 select-all" role="button" tabindex="0" title="Click to select, then copy">{ "mcpServers": {
+  "placehold": {
+    "url": "https://placehold.cloud/mcp"
+  }
+}}</pre>
+
+        <p class="text-on-surface-variant text-sm font-headline font-bold mb-2 mt-6">Claude Desktop — add to <code class="font-mono text-xs bg-surface-container-lowest px-1">claude_desktop_config.json</code></p>
+        <pre class="code-block overflow-x-auto text-tertiary text-xs font-mono p-4 mb-4 select-all" role="button" tabindex="0" title="Click to select, then copy">{ "mcpServers": {
+  "placehold": {
+    "url": "https://placehold.cloud/mcp"
+  }
+}}</pre>
+
+        <p class="text-outline text-xs">Paste into your config, save, and restart the app. The <code class="font-mono text-xs">placehold</code> tools will then be available.</p>
     </div>
 
     <div class="bg-surface-container-low p-6 lg:p-8 mb-10">

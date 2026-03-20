@@ -5,14 +5,24 @@
     x-effect="document.documentElement.classList.toggle('dark', dark); localStorage.setItem('theme', dark ? 'dark' : 'light'); $dispatch('theme-change', { dark })"
     @theme-toggle.window="dark = !dark">
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            html { background-color: #0c1322; color: #e2e8f0; color-scheme: dark; }
+            html body { background-color: #0c1322; color: #e2e8f0; }
+            html:not(.dark) { background-color: #f1f5f9; color: #0f172a; color-scheme: light; }
+            html:not(.dark) body { background-color: #f1f5f9; color: #0f172a; }
+            body { visibility: hidden; }
+            body.ready { visibility: visible; }
+        </style>
         <script>
             (function() {
                 var theme = localStorage.getItem('theme');
-                document.documentElement.classList.toggle('dark', theme !== 'light');
+                var isDark = theme !== 'light';
+                document.documentElement.classList.toggle('dark', isDark);
+                document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
             })();
         </script>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="{{ $description ?? 'Generate custom placeholder images, text, quotes, and more with placehold.cloud. Free, fast, and production-ready API for developers and designers.' }}">
         <meta name="keywords" content="{{ $keywords ?? 'placeholder images, lorem ipsum generator, API, custom images, developer tools, design tools, free API, JSON placeholder, placeholder text' }}">
         <meta name="author" content="placehold.cloud">
@@ -42,7 +52,19 @@
 
         <link rel="sitemap" type="application/xml" href="{{ asset('sitemap.xml') }}">
     </head>
-    <body class="antialiased bg-background text-on-background font-body overflow-x-hidden min-h-screen">
+    <body class="antialiased bg-background text-on-background font-body overflow-x-hidden min-h-screen" id="body-el">
+        <script>
+            (function() {
+                var body = document.getElementById('body-el');
+                var show = function() { body.classList.add('ready'); };
+                if (document.fonts && document.fonts.ready) {
+                    document.fonts.ready.then(show, show);
+                    setTimeout(show, 3000);
+                } else {
+                    requestAnimationFrame(show);
+                }
+            })();
+        </script>
         @include('partials.header')
 
         <main class="lg:ml-64 min-h-screen flex flex-col">

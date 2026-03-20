@@ -35,7 +35,7 @@ it('responds to MCP tools/list', function () {
     $tools = $response->json('result.tools');
     expect($tools)->toBeArray();
     $names = array_column($tools, 'name');
-    expect($names)->toContain('placehold_image', 'placehold_quote', 'placehold_joke', 'placehold_uuid', 'placehold_colors');
+    expect($names)->toContain('placehold_image', 'placehold_quote', 'placehold_joke', 'placehold_uuid', 'placehold_colors', 'placehold_weather', 'placehold_avatar', 'placehold_qr', 'placehold_json_users');
 });
 
 it('responds to MCP tools/call for placehold_quote', function () {
