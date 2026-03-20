@@ -1,5 +1,5 @@
 # On push to default branch, create and push the next patch tag (v1.2.3 -> v1.2.4).
-# That tag push triggers the Release workflow (test + deploy).
+# The tag push starts a separate workflow run: Release (test + deploy).
 
 name: Auto tag
 
@@ -8,11 +8,14 @@ on:
     branches:
       - master
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   tag:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # push tag
+      contents: write  # push tag so Release workflow can run
     steps:
       - uses: actions/checkout@v4
         with:
@@ -20,12 +23,14 @@ jobs:
 
       - name: Get next version and push tag
         run: |
-          TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          # Latest tag by semver (v*), not by commit date
+          TAG=$(git tag -l 'v*' | sort -V | tail -1)
+          TAG=${TAG:-v0.0.0}
           TAG=${TAG#v}
           IFS='.' read -r MAJOR MINOR PATCH <<< "$TAG"
           PATCH=$((PATCH + 1))
           NEXT="v${MAJOR}.${MINOR}.${PATCH}"
-          echo "Next tag: $NEXT"
+          echo "Next tag: $NEXT (Release workflow will run when this is pushed)"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git tag "$NEXT"
