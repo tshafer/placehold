@@ -40,13 +40,14 @@ class ChangelogGenerate extends Command
         if ($version === null) {
             $previous = $this->getLatestVersionFromChangelog();
             if ($previous === null) {
-                $this->error('No version in changelog. Specify version explicitly (e.g. 1.0.0).');
-                return self::FAILURE;
-            }
-            $version = $this->incrementVersion($previous);
-            $this->info("Auto-incremented version: {$previous} -> {$version}");
-            if (! $since) {
-                $since = 'v'.$previous;
+                $version = '1.0.0';
+                $this->info('No version in changelog; using 1.0.0.');
+            } else {
+                $version = $this->incrementVersion($previous);
+                $this->info("Auto-incremented version: {$previous} -> {$version}");
+                if (! $since) {
+                    $since = 'v'.$previous;
+                }
             }
         }
 
