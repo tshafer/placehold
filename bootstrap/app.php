@@ -11,6 +11,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->validateCsrfTokens(except: ['mcp']);
         $middleware->alias([
             'track.api' => \App\Http\Middleware\TrackApiUsage::class,
             'ratelimit.headers' => \App\Http\Middleware\RateLimitHeaders::class,

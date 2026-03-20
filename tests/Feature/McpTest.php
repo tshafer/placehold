@@ -1,0 +1,43 @@
+<?php
+
+use function Pest\Laravel\postJson;
+
+it('responds to MCP initialize', function () {
+    $response = postJson('/mcp', [
+        'jsonrpc' => '2.0',
+        'id' => 1,
+        'method' => 'initialize',
+        'params' => ['protocolVersion' => '2024-11-05', 'clientInfo' => ['name' => 'test', 'version' => '1.0']],
+    ]);
+
+    $response->assertOk()
+        ->assertJsonPath('result.serverInfo.name', 'placehold-mcp-server')
+        ->assertJsonPath('result.capabilities.tools', []);
+});
+
+it('responds to MCP tools/list', function () {
+    $response = postJson('/mcp', [
+        'jsonrpc' => '2.0',
+        'id' => 2,
+        'method' => 'tools/list',
+    ]);
+
+    $response->assertOk();
+    $tools = $response->json('result.tools');
+    expect($tools)->toBeArray();
+    $names = array_column($tools, 'name');
+    expect($names)->toContain('placehold_image', 'placehold_quote', 'placehold_joke', 'placehold_uuid', 'placehold_colors');
+});
+
+it('responds to MCP tools/call for placehold_quote', function () {
+    $response = postJson('/mcp', [
+        'jsonrpc' => '2.0',
+        'id' => 3,
+        'method' => 'tools/call',
+        'params' => ['name' => 'placehold_quote', 'arguments' => new \stdClass],
+    ]);
+
+    $response->assertOk();
+    expect($response->json('result.content'))->toBeArray();
+    expect($response->json('result.content.0.type'))->toBe('text');
+});

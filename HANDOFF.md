@@ -30,6 +30,7 @@ Stack: **Laravel 13**, PHP 8.3+, Octane (RoadRunner), Tailwind, Vite, Alpine.js.
 - **Webhook/callback for long-running** — Video and PDF accept `callback_url` (and optional `job_id`). If set, return 202 and queue `GenerateVideoJob` / `GeneratePdfJob`; on completion POST to callback with `job_id`, `status`, `url` (one-time download), `expires_in`. One-time download routes: `/generated/video/{id}`, `/generated/pdf/{id}`.
 - **Theme toggle** — Light/dark mode in topbar; preference in `localStorage`; inline script in layout to avoid flash.
 - **Changelog** — driven by `storage/app/changelog.json`; structure: version, tag, date, title, items.
+- **MCP** — Route `GET|POST /mcp` implements the MCP protocol in PHP (`McpController` + `McpService`). No Node process required; `https://placehold.cloud/mcp` works as soon as the Laravel app is deployed. Tools: placehold_image, placehold_quote, placehold_joke, placehold_lorem, placehold_uuid, placehold_colors. CSRF excluded for `mcp`.
 
 ### Tests
 

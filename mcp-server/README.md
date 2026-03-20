@@ -44,12 +44,13 @@ npm run build
 npm run start:http
 ```
 
-Listens on `PORT` (default 3000). Endpoint: `POST /mcp`. Deploy behind your existing app (e.g. reverse-proxy `https://placehold.cloud/mcp` → `http://localhost:3000/mcp`) or run as a separate service. Then in Cursor/Claude, add the server by **URL** instead of command:
+Listens on `PORT` (default 3000). Endpoint: `POST /mcp`.
 
-- **Cursor:** MCP settings → add server with URL `https://placehold.cloud/mcp` (or your host).
-- **Claude Desktop:** Same — use the URL of your hosted `/mcp` endpoint.
+**With this Laravel app:** The app implements MCP at `GET|POST /mcp` in PHP. No Node server is required; deploy the Laravel app and `https://placehold.cloud/mcp` works.
 
-Users get the same tools without cloning or running Node locally.
+**Without Laravel (standalone Node):** Run `npm run start:http` and reverse-proxy `https://your-domain/mcp` → `http://localhost:3000/mcp`.
+
+In Cursor/Claude, add the server by **URL** (e.g. `https://placehold.cloud/mcp`).
 
 ## Configuration
 

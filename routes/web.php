@@ -23,6 +23,7 @@ use App\Http\Controllers\PlaceholderController;
 use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\QuotesController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\McpController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\WeatherController;
 use Illuminate\Support\Facades\Cookie;
@@ -34,6 +35,8 @@ Route::view('playground', 'playground')->name('playground');
 Route::view('changelog', 'changelog')->name('changelog');
 Route::get('api-stats', ApiStatsController::class)->name('api-stats');
 Route::get('health', HealthController::class)->name('health');
+
+Route::match(['get', 'post'], 'mcp', McpController::class)->name('mcp');
 
 // Short format: /640x320?text=...&bg=...&fg=...
 // This must come before other routes to avoid conflicts

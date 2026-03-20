@@ -67,15 +67,7 @@
         </div>
         <p class="text-on-surface-variant text-sm font-headline font-bold mb-2">Easiest: connect by URL</p>
         <p class="text-on-surface-variant text-sm mb-4">If we host the MCP server on our side, you can point Cursor or Claude at a URL (e.g. <code class="font-mono text-xs bg-surface-container-lowest px-1">https://placehold.cloud/mcp</code>) and use the tools with no install. Add the server by URL in your MCP settings instead of by command.</p>
-        <p class="text-on-surface-variant text-sm font-headline font-bold mb-2">Or run it yourself</p>
-        <p class="text-on-surface-variant text-sm mb-4">Clone the repo, then either run the server locally (stdio) or start the HTTP server and connect by URL:</p>
-        <div class="code-block mb-4">
-            <code class="text-tertiary text-sm font-mono block">cd mcp-server && npm install && npm run build</code>
-            <code class="text-tertiary text-sm font-mono block mt-2"># stdio (for local MCP): node dist/index.js</code>
-            <code class="text-tertiary text-sm font-mono block mt-2"># HTTP (host it, then use URL in client): npm run start:http</code>
-        </div>
-        <p class="text-on-surface-variant text-sm mb-4">For stdio: add to your MCP client with <code class="font-mono text-xs bg-surface-container-lowest px-1">command: "node"</code>, <code class="font-mono text-xs bg-surface-container-lowest px-1">args: ["/path/to/placeholder/mcp-server/dist/index.js"]</code>. Optional env: <code class="font-mono text-xs bg-surface-container-lowest px-1">PLACEHOLD_BASE_URL</code>.</p>
-        <p class="text-outline text-xs">Full setup: see <code class="font-mono text-xs">mcp-server/README.md</code> in the repository.</p>
+        <p class="text-outline text-xs">Add the server by URL in your MCP settings; no install or local setup required.</p>
     </div>
 
     <div class="bg-surface-container-low p-6 lg:p-8 mb-10">
