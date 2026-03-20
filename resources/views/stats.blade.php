@@ -1,75 +1,72 @@
 <x-layout>
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="mb-8">
-            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-2">Usage Dashboard</h1>
-            <p class="text-gray-600 dark:text-gray-400">Live API usage statistics across all endpoints</p>
+    <div x-data="statsBoard()" x-init="fetchStats()">
+        <section class="mb-16">
+            <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">Analytics</span>
+            <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none mb-4">
+                Usage <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">Dashboard</span>
+            </h1>
+            <p class="text-on-surface-variant text-sm max-w-xl">Live API usage statistics across all endpoints</p>
+        </section>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-px bg-outline-variant/10 mb-10">
+            <div class="bg-surface-container-low p-6 border-l-2 border-primary/30">
+                <span class="meta-label">Requests Today</span>
+                <p class="text-2xl font-headline font-extrabold text-on-surface mt-2" x-text="today.toLocaleString()">0</p>
+            </div>
+            <div class="bg-surface-container-low p-6 border-l-2 border-primary/30">
+                <span class="meta-label">Active Endpoints</span>
+                <p class="text-2xl font-headline font-extrabold text-on-surface mt-2" x-text="endpoints.length">0</p>
+            </div>
+            <div class="bg-surface-container-low p-6 border-l-2 border-primary/30">
+                <span class="meta-label">Last Updated</span>
+                <p class="text-lg font-headline font-bold text-on-surface mt-2" x-text="updatedAt">&mdash;</p>
+            </div>
         </div>
 
-        <div x-data="statsBoard()" x-init="fetchStats()">
-            <!-- Global summary -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
-                <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">Requests Today</p>
-                    <p class="text-3xl font-bold text-gray-900 dark:text-white" x-text="today.toLocaleString()">0</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">Active Endpoints</p>
-                    <p class="text-3xl font-bold text-gray-900 dark:text-white" x-text="endpoints.length">0</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">Last Updated</p>
-                    <p class="text-lg font-semibold text-gray-900 dark:text-white" x-text="updatedAt">—</p>
-                </div>
+        <div class="bg-surface-container-low p-6 lg:p-8 mb-10">
+            <h2 class="section-title mb-8">Last 7 Days</h2>
+            <div class="flex items-end gap-2 h-40">
+                <template x-for="(day, i) in daily" :key="i">
+                    <div class="flex-1 flex flex-col items-center gap-1">
+                        <span class="text-outline text-xs font-mono" x-text="day.count.toLocaleString()"></span>
+                        <div class="w-full bg-primary transition-all duration-500"
+                             :style="'height:' + (maxDaily > 0 ? Math.max(day.count / maxDaily * 120, 4) : 4) + 'px'"></div>
+                        <span class="text-outline text-xs" x-text="day.date.slice(5)"></span>
+                    </div>
+                </template>
             </div>
+        </div>
 
-            <!-- 7-day chart -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 mb-8">
-                <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Last 7 Days</h2>
-                <div class="flex items-end gap-2 h-40">
-                    <template x-for="(day, i) in daily" :key="i">
-                        <div class="flex-1 flex flex-col items-center gap-1">
-                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400" x-text="day.count.toLocaleString()"></span>
-                            <div class="w-full bg-primary-500 rounded-t-md transition-all duration-500"
-                                 :style="'height:' + (maxDaily > 0 ? Math.max(day.count / maxDaily * 120, 4) : 4) + 'px'"></div>
-                            <span class="text-xs text-gray-500 dark:text-gray-400" x-text="day.date.slice(5)"></span>
-                        </div>
-                    </template>
-                </div>
+        <div class="bg-surface-container-low">
+            <div class="px-6 lg:px-8 py-4 border-b border-outline-variant/20">
+                <h2 class="section-title mb-0">Endpoints</h2>
             </div>
-
-            <!-- Per-endpoint table -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-                <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                    <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Endpoints</h2>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-sm">
-                        <thead>
-                            <tr class="text-left text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
-                                <th class="px-6 py-3 font-medium">Endpoint</th>
-                                <th class="px-6 py-3 font-medium text-right">Today</th>
-                                <th class="px-6 py-3 font-medium text-right">All Time</th>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="text-left border-b border-outline-variant/20">
+                            <th class="px-6 lg:px-8 py-3 meta-label">Endpoint</th>
+                            <th class="px-6 lg:px-8 py-3 meta-label text-right">Today</th>
+                            <th class="px-6 lg:px-8 py-3 meta-label text-right">All Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template x-for="(ep, i) in endpoints" :key="i">
+                            <tr class="border-b border-outline-variant/10 hover:bg-surface-container-lowest transition-colors">
+                                <td class="px-6 lg:px-8 py-3 font-mono text-xs font-bold text-primary" x-text="ep.endpoint"></td>
+                                <td class="px-6 lg:px-8 py-3 text-right text-outline text-xs" x-text="ep.today.toLocaleString()"></td>
+                                <td class="px-6 lg:px-8 py-3 text-right font-headline font-bold text-on-surface text-xs" x-text="ep.total.toLocaleString()"></td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <template x-for="(ep, i) in endpoints" :key="i">
-                                <tr class="border-b border-gray-100 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors">
-                                    <td class="px-6 py-3 font-mono text-gray-900 dark:text-white" x-text="ep.endpoint"></td>
-                                    <td class="px-6 py-3 text-right text-gray-600 dark:text-gray-400" x-text="ep.today.toLocaleString()"></td>
-                                    <td class="px-6 py-3 text-right font-medium text-gray-900 dark:text-white" x-text="ep.total.toLocaleString()"></td>
-                                </tr>
-                            </template>
-                        </tbody>
-                    </table>
-                </div>
-                <div x-show="endpoints.length === 0" class="px-6 py-12 text-center text-gray-500 dark:text-gray-400">
-                    No API calls recorded yet. Start using the API to see stats here.
-                </div>
+                        </template>
+                    </tbody>
+                </table>
             </div>
-
-            <!-- Auto-refresh note -->
-            <p class="text-center text-sm text-gray-400 dark:text-gray-500 mt-6">Auto-refreshes every 30 seconds</p>
+            <div x-show="endpoints.length === 0" class="px-6 lg:px-8 py-12 text-center text-outline text-xs">
+                No API calls recorded yet. Start using the API to see stats here.
+            </div>
         </div>
+
+        <p class="text-center text-outline text-xs mt-8">Auto-refreshes every 30 seconds</p>
     </div>
 
     <script>

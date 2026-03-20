@@ -1,15 +1,13 @@
 <x-layout>
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-2xl text-center py-24">
-        <div class="mb-8">
-            <span class="text-8xl font-bold text-gray-200 dark:text-gray-800">429</span>
-        </div>
-        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Too many requests</h1>
-        <p class="text-gray-600 dark:text-gray-400 mb-8">
-            You've hit the rate limit. Please wait a moment and try again.
-        </p>
-        <a href="/"
-           class="inline-flex items-center px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors">
-            Go Home
+    <div class="text-center py-24">
+        <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">Error</span>
+        <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none mb-2">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">429</span>
+        </h1>
+        <p class="font-headline font-bold text-on-surface text-lg uppercase tracking-widest mb-4">Too Many Requests</p>
+        <p class="text-on-surface-variant text-sm mb-10">You've hit the rate limit. Please wait a moment and try again.</p>
+        <a href="/" class="liquid-chrome p-3 font-headline font-bold text-on-primary-container uppercase tracking-widest text-xs inline-flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">home</span> Go Home
         </a>
     </div>
 </x-layout>

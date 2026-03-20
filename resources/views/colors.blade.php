@@ -1,76 +1,70 @@
 <x-layout>
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="mb-8">
-            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-2">Colors API</h1>
-            <p class="text-gray-600 dark:text-gray-400">Generate color palettes, hex codes, and named colors</p>
-        </div>
+    <div class="mb-16">
+        <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">API Documentation</span>
+        <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">Colors</span> API
+        </h1>
+        <p class="text-on-surface-variant text-sm mt-4">Generate color palettes, hex codes, and named colors</p>
+    </div>
 
-        <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-8">
-            <div class="space-y-8">
-                <section>
-                    <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white flex items-center">
-                        <x-heroicon-o-command-line class="w-6 h-6 mr-2 text-gray-900 dark:text-white" />
-                        Basic Usage
-                    </h3>
-                    <div class="bg-gray-900 p-4 rounded-lg">
-                        <code class="text-green-400 text-sm break-all font-mono">
-                            GET {{ route('colors') }}
-                        </code>
+    <div class="bg-surface-container-low p-6 lg:p-8">
+        <div class="space-y-10">
+            <section>
+                <h3 class="section-title mb-8 flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary">terminal</span>
+                    Basic Usage
+                </h3>
+                <div class="code-block">
+                    <code class="break-all">GET {{ route('colors') }}</code>
+                </div>
+                <p class="text-on-surface-variant text-sm mt-3">Returns a random color palette by default.</p>
+            </section>
+
+            <section>
+                <h3 class="section-title mb-8">Query Parameters</h3>
+                <div class="space-y-1">
+                    <div class="flex gap-4 px-4 py-2 bg-surface-container-lowest/50 hover:bg-surface-container-lowest transition-colors">
+                        <span class="font-mono text-xs font-bold text-primary w-24 shrink-0">type</span>
+                        <span class="text-outline text-xs">Type of color data: palette, hex, or named (default: palette)</span>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 mt-3">Returns a random color palette by default.</p>
-                </section>
-
-                <section>
-                    <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Query Parameters</h3>
-                    <div class="space-y-2">
-                        <div class="flex gap-4 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg">
-                            <span class="font-mono text-sm font-semibold text-gray-900 dark:text-white w-40">type</span>
-                            <span class="text-gray-600 dark:text-gray-400 text-sm flex-1">Type of color data: palette, hex, or named (default: palette)</span>
-                        </div>
-                        <div class="flex gap-4 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg">
-                            <span class="font-mono text-sm font-semibold text-gray-900 dark:text-white w-40">count</span>
-                            <span class="text-gray-600 dark:text-gray-400 text-sm flex-1">Number of results (1-10, default: 5)</span>
-                        </div>
+                    <div class="flex gap-4 px-4 py-2 bg-surface-container-lowest/50 hover:bg-surface-container-lowest transition-colors">
+                        <span class="font-mono text-xs font-bold text-primary w-24 shrink-0">count</span>
+                        <span class="text-outline text-xs">Number of results (1-10, default: 5)</span>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <section>
-                    <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Example Usage</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <p class="text-gray-700 dark:text-gray-300 mb-2 font-medium">Color Palette:</p>
-                            <div class="bg-gray-900 p-4 rounded-lg mb-4">
-                                <code class="text-green-400 text-sm break-all font-mono">
-                                    GET {{ route('colors', ['type' => 'palette', 'count' => 3]) }}
-                                </code>
-                            </div>
-                        </div>
-                        <div>
-                            <p class="text-gray-700 dark:text-gray-300 mb-2 font-medium">Random Hex Colors:</p>
-                            <div class="bg-gray-900 p-4 rounded-lg mb-4">
-                                <code class="text-green-400 text-sm break-all font-mono">
-                                    GET {{ route('colors', ['type' => 'hex', 'count' => 5]) }}
-                                </code>
-                            </div>
-                        </div>
-                        <div>
-                            <p class="text-gray-700 dark:text-gray-300 mb-2 font-medium">Named Colors:</p>
-                            <div class="bg-gray-900 p-4 rounded-lg mb-4">
-                                <code class="text-green-400 text-sm break-all font-mono">
-                                    GET {{ route('colors', ['type' => 'named', 'count' => 8]) }}
-                                </code>
-                            </div>
+            <section>
+                <h3 class="section-title mb-8">Example Usage</h3>
+                <div class="space-y-4">
+                    <div>
+                        <span class="terminal-label mb-2 block">Color Palette</span>
+                        <div class="code-block">
+                            <code class="break-all">GET {{ route('colors', ['type' => 'palette', 'count' => 3]) }}</code>
                         </div>
                     </div>
-                </section>
+                    <div>
+                        <span class="terminal-label mb-2 block">Random Hex Colors</span>
+                        <div class="code-block">
+                            <code class="break-all">GET {{ route('colors', ['type' => 'hex', 'count' => 5]) }}</code>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="terminal-label mb-2 block">Named Colors</span>
+                        <div class="code-block">
+                            <code class="break-all">GET {{ route('colors', ['type' => 'named', 'count' => 8]) }}</code>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-                <section>
-                    <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Response Format</h3>
-                    <div class="space-y-6">
-                        <div>
-                            <p class="text-gray-700 dark:text-gray-300 mb-2 font-medium">Color Palette Response:</p>
-                            <div class="bg-gray-900 p-4 rounded-lg overflow-x-auto">
-                                <pre class="text-green-400 text-sm font-mono"><code>{
+            <section>
+                <h3 class="section-title mb-8">Response Format</h3>
+                <div class="space-y-6">
+                    <div>
+                        <span class="terminal-label mb-2 block">Color Palette Response</span>
+                        <div class="code-block overflow-x-auto">
+                            <pre><code>{
   "status": "success",
   "type": "palette",
   "count": 3,
@@ -90,12 +84,12 @@
   ],
   "timestamp": "2025-01-30 12:00:00"
 }</code></pre>
-                            </div>
                         </div>
-                        <div>
-                            <p class="text-gray-700 dark:text-gray-300 mb-2 font-medium">Named Colors Response:</p>
-                            <div class="bg-gray-900 p-4 rounded-lg overflow-x-auto">
-                                <pre class="text-green-400 text-sm font-mono"><code>{
+                    </div>
+                    <div>
+                        <span class="terminal-label mb-2 block">Named Colors Response</span>
+                        <div class="code-block overflow-x-auto">
+                            <pre><code>{
   "status": "success",
   "type": "named",
   "count": 3,
@@ -115,51 +109,49 @@
   ],
   "timestamp": "2025-01-30 12:00:00"
 }</code></pre>
-                            </div>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <section>
-                    <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Rate Limiting</h3>
-                    <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
-                        <p class="text-gray-700 dark:text-gray-300 text-sm">This endpoint is rate-limited to 120 requests per minute to ensure fair usage.</p>
-                    </div>
-                </section>
+            <section>
+                <h3 class="section-title mb-8">Rate Limiting</h3>
+                <div class="bg-surface-container-lowest p-4 border-l-2 border-tertiary">
+                    <p class="text-on-surface-variant text-sm">This endpoint is rate-limited to 120 requests per minute to ensure fair usage.</p>
+                </div>
+            </section>
 
-                <section>
-                    <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Error Handling</h3>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">In case of an error, the API returns a JSON response with an error message:</p>
-                    <div class="bg-gray-900 p-4 rounded-lg overflow-x-auto">
-                        <pre class="text-green-400 text-sm font-mono"><code>{
+            <section>
+                <h3 class="section-title mb-8">Error Handling</h3>
+                <p class="text-on-surface-variant text-sm mb-4">In case of an error, the API returns a JSON response with an error message:</p>
+                <div class="code-block overflow-x-auto">
+                    <pre><code>{
   "status": "error",
   "message": "Invalid type. Use: palette, hex, or named"
 }</code></pre>
-                    </div>
-                </section>
+                </div>
+            </section>
 
-                <section>
-                    <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Try It Now</h3>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="{{ route('colors', ['type' => 'palette']) }}" target="_blank" 
-                           class="inline-flex items-center px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors shadow-lg">
-                            <x-heroicon-o-bolt class="w-5 h-5 mr-2" />
-                            Test Palette
-                        </a>
-                        <a href="{{ route('colors', ['type' => 'hex', 'count' => 5]) }}" target="_blank" 
-                           class="inline-flex items-center px-6 py-3 bg-gray-900 dark:bg-gray-700 hover:bg-gray-800 dark:hover:bg-gray-600 text-white font-medium rounded-lg transition-colors">
-                            <x-heroicon-o-bolt class="w-5 h-5 mr-2" />
-                            Test Hex
-                        </a>
-                        <a href="{{ route('colors', ['type' => 'named', 'count' => 5]) }}" target="_blank" 
-                           class="inline-flex items-center px-6 py-3 bg-gray-900 dark:bg-gray-700 hover:bg-gray-800 dark:hover:bg-gray-600 text-white font-medium rounded-lg transition-colors">
-                            <x-heroicon-o-bolt class="w-5 h-5 mr-2" />
-                            Test Named
-                        </a>
-                    </div>
-                </section>
-            </div>
+            <section>
+                <h3 class="section-title mb-8">Try It Now</h3>
+                <div class="flex flex-wrap gap-4">
+                    <a href="{{ route('colors', ['type' => 'palette']) }}" target="_blank"
+                       class="liquid-chrome p-3 font-headline font-bold text-on-primary-container uppercase tracking-widest text-xs inline-flex items-center gap-2">
+                        <span class="material-symbols-outlined text-base">bolt</span>
+                        Test Palette
+                    </a>
+                    <a href="{{ route('colors', ['type' => 'hex', 'count' => 5]) }}" target="_blank"
+                       class="text-outline border border-outline-variant/40 hover:text-primary hover:border-primary/40 px-4 py-2 font-headline font-bold text-xs uppercase tracking-widest transition-all inline-flex items-center gap-2">
+                        <span class="material-symbols-outlined text-base">bolt</span>
+                        Test Hex
+                    </a>
+                    <a href="{{ route('colors', ['type' => 'named', 'count' => 5]) }}" target="_blank"
+                       class="text-outline border border-outline-variant/40 hover:text-primary hover:border-primary/40 px-4 py-2 font-headline font-bold text-xs uppercase tracking-widest transition-all inline-flex items-center gap-2">
+                        <span class="material-symbols-outlined text-base">bolt</span>
+                        Test Named
+                    </a>
+                </div>
+            </section>
         </div>
     </div>
 </x-layout>
-

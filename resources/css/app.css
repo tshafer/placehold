@@ -3,3 +3,80 @@
 @tailwind utilities;
 
 [x-cloak] { display: none !important; }
+
+@layer base {
+    ::selection {
+        background: rgba(47, 217, 244, 0.3);
+        color: #2fd9f4;
+    }
+
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #070e1d;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #414754;
+        border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #8b919f;
+    }
+}
+
+@layer components {
+    .glass-panel {
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+
+    .liquid-chrome {
+        background: linear-gradient(135deg, #abc7ff 0%, #468fff 100%);
+    }
+
+    .kinetic-glow {
+        box-shadow: 0 0 20px rgba(47, 217, 244, 0.15);
+    }
+
+    .active-glow {
+        box-shadow: 0 0 12px rgba(171, 199, 255, 0.3);
+    }
+
+    .neon-text {
+        text-shadow: 0 0 12px rgba(47, 217, 244, 0.4);
+    }
+
+    .terminal-input {
+        @apply bg-surface-container-lowest border-0 border-b-2 border-outline-variant px-4 py-3 text-on-surface font-headline focus:border-tertiary focus:ring-0 transition-colors;
+    }
+
+    .terminal-label {
+        @apply text-[10px] font-bold uppercase tracking-[0.2em] text-outline;
+    }
+
+    .nav-link {
+        @apply flex items-center gap-3 text-outline hover:text-secondary hover:bg-surface-container px-4 py-3 transition-all duration-300 font-headline tracking-tight font-bold uppercase text-[12px];
+    }
+
+    .nav-link-active {
+        @apply text-tertiary border-l-4 border-tertiary bg-surface-container-highest/50 shadow-[0_0_12px_rgba(47,217,244,0.2)];
+    }
+
+    .card-panel {
+        @apply bg-surface-container-low relative overflow-hidden transition-colors hover:bg-surface-container;
+    }
+
+    .section-title {
+        @apply font-headline font-bold text-sm uppercase tracking-widest text-on-surface border-b border-outline-variant/20 pb-4;
+    }
+
+    .meta-label {
+        @apply text-[10px] font-bold uppercase tracking-widest text-outline;
+    }
+
+    .code-block {
+        @apply bg-surface-container-lowest p-4 font-mono text-sm text-tertiary border-t-2 border-outline-variant;
+    }
+}

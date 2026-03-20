@@ -1,332 +1,152 @@
-
 @php
     $currentRoute = request()->path();
 
     $generators = [
-        ['url' => '/image', 'name' => 'Image Placeholder', 'desc' => 'Custom sizes, colors & text', 'icon' => 'photo'],
-        ['url' => '/avatar', 'name' => 'Avatar Generator', 'desc' => 'Unique identicons from any seed', 'icon' => 'user-circle'],
-        ['url' => '/qrcode', 'name' => 'QR Codes', 'desc' => 'Encode any URL or text', 'icon' => 'qr-code'],
-        ['url' => '/favicon-generator', 'name' => 'Favicon Generator', 'desc' => 'Letter & emoji favicons', 'icon' => 'star'],
-        ['url' => '/pdf-generator', 'name' => 'PDF Placeholder', 'desc' => 'Dummy PDFs with lorem ipsum', 'icon' => 'document'],
-        ['url' => '/video-generator', 'name' => 'Video Placeholder', 'desc' => 'Static-color MP4 files', 'icon' => 'film'],
-        ['url' => '/holdicon', 'name' => 'Icon Placeholders', 'desc' => 'Placeholder icons with styling', 'icon' => 'view-columns'],
-        ['url' => '/icons', 'name' => 'Icon Library', 'desc' => 'Browse & download icons', 'icon' => 'paint-brush'],
+        ['url' => '/image', 'name' => 'Image Gen', 'icon' => 'image', 'match' => 'image'],
+        ['url' => '/avatar', 'name' => 'Avatars', 'icon' => 'account_circle', 'match' => 'avatar'],
+        ['url' => '/qrcode', 'name' => 'QR Codes', 'icon' => 'qr_code_2', 'match' => 'qrcode'],
+        ['url' => '/favicon-generator', 'name' => 'Favicons', 'icon' => 'star', 'match' => 'favicon-generator'],
+        ['url' => '/pdf-generator', 'name' => 'PDF Gen', 'icon' => 'picture_as_pdf', 'match' => 'pdf-generator'],
+        ['url' => '/video-generator', 'name' => 'Video Gen', 'icon' => 'movie', 'match' => 'video-generator'],
+        ['url' => '/holdicon', 'name' => 'Holdicons', 'icon' => 'dashboard', 'match' => 'holdicon'],
+        ['url' => '/icons', 'name' => 'Icon Library', 'icon' => 'palette', 'match' => 'icons'],
     ];
 
     $dataApis = [
-        ['url' => '/lorem-ipsum', 'name' => 'Lorem Ipsum', 'desc' => 'Dummy text for layouts', 'icon' => 'document-text'],
-        ['url' => '/markdown-generator', 'name' => 'Markdown', 'desc' => 'Realistic markdown docs', 'icon' => 'hashtag'],
-        ['url' => '/csv-generator', 'name' => 'CSV / Data', 'desc' => 'Fake tabular data (CSV/JSON)', 'icon' => 'table-cells'],
-        ['url' => '/json-placeholder', 'name' => 'JSON Placeholder', 'desc' => 'Fake REST API data', 'icon' => 'code-bracket'],
-        ['url' => '/colors', 'name' => 'Color Palettes', 'desc' => 'Palettes & hex codes', 'icon' => 'paint-brush'],
-        ['url' => '/quotes', 'name' => 'Random Quotes', 'desc' => 'Inspirational quotes', 'icon' => 'chat-bubble-left'],
-        ['url' => '/jokes', 'name' => 'Random Jokes', 'desc' => 'Programming & dad jokes', 'icon' => 'face-smile'],
-        ['url' => '/weather', 'name' => 'Weather Data', 'desc' => 'Real-time weather info', 'icon' => 'cloud'],
-        ['url' => '/recipes', 'name' => 'Random Recipes', 'desc' => 'Discover cooking ideas', 'icon' => 'book-open'],
+        ['url' => '/lorem-ipsum', 'name' => 'Lorem Ipsum', 'icon' => 'notes', 'match' => 'lorem-ipsum'],
+        ['url' => '/markdown-generator', 'name' => 'Markdown', 'icon' => 'code', 'match' => 'markdown-generator'],
+        ['url' => '/csv-generator', 'name' => 'CSV / Data', 'icon' => 'table_chart', 'match' => 'csv-generator'],
+        ['url' => '/json-placeholder', 'name' => 'JSON API', 'icon' => 'data_object', 'match' => 'json-placeholder'],
+        ['url' => '/colors', 'name' => 'Colors', 'icon' => 'format_color_fill', 'match' => 'colors'],
+        ['url' => '/quotes', 'name' => 'Quotes', 'icon' => 'format_quote', 'match' => 'quotes'],
+        ['url' => '/jokes', 'name' => 'Jokes', 'icon' => 'mood', 'match' => 'jokes'],
+        ['url' => '/weather', 'name' => 'Weather', 'icon' => 'cloud', 'match' => 'weather'],
+        ['url' => '/recipes', 'name' => 'Recipes', 'icon' => 'restaurant', 'match' => 'recipes'],
+    ];
+
+    $meta = [
+        ['url' => '/playground', 'name' => 'Playground', 'icon' => 'terminal', 'match' => 'playground'],
+        ['url' => '/stats', 'name' => 'Usage Stats', 'icon' => 'monitoring', 'match' => 'stats'],
+        ['url' => '/api', 'name' => 'API Docs', 'icon' => 'api', 'match' => 'api'],
+        ['url' => '/changelog', 'name' => 'Changelog', 'icon' => 'new_releases', 'match' => 'changelog'],
     ];
 @endphp
 
-<header class="w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-50" x-data="{ mobileMenuOpen: false }">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-            <!-- Logo -->
-            <a href="/" class="flex items-center space-x-3 group shrink-0">
-                <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="group-hover:scale-110 transition-transform">
-                    <rect width="40" height="40" rx="8" class="fill-gray-900 dark:fill-white"/>
-                    <path d="M20 8L28 16H12L20 8Z" class="fill-white dark:fill-gray-900"/>
-                    <path d="M8 20L16 28V12L8 20Z" class="fill-white dark:fill-gray-900"/>
-                    <path d="M32 20L24 28V12L32 20Z" class="fill-white dark:fill-gray-900"/>
-                    <path d="M20 32L28 24H12L20 32Z" class="fill-white dark:fill-gray-900"/>
-                </svg>
-                <span class="text-2xl font-bold text-gray-900 dark:text-white">placehold.cloud</span>
+{{-- Desktop Sidebar --}}
+<aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low border-r border-outline-variant/15 flex-col z-40 hidden lg:flex">
+    <div class="p-8">
+        <a href="/" class="block">
+            <h1 class="text-2xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-primary to-primary-container font-headline">PLACEHOLD</h1>
+            <p class="font-headline tracking-tight font-bold uppercase text-[12px] text-primary/60 mt-1">KINETIC TERMINAL</p>
+        </a>
+    </div>
+
+    <nav class="flex-1 px-4 space-y-1 overflow-y-auto">
+        <a href="/" class="nav-link {{ $currentRoute === '/' ? 'nav-link-active' : '' }}">
+            <span class="material-symbols-outlined text-[20px]">home</span>
+            <span>Home</span>
+        </a>
+
+        <p class="meta-label px-4 pt-6 pb-2">Generators</p>
+        @foreach($generators as $item)
+            <a href="{{ $item['url'] }}" class="nav-link {{ $currentRoute === $item['match'] ? 'nav-link-active' : '' }}">
+                <span class="material-symbols-outlined text-[20px]">{{ $item['icon'] }}</span>
+                <span>{{ $item['name'] }}</span>
             </a>
+        @endforeach
 
-            <!-- Desktop Navigation -->
-            <nav class="hidden md:flex items-center space-x-1">
-                {{-- Generators Dropdown --}}
-                <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                    <button @click="open = !open"
-                            class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800">
-                        <x-heroicon-o-squares-2x2 class="w-4 h-4" />
-                        Generators
-                        <x-heroicon-o-chevron-down class="w-3.5 h-3.5 transition-transform" ::class="open && 'rotate-180'" />
-                    </button>
+        <p class="meta-label px-4 pt-6 pb-2">Data APIs</p>
+        @foreach($dataApis as $item)
+            <a href="{{ $item['url'] }}" class="nav-link {{ $currentRoute === $item['match'] ? 'nav-link-active' : '' }}">
+                <span class="material-symbols-outlined text-[20px]">{{ $item['icon'] }}</span>
+                <span>{{ $item['name'] }}</span>
+            </a>
+        @endforeach
 
-                    <div x-show="open"
-                         x-transition:enter="transition ease-out duration-150"
-                         x-transition:enter-start="opacity-0 translate-y-1"
-                         x-transition:enter-end="opacity-100 translate-y-0"
-                         x-transition:leave="transition ease-in duration-100"
-                         x-transition:leave-start="opacity-100 translate-y-0"
-                         x-transition:leave-end="opacity-0 translate-y-1"
-                         class="absolute left-0 top-full pt-2 w-72"
-                         x-cloak>
-                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 p-2 ring-1 ring-black/5 dark:ring-white/5">
-                            @foreach($generators as $item)
-                                <a href="{{ $item['url'] }}"
-                                   class="flex items-start gap-3 px-3 py-2.5 rounded-lg transition-colors {{ $currentRoute === ltrim($item['url'], '/') ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50' }}">
-                                    <span class="mt-0.5 shrink-0">
-                                        @switch($item['icon'])
-                                            @case('photo') <x-heroicon-o-photo class="w-5 h-5" /> @break
-                                            @case('user-circle') <x-heroicon-o-user-circle class="w-5 h-5" /> @break
-                                            @case('qr-code') <x-heroicon-o-qr-code class="w-5 h-5" /> @break
-                                            @case('star') <x-heroicon-o-star class="w-5 h-5" /> @break
-                                            @case('document') <x-heroicon-o-document class="w-5 h-5" /> @break
-                                            @case('film') <x-heroicon-o-film class="w-5 h-5" /> @break
-                                            @case('view-columns') <x-heroicon-o-view-columns class="w-5 h-5" /> @break
-                                            @case('paint-brush') <x-heroicon-o-paint-brush class="w-5 h-5" /> @break
-                                        @endswitch
-                                    </span>
-                                    <span>
-                                        <span class="block text-sm font-medium">{{ $item['name'] }}</span>
-                                        <span class="block text-xs text-gray-500 dark:text-gray-400">{{ $item['desc'] }}</span>
-                                    </span>
-                                </a>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
+        <p class="meta-label px-4 pt-6 pb-2">System</p>
+        @foreach($meta as $item)
+            <a href="{{ $item['url'] }}" class="nav-link {{ $currentRoute === $item['match'] ? 'nav-link-active' : '' }}">
+                <span class="material-symbols-outlined text-[20px]">{{ $item['icon'] }}</span>
+                <span>{{ $item['name'] }}</span>
+            </a>
+        @endforeach
+    </nav>
 
-                {{-- Data APIs Dropdown --}}
-                <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                    <button @click="open = !open"
-                            class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800">
-                        <x-heroicon-o-circle-stack class="w-4 h-4" />
-                        Data APIs
-                        <x-heroicon-o-chevron-down class="w-3.5 h-3.5 transition-transform" ::class="open && 'rotate-180'" />
-                    </button>
-
-                    <div x-show="open"
-                         x-transition:enter="transition ease-out duration-150"
-                         x-transition:enter-start="opacity-0 translate-y-1"
-                         x-transition:enter-end="opacity-100 translate-y-0"
-                         x-transition:leave="transition ease-in duration-100"
-                         x-transition:leave-start="opacity-100 translate-y-0"
-                         x-transition:leave-end="opacity-0 translate-y-1"
-                         class="absolute left-0 top-full pt-2 w-72"
-                         x-cloak>
-                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 p-2 ring-1 ring-black/5 dark:ring-white/5">
-                            @foreach($dataApis as $item)
-                                <a href="{{ $item['url'] }}"
-                                   class="flex items-start gap-3 px-3 py-2.5 rounded-lg transition-colors {{ $currentRoute === ltrim($item['url'], '/') ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50' }}">
-                                    <span class="mt-0.5 shrink-0">
-                                        @switch($item['icon'])
-                                            @case('document-text') <x-heroicon-o-document-text class="w-5 h-5" /> @break
-                                            @case('hashtag') <x-heroicon-o-hashtag class="w-5 h-5" /> @break
-                                            @case('table-cells') <x-heroicon-o-table-cells class="w-5 h-5" /> @break
-                                            @case('code-bracket') <x-heroicon-o-code-bracket class="w-5 h-5" /> @break
-                                            @case('paint-brush') <x-heroicon-o-paint-brush class="w-5 h-5" /> @break
-                                            @case('chat-bubble-left') <x-heroicon-o-chat-bubble-left class="w-5 h-5" /> @break
-                                            @case('face-smile') <x-heroicon-o-face-smile class="w-5 h-5" /> @break
-                                            @case('cloud') <x-heroicon-o-cloud class="w-5 h-5" /> @break
-                                            @case('book-open') <x-heroicon-o-book-open class="w-5 h-5" /> @break
-                                        @endswitch
-                                    </span>
-                                    <span>
-                                        <span class="block text-sm font-medium">{{ $item['name'] }}</span>
-                                        <span class="block text-xs text-gray-500 dark:text-gray-400">{{ $item['desc'] }}</span>
-                                    </span>
-                                </a>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Playground --}}
-                <a href="/playground"
-                   class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-lg transition-colors {{ $currentRoute === 'playground' ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800' }}">
-                    <x-heroicon-o-code-bracket-square class="w-4 h-4" />
-                    Playground
-                </a>
-
-                {{-- More dropdown --}}
-                <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                    <button @click="open = !open"
-                            class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800">
-                        <x-heroicon-o-ellipsis-horizontal class="w-4 h-4" />
-                        More
-                        <x-heroicon-o-chevron-down class="w-3.5 h-3.5 transition-transform" ::class="open && 'rotate-180'" />
-                    </button>
-
-                    <div x-show="open"
-                         x-transition:enter="transition ease-out duration-150"
-                         x-transition:enter-start="opacity-0 translate-y-1"
-                         x-transition:enter-end="opacity-100 translate-y-0"
-                         x-transition:leave="transition ease-in duration-100"
-                         x-transition:leave-start="opacity-100 translate-y-0"
-                         x-transition:leave-end="opacity-0 translate-y-1"
-                         class="absolute right-0 top-full pt-2 w-56"
-                         x-cloak>
-                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 p-2 ring-1 ring-black/5 dark:ring-white/5">
-                            <a href="/api" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ $currentRoute === 'api' ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50' }}">
-                                <x-heroicon-o-command-line class="w-5 h-5 shrink-0" />
-                                <span class="text-sm font-medium">API Docs</span>
-                            </a>
-                            <a href="/stats" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ $currentRoute === 'stats' ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50' }}">
-                                <x-heroicon-o-chart-bar class="w-5 h-5 shrink-0" />
-                                <span class="text-sm font-medium">Usage Stats</span>
-                            </a>
-                            <a href="/changelog" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ $currentRoute === 'changelog' ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50' }}">
-                                <x-heroicon-o-megaphone class="w-5 h-5 shrink-0" />
-                                <span class="text-sm font-medium">Changelog</span>
-                            </a>
-                            <div class="my-1 border-t border-gray-200 dark:border-gray-700"></div>
-                            <a href="/about-us" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ $currentRoute === 'about-us' ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50' }}">
-                                <x-heroicon-o-information-circle class="w-5 h-5 shrink-0" />
-                                <span class="text-sm font-medium">About</span>
-                            </a>
-                            <a href="/contact" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ $currentRoute === 'contact' ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50' }}">
-                                <x-heroicon-o-envelope class="w-5 h-5 shrink-0" />
-                                <span class="text-sm font-medium">Contact</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-
-            <!-- Right side actions -->
-            <div class="flex items-center space-x-2">
-                <form action="{{ route('toggle-dark-mode') }}" method="POST" class="hidden md:block">
-                    @csrf
-                    <button type="submit" class="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
-                        @if(Cookie::get('darkMode', 'false') === 'false')
-                            <x-heroicon-o-moon class="w-5 h-5" />
-                        @else
-                            <x-heroicon-o-sun class="w-5 h-5" />
-                        @endif
-                    </button>
-                </form>
-
-                <!-- Mobile menu button -->
-                <button @click="mobileMenuOpen = !mobileMenuOpen"
-                        class="md:hidden p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
-                    <template x-if="!mobileMenuOpen"><x-heroicon-o-bars-3 class="w-6 h-6" /></template>
-                    <template x-if="mobileMenuOpen"><x-heroicon-o-x-mark class="w-6 h-6" /></template>
-                </button>
+    <div class="p-6 mt-auto">
+        <a href="/contact" class="block w-full liquid-chrome text-on-primary-container font-headline font-bold py-3 px-4 rounded-md shadow-lg hover:shadow-secondary/20 transition-all uppercase tracking-widest text-[11px] text-center">
+            Contact Us
+        </a>
+        <div class="flex items-center gap-3 mt-6">
+            <div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center">
+                <span class="material-symbols-outlined text-primary text-[16px]">bolt</span>
+            </div>
+            <div class="flex flex-col">
+                <span class="meta-label">Built by</span>
+                <a href="https://shafer.llc" class="text-[12px] font-headline text-on-surface hover:text-primary transition-colors">SHAFER LLC</a>
             </div>
         </div>
+    </div>
+</aside>
 
-        <!-- Mobile menu -->
-        <div x-show="mobileMenuOpen"
-             x-transition:enter="transition ease-out duration-200"
-             x-transition:enter-start="opacity-0 -translate-y-2"
-             x-transition:enter-end="opacity-100 translate-y-0"
-             x-transition:leave="transition ease-in duration-150"
-             x-transition:leave-start="opacity-100 translate-y-0"
-             x-transition:leave-end="opacity-0 -translate-y-2"
-             class="md:hidden border-t border-gray-200 dark:border-gray-800 py-4 max-h-[calc(100vh-4rem)] overflow-y-auto"
-             x-cloak>
-            <nav class="space-y-6">
-                <a href="/"
-                   class="flex items-center gap-3 px-4 py-2 text-sm font-medium rounded-lg {{ $currentRoute === '/' ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
-                    <x-heroicon-o-home class="w-5 h-5" />
-                    Home
+{{-- Mobile Header --}}
+<header class="lg:hidden fixed top-0 left-0 right-0 h-14 bg-surface/90 glass-panel flex items-center justify-between px-4 z-50 border-b border-outline-variant/15"
+        x-data="{ mobileOpen: false }">
+    <a href="/" class="font-headline font-black text-lg tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container">PLACEHOLD</a>
+
+    <button @click="mobileOpen = !mobileOpen" class="text-outline hover:text-primary transition-colors">
+        <span x-show="!mobileOpen" class="material-symbols-outlined">menu</span>
+        <span x-show="mobileOpen" x-cloak class="material-symbols-outlined">close</span>
+    </button>
+
+    {{-- Mobile Drawer --}}
+    <div x-show="mobileOpen" x-cloak
+         x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0 translate-y-[-8px]"
+         x-transition:enter-end="opacity-100 translate-y-0"
+         x-transition:leave="transition ease-in duration-150"
+         x-transition:leave-start="opacity-100 translate-y-0"
+         x-transition:leave-end="opacity-0 translate-y-[-8px]"
+         class="absolute top-14 left-0 right-0 bg-surface-container-low/95 glass-panel border-b border-outline-variant/15 max-h-[80vh] overflow-y-auto">
+        <nav class="p-4 space-y-1">
+            <a href="/" class="nav-link {{ $currentRoute === '/' ? 'nav-link-active' : '' }}">
+                <span class="material-symbols-outlined text-[20px]">home</span>
+                <span>Home</span>
+            </a>
+
+            <p class="meta-label px-4 pt-4 pb-1">Generators</p>
+            @foreach($generators as $item)
+                <a href="{{ $item['url'] }}" class="nav-link {{ $currentRoute === $item['match'] ? 'nav-link-active' : '' }}">
+                    <span class="material-symbols-outlined text-[20px]">{{ $item['icon'] }}</span>
+                    <span>{{ $item['name'] }}</span>
                 </a>
+            @endforeach
 
-                {{-- Generators group --}}
-                <div>
-                    <p class="px-4 text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-2">Generators</p>
-                    <div class="space-y-0.5">
-                        @foreach($generators as $item)
-                            <a href="{{ $item['url'] }}"
-                               class="flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg {{ $currentRoute === ltrim($item['url'], '/') ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
-                                <span class="shrink-0">
-                                    @switch($item['icon'])
-                                        @case('photo') <x-heroicon-o-photo class="w-5 h-5" /> @break
-                                        @case('user-circle') <x-heroicon-o-user-circle class="w-5 h-5" /> @break
-                                        @case('qr-code') <x-heroicon-o-qr-code class="w-5 h-5" /> @break
-                                        @case('star') <x-heroicon-o-star class="w-5 h-5" /> @break
-                                        @case('document') <x-heroicon-o-document class="w-5 h-5" /> @break
-                                        @case('film') <x-heroicon-o-film class="w-5 h-5" /> @break
-                                        @case('view-columns') <x-heroicon-o-view-columns class="w-5 h-5" /> @break
-                                        @case('paint-brush') <x-heroicon-o-paint-brush class="w-5 h-5" /> @break
-                                    @endswitch
-                                </span>
-                                {{ $item['name'] }}
-                            </a>
-                        @endforeach
-                    </div>
-                </div>
+            <p class="meta-label px-4 pt-4 pb-1">Data APIs</p>
+            @foreach($dataApis as $item)
+                <a href="{{ $item['url'] }}" class="nav-link {{ $currentRoute === $item['match'] ? 'nav-link-active' : '' }}">
+                    <span class="material-symbols-outlined text-[20px]">{{ $item['icon'] }}</span>
+                    <span>{{ $item['name'] }}</span>
+                </a>
+            @endforeach
 
-                {{-- Data APIs group --}}
-                <div>
-                    <p class="px-4 text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-2">Data APIs</p>
-                    <div class="space-y-0.5">
-                        @foreach($dataApis as $item)
-                            <a href="{{ $item['url'] }}"
-                               class="flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg {{ $currentRoute === ltrim($item['url'], '/') ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
-                                <span class="shrink-0">
-                                    @switch($item['icon'])
-                                        @case('document-text') <x-heroicon-o-document-text class="w-5 h-5" /> @break
-                                        @case('hashtag') <x-heroicon-o-hashtag class="w-5 h-5" /> @break
-                                        @case('table-cells') <x-heroicon-o-table-cells class="w-5 h-5" /> @break
-                                        @case('code-bracket') <x-heroicon-o-code-bracket class="w-5 h-5" /> @break
-                                        @case('paint-brush') <x-heroicon-o-paint-brush class="w-5 h-5" /> @break
-                                        @case('chat-bubble-left') <x-heroicon-o-chat-bubble-left class="w-5 h-5" /> @break
-                                        @case('face-smile') <x-heroicon-o-face-smile class="w-5 h-5" /> @break
-                                        @case('cloud') <x-heroicon-o-cloud class="w-5 h-5" /> @break
-                                        @case('book-open') <x-heroicon-o-book-open class="w-5 h-5" /> @break
-                                    @endswitch
-                                </span>
-                                {{ $item['name'] }}
-                            </a>
-                        @endforeach
-                    </div>
-                </div>
+            <p class="meta-label px-4 pt-4 pb-1">System</p>
+            @foreach($meta as $item)
+                <a href="{{ $item['url'] }}" class="nav-link {{ $currentRoute === $item['match'] ? 'nav-link-active' : '' }}">
+                    <span class="material-symbols-outlined text-[20px]">{{ $item['icon'] }}</span>
+                    <span>{{ $item['name'] }}</span>
+                </a>
+            @endforeach
 
-                {{-- Bottom links --}}
-                <div class="border-t border-gray-200 dark:border-gray-700 pt-4 space-y-0.5">
-                    <a href="/playground"
-                       class="flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg {{ $currentRoute === 'playground' ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
-                        <x-heroicon-o-code-bracket-square class="w-5 h-5" />
-                        Playground
-                    </a>
-                    <a href="/api"
-                       class="flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg {{ $currentRoute === 'api' ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
-                        <x-heroicon-o-command-line class="w-5 h-5" />
-                        API Docs
-                    </a>
-                    <a href="/stats"
-                       class="flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg {{ $currentRoute === 'stats' ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
-                        <x-heroicon-o-chart-bar class="w-5 h-5" />
-                        Usage Stats
-                    </a>
-                    <a href="/changelog"
-                       class="flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg {{ $currentRoute === 'changelog' ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
-                        <x-heroicon-o-megaphone class="w-5 h-5" />
-                        Changelog
-                    </a>
-                    <a href="/about-us"
-                       class="flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg {{ $currentRoute === 'about-us' ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
-                        <x-heroicon-o-information-circle class="w-5 h-5" />
-                        About
-                    </a>
-                    <a href="/contact"
-                       class="flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg {{ $currentRoute === 'contact' ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
-                        <x-heroicon-o-envelope class="w-5 h-5" />
-                        Contact
-                    </a>
-
-                    <form action="{{ route('toggle-dark-mode') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="w-full flex items-center gap-3 px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg">
-                            @if(Cookie::get('darkMode', 'false') === 'false')
-                                <x-heroicon-o-moon class="w-5 h-5" />
-                                Dark Mode
-                            @else
-                                <x-heroicon-o-sun class="w-5 h-5" />
-                                Light Mode
-                            @endif
-                        </button>
-                    </form>
-                </div>
-            </nav>
-        </div>
+            <div class="pt-4 border-t border-outline-variant/15 mt-4">
+                <a href="/about-us" class="nav-link"><span class="material-symbols-outlined text-[20px]">info</span><span>About</span></a>
+                <a href="/contact" class="nav-link"><span class="material-symbols-outlined text-[20px]">mail</span><span>Contact</span></a>
+            </div>
+        </nav>
     </div>
 </header>
 
 @if(session('success'))
-    <div class="fixed top-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg z-50">
+    <div class="fixed top-4 right-4 bg-tertiary-container text-on-tertiary-container px-6 py-3 shadow-lg z-50 font-headline text-sm uppercase tracking-widest">
         {{ session('success') }}
     </div>
 @endif

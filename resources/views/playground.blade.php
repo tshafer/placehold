@@ -1,66 +1,64 @@
 <x-layout>
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="mb-8">
-            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-2">Embed Playground</h1>
-            <p class="text-gray-600 dark:text-gray-400">Write HTML, CSS, and JS that use the placehold.cloud API. See live results and share your creations.</p>
-        </div>
+    <div x-data="playground()">
+        <section class="mb-16">
+            <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">Interactive</span>
+            <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none mb-4">
+                Embed <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">Playground</span>
+            </h1>
+            <p class="text-on-surface-variant text-sm max-w-xl">Write HTML, CSS, and JS that use the placehold.cloud API. See live results and share your creations.</p>
+        </section>
 
-        <div x-data="playground()">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                <!-- Editor -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col" style="min-height:500px">
-                    <div class="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
-                        <div class="flex gap-2">
-                            <button @click="tab = 'html'" :class="tab === 'html' ? 'bg-white dark:bg-gray-700 shadow-sm' : ''" class="px-3 py-1 text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 transition-colors">HTML</button>
-                            <button @click="tab = 'css'" :class="tab === 'css' ? 'bg-white dark:bg-gray-700 shadow-sm' : ''" class="px-3 py-1 text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 transition-colors">CSS</button>
-                            <button @click="tab = 'js'" :class="tab === 'js' ? 'bg-white dark:bg-gray-700 shadow-sm' : ''" class="px-3 py-1 text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 transition-colors">JS</button>
-                        </div>
-                        <button @click="run()" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium rounded-lg transition-colors">
-                            <x-heroicon-o-play class="w-4 h-4" /> Run
-                        </button>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-outline-variant/10 mb-10">
+            <div class="bg-surface-container-low flex flex-col" style="min-height:500px">
+                <div class="flex items-center justify-between px-4 py-3 border-b border-outline-variant/20 bg-surface-container-lowest">
+                    <div class="flex gap-1">
+                        <button @click="tab = 'html'" :class="tab === 'html' ? 'text-primary border-primary' : 'text-outline border-transparent'" class="px-3 py-1 text-xs font-headline font-bold uppercase tracking-widest border-b-2 transition-all">HTML</button>
+                        <button @click="tab = 'css'" :class="tab === 'css' ? 'text-primary border-primary' : 'text-outline border-transparent'" class="px-3 py-1 text-xs font-headline font-bold uppercase tracking-widest border-b-2 transition-all">CSS</button>
+                        <button @click="tab = 'js'" :class="tab === 'js' ? 'text-primary border-primary' : 'text-outline border-transparent'" class="px-3 py-1 text-xs font-headline font-bold uppercase tracking-widest border-b-2 transition-all">JS</button>
                     </div>
-                    <div class="flex-1 relative">
-                        <textarea x-show="tab === 'html'" x-model="html" class="absolute inset-0 w-full h-full p-4 bg-gray-900 text-green-400 font-mono text-sm resize-none focus:outline-none" spellcheck="false"></textarea>
-                        <textarea x-show="tab === 'css'" x-model="css" class="absolute inset-0 w-full h-full p-4 bg-gray-900 text-blue-400 font-mono text-sm resize-none focus:outline-none" spellcheck="false"></textarea>
-                        <textarea x-show="tab === 'js'" x-model="js" class="absolute inset-0 w-full h-full p-4 bg-gray-900 text-yellow-400 font-mono text-sm resize-none focus:outline-none" spellcheck="false"></textarea>
-                    </div>
+                    <button @click="run()" class="liquid-chrome p-3 font-headline font-bold text-on-primary-container uppercase tracking-widest text-xs inline-flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm">play_arrow</span> Run
+                    </button>
                 </div>
-
-                <!-- Preview -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col" style="min-height:500px">
-                    <div class="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
-                        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Preview</span>
-                        <button @click="share()" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                            <x-heroicon-o-share class="w-4 h-4" /> Share
-                        </button>
-                    </div>
-                    <div class="flex-1">
-                        <iframe x-ref="preview" class="w-full h-full border-0 bg-white" sandbox="allow-scripts"></iframe>
-                    </div>
+                <div class="flex-1 relative">
+                    <textarea x-show="tab === 'html'" x-model="html" class="absolute inset-0 w-full h-full p-4 bg-surface-container-lowest text-tertiary font-mono text-sm resize-none focus:outline-none" spellcheck="false"></textarea>
+                    <textarea x-show="tab === 'css'" x-model="css" class="absolute inset-0 w-full h-full p-4 bg-surface-container-lowest text-primary font-mono text-sm resize-none focus:outline-none" spellcheck="false"></textarea>
+                    <textarea x-show="tab === 'js'" x-model="js" class="absolute inset-0 w-full h-full p-4 bg-surface-container-lowest text-secondary font-mono text-sm resize-none focus:outline-none" spellcheck="false"></textarea>
                 </div>
             </div>
 
-            <!-- Templates -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Templates</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                    <button @click="loadTemplate('gallery')" class="text-left bg-gray-50 dark:bg-gray-900 rounded-lg p-4 hover:border-gray-400 dark:hover:border-gray-500 border border-gray-200 dark:border-gray-700 transition-colors">
-                        <span class="block text-sm font-medium text-gray-900 dark:text-white">Image Gallery</span>
-                        <span class="block text-xs text-gray-500 dark:text-gray-400 mt-1">Grid of placeholder images</span>
-                    </button>
-                    <button @click="loadTemplate('card')" class="text-left bg-gray-50 dark:bg-gray-900 rounded-lg p-4 hover:border-gray-400 dark:hover:border-gray-500 border border-gray-200 dark:border-gray-700 transition-colors">
-                        <span class="block text-sm font-medium text-gray-900 dark:text-white">User Card</span>
-                        <span class="block text-xs text-gray-500 dark:text-gray-400 mt-1">Avatar + placeholder content</span>
-                    </button>
-                    <button @click="loadTemplate('dashboard')" class="text-left bg-gray-50 dark:bg-gray-900 rounded-lg p-4 hover:border-gray-400 dark:hover:border-gray-500 border border-gray-200 dark:border-gray-700 transition-colors">
-                        <span class="block text-sm font-medium text-gray-900 dark:text-white">Dashboard Mock</span>
-                        <span class="block text-xs text-gray-500 dark:text-gray-400 mt-1">Chart placeholders + data</span>
-                    </button>
-                    <button @click="loadTemplate('qr')" class="text-left bg-gray-50 dark:bg-gray-900 rounded-lg p-4 hover:border-gray-400 dark:hover:border-gray-500 border border-gray-200 dark:border-gray-700 transition-colors">
-                        <span class="block text-sm font-medium text-gray-900 dark:text-white">QR Code Page</span>
-                        <span class="block text-xs text-gray-500 dark:text-gray-400 mt-1">QR codes + download links</span>
+            <div class="bg-surface-container-low flex flex-col" style="min-height:500px">
+                <div class="flex items-center justify-between px-4 py-3 border-b border-outline-variant/20 bg-surface-container-lowest">
+                    <span class="meta-label">Preview</span>
+                    <button @click="share()" class="text-outline border border-outline-variant/40 hover:text-primary hover:border-primary/40 px-4 py-2 font-headline font-bold text-xs uppercase tracking-widest transition-all inline-flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm">share</span> Share
                     </button>
                 </div>
+                <div class="flex-1">
+                    <iframe x-ref="preview" class="w-full h-full border-0 bg-white" sandbox="allow-scripts"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-surface-container-low p-6 lg:p-8">
+            <h3 class="section-title mb-8">Templates</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-outline-variant/10">
+                <button @click="loadTemplate('gallery')" class="text-left bg-surface-container-lowest p-4 hover:bg-surface-container-low transition-colors">
+                    <span class="block text-xs font-headline font-bold text-on-surface uppercase tracking-widest">Image Gallery</span>
+                    <span class="block text-outline text-xs mt-1">Grid of placeholder images</span>
+                </button>
+                <button @click="loadTemplate('card')" class="text-left bg-surface-container-lowest p-4 hover:bg-surface-container-low transition-colors">
+                    <span class="block text-xs font-headline font-bold text-on-surface uppercase tracking-widest">User Card</span>
+                    <span class="block text-outline text-xs mt-1">Avatar + placeholder content</span>
+                </button>
+                <button @click="loadTemplate('dashboard')" class="text-left bg-surface-container-lowest p-4 hover:bg-surface-container-low transition-colors">
+                    <span class="block text-xs font-headline font-bold text-on-surface uppercase tracking-widest">Dashboard Mock</span>
+                    <span class="block text-outline text-xs mt-1">Chart placeholders + data</span>
+                </button>
+                <button @click="loadTemplate('qr')" class="text-left bg-surface-container-lowest p-4 hover:bg-surface-container-low transition-colors">
+                    <span class="block text-xs font-headline font-bold text-on-surface uppercase tracking-widest">QR Code Page</span>
+                    <span class="block text-outline text-xs mt-1">QR codes + download links</span>
+                </button>
             </div>
         </div>
     </div>

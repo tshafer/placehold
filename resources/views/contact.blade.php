@@ -1,31 +1,30 @@
 <x-layout>
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
-        <div class="mb-8">
-            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-2">Contact Us</h1>
-            <p class="text-gray-600 dark:text-gray-400">We'd love to hear from you</p>
-        </div>
+    <section class="mb-16">
+        <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">Support</span>
+        <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none mb-4">
+            Contact <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">Us</span>
+        </h1>
+        <p class="text-on-surface-variant text-sm max-w-xl">We'd love to hear from you</p>
+    </section>
 
-        <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-8">
+    <div class="max-w-3xl">
+        <div class="bg-surface-container-low p-6 lg:p-8">
             <form action="{{ route('contact.submit') }}" method="POST" class="space-y-6">
                 @csrf
                 <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
-                    <input type="text" name="name" id="name" required 
-                           class="w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent">
+                    <label for="name" class="terminal-label mb-2 block">Name</label>
+                    <input type="text" name="name" id="name" required class="terminal-input w-full">
                 </div>
                 <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
-                    <input type="email" name="email" id="email" required 
-                           class="w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent">
+                    <label for="email" class="terminal-label mb-2 block">Email</label>
+                    <input type="email" name="email" id="email" required class="terminal-input w-full">
                 </div>
                 <div>
-                    <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
-                    <textarea name="message" id="message" rows="6" required 
-                              class="w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent"></textarea>
+                    <label for="message" class="terminal-label mb-2 block">Message</label>
+                    <textarea name="message" id="message" rows="6" required class="terminal-input w-full resize-none"></textarea>
                 </div>
                 <div>
-                    <button type="submit" 
-                            class="w-full px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors shadow-lg">
+                    <button type="submit" class="liquid-chrome p-3 font-headline font-bold text-on-primary-container uppercase tracking-widest text-xs w-full">
                         Send Message
                     </button>
                 </div>
@@ -33,9 +32,9 @@
         </div>
 
         <div class="mt-8 text-center">
-            <p class="text-gray-600 dark:text-gray-400 mb-4">You can also reach us at:</p>
-            <a href="mailto:support@placehold.cloud" class="inline-flex items-center text-gray-900 dark:text-white hover:text-gray-700 dark:hover:text-gray-300 font-medium">
-                <x-heroicon-o-envelope class="w-5 h-5 mr-2" />
+            <p class="text-outline text-xs mb-4">You can also reach us at:</p>
+            <a href="mailto:support@placehold.cloud" class="text-primary hover:text-tertiary transition-colors inline-flex items-center gap-2 font-headline font-bold text-xs uppercase tracking-widest">
+                <span class="material-symbols-outlined text-sm">mail</span>
                 support@placehold.cloud
             </a>
         </div>

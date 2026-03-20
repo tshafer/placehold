@@ -1,219 +1,204 @@
 <x-layout>
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="mb-8">
-            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-2">Image Placeholder Generator</h1>
-            <p class="text-gray-600 dark:text-gray-400">Create custom placeholder images with live preview</p>
+    {{-- Hero Heading --}}
+    <div class="mb-16 flex flex-col lg:flex-row justify-between items-end gap-8">
+        <div>
+            <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">Generator :: Image</span>
+            <h2 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none">
+                IMAGE<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">GENERATOR</span>
+            </h2>
+        </div>
+        <div class="flex items-center gap-2 bg-surface-container px-4 py-2 border-l-2 border-secondary">
+            <span class="w-2 h-2 rounded-full bg-secondary animate-beacon-pulse"></span>
+            <span class="meta-label text-secondary">Live Preview</span>
+        </div>
+    </div>
+
+    <div x-data="imageGenerator()" class="grid grid-cols-12 gap-8 items-start">
+        {{-- Controls Panel --}}
+        <div class="col-span-12 lg:col-span-4 space-y-8">
+            <div class="bg-surface-container-low p-8 relative overflow-hidden group">
+                <h3 class="section-title mb-10">Configuration</h3>
+                <div class="space-y-8">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <label class="terminal-label">Dimensions</label>
+                            <span class="text-xs font-headline text-tertiary" x-text="size"></span>
+                        </div>
+                        <input type="text" x-model="size" @input="updatePreview" placeholder="500x300" class="terminal-input w-full text-xl font-headline font-bold p-0">
+                    </div>
+
+                    <div class="space-y-3">
+                        <label class="terminal-label">Background Hex</label>
+                        <div class="flex gap-3 items-center">
+                            <input type="color" x-model="bgColor" @input="updatePreview" class="h-10 w-14 bg-transparent cursor-pointer border-0">
+                            <input type="text" x-model="bgColor" @input="updatePreview" class="terminal-input flex-1 font-headline">
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <label class="terminal-label">Text Hex</label>
+                        <div class="flex gap-3 items-center">
+                            <input type="color" x-model="textColor" @input="updatePreview" class="h-10 w-14 bg-transparent cursor-pointer border-0">
+                            <input type="text" x-model="textColor" @input="updatePreview" class="terminal-input flex-1 font-headline">
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <label class="terminal-label">Overlay Text</label>
+                        <input type="text" x-model="text" @input="updatePreview" placeholder="Your Text" class="terminal-input w-full font-headline">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-3">
+                            <label class="terminal-label">Format</label>
+                            <select x-model="format" @change="updatePreview" class="terminal-input w-full font-headline text-sm">
+                                <option value="png">PNG</option>
+                                <option value="svg">SVG</option>
+                                <option value="jpg">JPG</option>
+                                <option value="webp">WebP</option>
+                                <option value="avif">AVIF</option>
+                                <option value="gif">GIF</option>
+                            </select>
+                        </div>
+                        <div class="space-y-3">
+                            <label class="terminal-label">Font</label>
+                            <select x-model="font" @change="updatePreview" class="terminal-input w-full font-headline text-sm">
+                                <option value="arial">Arial</option>
+                                <option value="couri">Courier</option>
+                                <option value="times">Times</option>
+                                <option value="tron">Tron</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <label class="terminal-label">Effects</label>
+                        <div class="flex flex-wrap gap-4 mt-1">
+                            <label class="flex items-center gap-2 cursor-pointer text-outline hover:text-on-surface transition-colors text-xs uppercase tracking-wider">
+                                <input type="checkbox" x-model="grayscale" @change="updatePreview" class="bg-surface-container-lowest border-outline-variant rounded-sm">
+                                Grayscale
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer text-outline hover:text-on-surface transition-colors text-xs uppercase tracking-wider">
+                                <input type="checkbox" x-model="invert" @change="updatePreview" class="bg-surface-container-lowest border-outline-variant rounded-sm">
+                                Invert
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <label class="terminal-label">Special Sources</label>
+                        <div class="flex flex-wrap gap-4 mt-1">
+                            @foreach(['cat' => 'Cat', 'dog' => 'Dog', 'robot' => 'Robot'] as $key => $label)
+                                <label class="flex items-center gap-2 cursor-pointer text-outline hover:text-on-surface transition-colors text-xs uppercase tracking-wider">
+                                    <input type="checkbox" x-model="{{ $key }}" @change="updatePreview" class="bg-surface-container-lowest border-outline-variant rounded-sm">
+                                    {{ $label }}
+                                </label>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <button @click="updatePreview" class="w-full liquid-chrome p-4 font-headline font-black text-on-primary-container uppercase tracking-[0.3em] text-sm shadow-[0_0_20px_rgba(171,199,255,0.3)] hover:scale-[1.02] active:scale-95 transition-all">
+                        Generate Stream
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <div x-data="imageGenerator()" class="space-y-8">
-            <!-- Live Preview Section -->
-            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
-                <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white flex items-center">
-                    <x-heroicon-o-eye class="w-6 h-6 mr-2 text-gray-900 dark:text-white" />
-                    Live Preview
-                </h2>
-                <div class="flex flex-col lg:flex-row gap-6">
-                    <div class="flex-1 bg-gray-100 dark:bg-gray-900 rounded-lg p-4 flex items-center justify-center min-h-[200px]">
-                        <img :src="previewUrl" alt="Preview" class="max-w-full max-h-[400px] rounded shadow-lg">
+        {{-- Preview Area --}}
+        <div class="col-span-12 lg:col-span-8">
+            <div class="bg-surface-container-highest/30 glass-panel p-2 border border-outline-variant/15 relative">
+                <div class="absolute top-6 left-6 z-10 flex items-center gap-4">
+                    <div class="bg-surface-container-lowest/80 glass-panel px-3 py-1 text-[9px] font-headline font-bold uppercase text-tertiary tracking-widest border border-tertiary/20">
+                        PREVIEW_MODE // LIVE
                     </div>
-                    <div class="flex-1 space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">URL</label>
-                            <div class="flex gap-2">
-                                <input type="text" :value="previewUrl" readonly 
-                                    class="flex-1 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 p-3 rounded-lg text-sm font-mono">
-                                <button @click="copyToClipboard(previewUrl)" 
-                                    class="px-4 py-2 bg-gray-900 dark:bg-gray-100 hover:bg-gray-800 dark:hover:bg-gray-200 text-white dark:text-gray-900 rounded-lg font-medium transition">
-                                    <x-heroicon-o-clipboard-document class="w-5 h-5" />
-                                </button>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Markdown</label>
-                            <div class="flex gap-2">
-                                <input type="text" :value="markdownUrl" readonly 
-                                    class="flex-1 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 p-3 rounded-lg text-sm font-mono">
-                                <button @click="copyToClipboard(markdownUrl)" 
-                                    class="px-4 py-2 bg-gray-900 dark:bg-gray-100 hover:bg-gray-800 dark:hover:bg-gray-200 text-white dark:text-gray-900 rounded-lg font-medium transition">
-                                    <x-heroicon-o-clipboard-document class="w-5 h-5" />
-                                </button>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">HTML</label>
-                            <div class="flex gap-2">
-                                <input type="text" :value="htmlUrl" readonly 
-                                    class="flex-1 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 p-3 rounded-lg text-sm font-mono">
-                                <button @click="copyToClipboard(htmlUrl)" 
-                                    class="px-4 py-2 bg-gray-900 dark:bg-gray-100 hover:bg-gray-800 dark:hover:bg-gray-200 text-white dark:text-gray-900 rounded-lg font-medium transition">
-                                    <x-heroicon-o-clipboard-document class="w-5 h-5" />
-                                </button>
-                            </div>
-                        </div>
+                </div>
+                <div class="aspect-video w-full bg-surface-container-lowest relative overflow-hidden flex items-center justify-center">
+                    <img :src="previewUrl" alt="Preview" class="max-w-full max-h-full object-contain">
+                    <div class="absolute bottom-6 left-6 z-10">
+                        <div class="text-[48px] font-headline font-black text-on-surface/10 leading-none select-none" x-text="size"></div>
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 gap-4">
+                    <div class="flex items-center gap-6">
+                        <button @click="copyToClipboard(previewUrl)" class="flex items-center gap-2 text-outline hover:text-secondary transition-all">
+                            <span class="material-symbols-outlined text-sm">content_copy</span>
+                            <span class="meta-label">Copy URL</span>
+                        </button>
+                        <button @click="copyToClipboard(htmlUrl)" class="flex items-center gap-2 text-outline hover:text-secondary transition-all">
+                            <span class="material-symbols-outlined text-sm">code</span>
+                            <span class="meta-label">Copy HTML</span>
+                        </button>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-tertiary text-sm">schedule</span>
+                        <span class="meta-label text-outline">Cached 1yr</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Controls -->
-            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
-                <h2 class="text-xl font-semibold mb-6 text-gray-900 dark:text-white">Customize Your Image</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Size (width x height)</label>
-                        <input type="text" x-model="size" @input="updatePreview" 
-                            placeholder="500x300" class="w-full bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 p-3 rounded-lg focus:ring-2 focus:ring-gray-500">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Background Color</label>
-                        <div class="flex gap-2">
-                            <input type="color" x-model="bgColor" @input="updatePreview" 
-                                class="h-12 w-20 rounded-lg cursor-pointer border border-gray-300 dark:border-gray-700">
-                            <input type="text" x-model="bgColor" @input="updatePreview" 
-                                placeholder="#FF5733" class="flex-1 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 p-3 rounded-lg focus:ring-2 focus:ring-gray-500">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Text Color</label>
-                        <div class="flex gap-2">
-                            <input type="color" x-model="textColor" @input="updatePreview" 
-                                class="h-12 w-20 rounded-lg cursor-pointer border border-gray-300 dark:border-gray-700">
-                            <input type="text" x-model="textColor" @input="updatePreview" 
-                                placeholder="#FFFFFF" class="flex-1 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 p-3 rounded-lg focus:ring-2 focus:ring-gray-500">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Custom Text</label>
-                        <input type="text" x-model="text" @input="updatePreview" 
-                            placeholder="Your Text" class="w-full bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 p-3 rounded-lg focus:ring-2 focus:ring-gray-500">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Format</label>
-                        <select x-model="format" @change="updatePreview" 
-                            class="w-full bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 p-3 rounded-lg focus:ring-2 focus:ring-gray-500">
-                            <option value="png">PNG</option>
-                            <option value="jpg">JPG</option>
-                            <option value="jpeg">JPEG</option>
-                            <option value="webp">WebP</option>
-                            <option value="avif">AVIF</option>
-                            <option value="gif">GIF</option>
-                            <option value="bmp">BMP</option>
-                            <option value="ico">ICO</option>
-                            <option value="svg">SVG</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Font</label>
-                        <select x-model="font" @change="updatePreview" 
-                            class="w-full bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 p-3 rounded-lg focus:ring-2 focus:ring-gray-500">
-                            <option value="arial">Arial</option>
-                            <option value="couri">Courier</option>
-                            <option value="times">Times</option>
-                            <option value="tron">Tron</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Quality (1-100)</label>
-                        <input type="number" x-model="quality" @input="updatePreview" min="1" max="100"
-                            class="w-full bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 p-3 rounded-lg focus:ring-2 focus:ring-gray-500">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Effects</label>
-                        <div class="flex gap-4 mt-2">
-                            <label class="flex items-center text-gray-900 dark:text-gray-100 cursor-pointer">
-                                <input type="checkbox" x-model="grayscale" @change="updatePreview" class="mr-2 rounded">
-                                <span class="text-sm">Grayscale</span>
-                            </label>
-                            <label class="flex items-center text-gray-900 dark:text-gray-100 cursor-pointer">
-                                <input type="checkbox" x-model="invert" @change="updatePreview" class="mr-2 rounded">
-                                <span class="text-sm">Invert</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Special Images</label>
-                        <div class="flex gap-4 mt-2 flex-wrap">
-                            <label class="flex items-center text-gray-900 dark:text-gray-100 cursor-pointer">
-                                <input type="checkbox" x-model="cat" @change="updatePreview" class="mr-2 rounded">
-                                <span class="text-sm">Cat</span>
-                            </label>
-                            <label class="flex items-center text-gray-900 dark:text-gray-100 cursor-pointer">
-                                <input type="checkbox" x-model="dog" @change="updatePreview" class="mr-2 rounded">
-                                <span class="text-sm">Dog</span>
-                            </label>
-                            <label class="flex items-center text-gray-900 dark:text-gray-100 cursor-pointer">
-                                <input type="checkbox" x-model="robot" @change="updatePreview" class="mr-2 rounded">
-                                <span class="text-sm">Robot</span>
-                            </label>
-                        </div>
-                    </div>
+            {{-- URL Readout --}}
+            <div class="mt-6 code-block space-y-2">
+                <div class="flex gap-4">
+                    <span class="text-secondary">[URL]</span>
+                    <span class="text-on-surface/60 break-all" x-text="previewUrl"></span>
+                </div>
+                <div class="flex gap-4">
+                    <span class="text-primary">[HTML]</span>
+                    <span class="text-on-surface/60 break-all" x-text="htmlUrl"></span>
+                </div>
+                <div class="flex gap-4">
+                    <span class="text-tertiary">[MD]</span>
+                    <span class="text-on-surface/60 break-all" x-text="markdownUrl"></span>
                 </div>
             </div>
 
-            <!-- Flash Message -->
-            <div x-show="copied" x-transition 
-                class="fixed bottom-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2 z-50">
-                <x-heroicon-o-check class="w-5 h-5" />
-                <span>Copied to clipboard!</span>
-            </div>
-        </div>
-
-        <!-- API Documentation Section -->
-        <div class="mt-12 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-8">
-            <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">API Documentation</h2>
-            <p class="text-gray-600 dark:text-gray-400 mb-6">Use our API to programmatically generate placeholder images.</p>
-            
-            <div class="space-y-6">
-                <section>
-                    <h3 class="text-lg font-semibold mb-3 text-gray-900 dark:text-white">Basic Usage</h3>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">Two URL formats are supported:</p>
-                    <div class="space-y-4">
-                        <div>
-                            <p class="text-gray-700 dark:text-gray-300 mb-2 font-medium">Short format:</p>
-                            <div class="bg-gray-900 p-4 rounded-lg">
-                                <code class="text-green-400 text-sm break-all">
-                                    /640x320?text=Hello&bg=efefef&fg=374151
-                                </code>
-                            </div>
-                        </div>
-                        <div>
-                            <p class="text-gray-700 dark:text-gray-300 mb-2 font-medium">Full format:</p>
-                            <div class="bg-gray-900 p-4 rounded-lg">
-                                <code class="text-green-400 text-sm break-all">
-                                    {{ route('placeholder', ['size' => '300x200', 'background_color' => 'FF5733', 'text_color' => 'FFFFFF']) }}
-                                </code>
-                            </div>
+            {{-- API Docs --}}
+            <div class="mt-10 bg-surface-container-low p-8">
+                <h3 class="section-title mb-8">API Documentation</h3>
+                <div class="space-y-6">
+                    <div>
+                        <span class="terminal-label block mb-3">Short Format</span>
+                        <div class="code-block">
+                            <code class="text-tertiary">/640x320?text=Hello&bg=efefef&fg=374151</code>
                         </div>
                     </div>
-                </section>
-
-                <section>
-                    <h3 class="text-lg font-semibold mb-3 text-gray-900 dark:text-white">Parameters</h3>
-                    <div class="space-y-2">
-                        <div class="flex gap-4 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg">
-                            <span class="font-mono text-sm font-semibold text-gray-900 dark:text-white w-32">size</span>
-                            <span class="text-gray-600 dark:text-gray-400 text-sm">Dimensions (e.g., '300x200' or '300' for square)</span>
-                        </div>
-                        <div class="flex gap-4 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg">
-                            <span class="font-mono text-sm font-semibold text-gray-900 dark:text-white w-32">format</span>
-                            <span class="text-gray-600 dark:text-gray-400 text-sm">png, jpg, jpeg, webp, avif, gif, bmp, ico, svg</span>
-                        </div>
-                        <div class="flex gap-4 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg">
-                            <span class="font-mono text-sm font-semibold text-gray-900 dark:text-white w-32">background_color/bg</span>
-                            <span class="text-gray-600 dark:text-gray-400 text-sm">Hex code for background (default: 'C8C8C8')</span>
-                        </div>
-                        <div class="flex gap-4 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg">
-                            <span class="font-mono text-sm font-semibold text-gray-900 dark:text-white w-32">text_color/fg</span>
-                            <span class="text-gray-600 dark:text-gray-400 text-sm">Hex code for text (default: '323232')</span>
+                    <div>
+                        <span class="terminal-label block mb-3">Full Format</span>
+                        <div class="code-block">
+                            <code class="text-tertiary">/p/300x200/FF5733/FFFFFF?format=png&text=Hello</code>
                         </div>
                     </div>
-                </section>
-
-                <a href="/api" class="inline-flex items-center text-gray-900 dark:text-white hover:text-gray-700 dark:hover:text-gray-300 font-medium">
-                    View Full API Documentation
-                    <x-heroicon-o-arrow-right class="w-5 h-5 ml-2" />
-                </a>
+                    <div>
+                        <span class="terminal-label block mb-3">Parameters</span>
+                        <div class="space-y-1">
+                            @foreach([
+                                ['size', 'Dimensions (e.g., 300x200 or 300 for square)'],
+                                ['format', 'png, jpg, webp, avif, gif, bmp, ico, svg'],
+                                ['bg', 'Background hex color (default: C8C8C8)'],
+                                ['fg', 'Text hex color (default: 323232)'],
+                                ['text', 'Custom overlay text'],
+                                ['font', 'arial, couri, times, tron'],
+                                ['quality', '1-100 compression quality'],
+                            ] as [$param, $desc])
+                                <div class="flex gap-4 px-4 py-2 bg-surface-container-lowest/50 hover:bg-surface-container-lowest transition-colors">
+                                    <span class="font-mono text-xs font-bold text-primary w-24 shrink-0">{{ $param }}</span>
+                                    <span class="text-outline text-xs">{{ $desc }}</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <a href="/api" class="inline-flex items-center gap-2 text-primary hover:text-secondary transition-colors font-headline font-bold text-xs uppercase tracking-widest">
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        Full API Docs
+                    </a>
+                </div>
             </div>
         </div>
+    </div>
+
+    <div x-show="copied" x-transition class="fixed bottom-6 right-6 bg-tertiary-container text-on-tertiary-container px-6 py-3 shadow-lg z-50 font-headline text-xs uppercase tracking-widest flex items-center gap-2">
+        <span class="material-symbols-outlined text-sm">check_circle</span>
+        Copied to clipboard
     </div>
 
     <script>
@@ -232,44 +217,28 @@
                 dog: false,
                 robot: false,
                 copied: false,
-                
+
                 get previewUrl() {
                     const bg = this.bgColor.replace('#', '');
                     const text = this.textColor.replace('#', '');
                     let url = `/p/${this.size}/${bg}/${text}?format=${this.format}&font=${this.font}&quality=${this.quality}`;
-                    
                     if (this.text) url += `&text=${encodeURIComponent(this.text)}`;
                     if (this.grayscale) url += `&grayscale=true`;
                     if (this.invert) url += `&invert=true`;
                     if (this.cat) url += `&cat=true`;
                     if (this.dog) url += `&dog=true`;
                     if (this.robot) url += `&robot=true`;
-                    
                     return url;
                 },
-                
-                get markdownUrl() {
-                    return `![Placeholder](${this.previewUrl})`;
-                },
-                
-                get htmlUrl() {
-                    return `<img src="${this.previewUrl}" alt="Placeholder">`;
-                },
-                
-                updatePreview() {
-                    // Trigger reactivity
-                },
-                
+                get markdownUrl() { return `![Placeholder](${this.previewUrl})`; },
+                get htmlUrl() { return `<img src="${this.previewUrl}" alt="Placeholder">`; },
+                updatePreview() {},
                 async copyToClipboard(text) {
                     try {
                         await navigator.clipboard.writeText(text);
                         this.copied = true;
-                        setTimeout(() => {
-                            this.copied = false;
-                        }, 2000);
-                    } catch (err) {
-                        console.error('Failed to copy:', err);
-                    }
+                        setTimeout(() => this.copied = false, 2000);
+                    } catch (e) {}
                 }
             }
         }

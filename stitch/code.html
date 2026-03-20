@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PLACEHOLD.CLOUD | KINETIC TERMINAL</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary": "#00363e",
+              "on-tertiary-fixed-variant": "#004e5a",
+              "on-primary-fixed": "#001b3f",
+              "error": "#ffb4ab",
+              "on-tertiary-container": "#002f36",
+              "tertiary-container": "#009fb4",
+              "background": "#0c1322",
+              "on-surface-variant": "#c1c6d6",
+              "on-secondary": "#490080",
+              "on-primary-container": "#00285a",
+              "surface-container-highest": "#2e3545",
+              "tertiary-fixed-dim": "#2fd9f4",
+              "tertiary-fixed": "#a2eeff",
+              "inverse-on-surface": "#293040",
+              "secondary-container": "#6f00be",
+              "tertiary": "#2fd9f4",
+              "secondary-fixed": "#f0dbff",
+              "surface-variant": "#2e3545",
+              "on-surface": "#dce2f7",
+              "on-background": "#dce2f7",
+              "inverse-surface": "#dce2f7",
+              "secondary": "#ddb7ff",
+              "surface": "#0c1322",
+              "surface-tint": "#abc7ff",
+              "surface-dim": "#0c1322",
+              "on-error": "#690005",
+              "error-container": "#93000a",
+              "on-secondary-fixed-variant": "#6900b3",
+              "on-secondary-fixed": "#2c0051",
+              "on-primary-fixed-variant": "#004590",
+              "inverse-primary": "#005cbd",
+              "surface-bright": "#323949",
+              "on-secondary-container": "#d6a9ff",
+              "outline": "#8b919f",
+              "on-primary": "#002f66",
+              "surface-container-high": "#232a3a",
+              "on-tertiary-fixed": "#001f25",
+              "surface-container-low": "#141b2b",
+              "primary-fixed-dim": "#abc7ff",
+              "primary-fixed": "#d7e2ff",
+              "secondary-fixed-dim": "#ddb7ff",
+              "primary": "#abc7ff",
+              "on-error-container": "#ffdad6",
+              "outline-variant": "#414754",
+              "primary-container": "#468fff",
+              "surface-container": "#191f2f",
+              "surface-container-lowest": "#070e1d"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-panel {
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+      .kinetic-glow {
+        box-shadow: 0 0 20px rgba(47, 217, 244, 0.15);
+      }
+      .liquid-chrome {
+        background: linear-gradient(135deg, #abc7ff 0%, #468fff 100%);
+      }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-tertiary/30 selection:text-tertiary overflow-x-hidden">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-[#141b2b] border-r border-[#414754]/15 flex flex-col z-40">
+<div class="p-8">
+<h1 class="text-2xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-[#abc7ff] to-[#468fff]">PLACEHOLD</h1>
+<p class="font-['Space_Grotesk'] tracking-tight font-bold uppercase text-[12px] text-[#abc7ff]/60 mt-1">KINETIC TERMINAL</p>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<!-- Active: Image Gen -->
+<a class="flex items-center gap-3 text-[#2fd9f4] border-l-4 border-[#2fd9f4] bg-[#2e3545]/50 px-4 py-3 shadow-[0_0_12px_rgba(47,217,244,0.2)] font-['Space_Grotesk'] tracking-tight font-bold uppercase text-[12px]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">image</span>
+<span>Image Gen</span>
+</a>
+<a class="flex items-center gap-3 text-[#8b919f] hover:text-[#ddb7ff] hover:bg-[#191f2f] px-4 py-3 transition-all duration-300 font-['Space_Grotesk'] tracking-tight font-bold uppercase text-[12px]" href="#">
+<span class="material-symbols-outlined">segment</span>
+<span>Text Gen</span>
+</a>
+<a class="flex items-center gap-3 text-[#8b919f] hover:text-[#ddb7ff] hover:bg-[#191f2f] px-4 py-3 transition-all duration-300 font-['Space_Grotesk'] tracking-tight font-bold uppercase text-[12px]" href="#">
+<span class="material-symbols-outlined">api</span>
+<span>API Docs</span>
+</a>
+<a class="flex items-center gap-3 text-[#8b919f] hover:text-[#ddb7ff] hover:bg-[#191f2f] px-4 py-3 transition-all duration-300 font-['Space_Grotesk'] tracking-tight font-bold uppercase text-[12px]" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-3 text-[#8b919f] hover:text-[#ddb7ff] hover:bg-[#191f2f] px-4 py-3 transition-all duration-300 font-['Space_Grotesk'] tracking-tight font-bold uppercase text-[12px]" href="#">
+<span class="material-symbols-outlined">help_center</span>
+<span>Support</span>
+</a>
+</nav>
+<div class="p-6 mt-auto">
+<button class="w-full liquid-chrome text-on-primary-container font-headline font-bold py-3 px-4 rounded-md shadow-lg hover:shadow-secondary/20 transition-all uppercase tracking-widest text-[11px]">
+                UPGRADE NODE
+            </button>
+<div class="flex items-center gap-3 mt-8">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest border border-outline-variant/30 flex items-center justify-center overflow-hidden">
+<img alt="User System Avatar" class="w-full h-full object-cover" data-alt="Cyberpunk style user avatar portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD9xa9TKdzLNRp74C4dJREomp1_j3H42mzmnmJ5v7Ff0bUeAy2JnZ1ltCJYYM10-84hfdEAV2oisluirRlkUoodBHsVIO2kUTgRcjTgRHM8nNXklZPJ2PWQ4Hhtq9urbrxcFEiUtMGA4N4W5ORJyAYRtdYgMV9rBvmHhah651LAzV_bBFHeoMSfqtrmRn1phTww_7NZ1WAZiTdGE-GOCyTJ5FcoG8rrUAXbXW-cM3Nb1rAdcmL3QdHtfqjgU3-uBccRlkkCvXFzKjG"/>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-outline">System Admin</span>
+<span class="text-[12px] font-headline text-on-surface">OPERATOR_01</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="sticky top-0 right-0 w-full h-16 bg-[#0c1322]/70 backdrop-blur-xl flex items-center justify-between px-8 z-30 shadow-[0_4px_20px_rgba(7,14,29,0.5)] border-b border-[#414754]/15">
+<div class="flex items-center gap-6">
+<div class="relative flex items-center bg-surface-container-lowest px-4 py-1.5 border-b-2 border-outline-variant focus-within:border-tertiary transition-all">
+<span class="material-symbols-outlined text-outline text-sm mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-xs font-headline uppercase tracking-widest text-on-surface placeholder:text-outline/50 w-64" placeholder="QUERY PARAMETERS..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 text-outline">
+<button class="hover:text-primary transition-all"><span class="material-symbols-outlined">notifications</span></button>
+<button class="hover:text-primary transition-all"><span class="material-symbols-outlined">terminal</span></button>
+<button class="hover:text-primary transition-all"><span class="material-symbols-outlined">dataset</span></button>
+</div>
+<div class="h-6 w-[1px] bg-outline-variant/30"></div>
+<button class="bg-primary/10 border border-primary/30 text-primary font-headline font-bold px-6 py-1.5 hover:bg-primary/20 transition-all text-xs uppercase tracking-tighter">
+                    Deploy
+                </button>
+</div>
+</header>
+<!-- Page Content -->
+<section class="p-12 flex-1">
+<div class="max-w-7xl mx-auto">
+<!-- Hero Heading -->
+<div class="mb-16 flex justify-between items-end">
+<div>
+<span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">Engine :: v2.0.4-Alpha</span>
+<h2 class="text-6xl md:text-8xl font-headline font-extrabold tracking-tighter text-on-surface leading-none">
+                            IMAGE<br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">GENERATOR</span>
+</h2>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2 bg-surface-container px-4 py-2 border-l-2 border-secondary">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-secondary">Kinetic Flux Active</span>
+</div>
+</div>
+</div>
+<!-- Generator Workspace (Bento Style) -->
+<div class="grid grid-cols-12 gap-8 items-start">
+<!-- Controls Panel -->
+<div class="col-span-12 lg:col-span-4 space-y-8">
+<div class="bg-surface-container-low p-8 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-2 opacity-10">
+<span class="material-symbols-outlined text-6xl">settings_input_component</span>
+</div>
+<h3 class="font-headline font-bold text-sm uppercase tracking-widest mb-10 text-on-surface border-b border-outline-variant/20 pb-4">Configuration</h3>
+<div class="space-y-10">
+<!-- Width Input -->
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<label class="text-[10px] font-bold uppercase tracking-[0.2em] text-outline">Pixel Width</label>
+<span class="text-xs font-headline text-tertiary">1920 PX</span>
+</div>
+<div class="relative bg-surface-container-lowest px-4 py-3 border-b-2 border-outline-variant group-focus-within:border-tertiary transition-all">
+<input class="bg-transparent border-none focus:ring-0 text-xl font-headline font-bold text-on-surface w-full p-0" type="number" value="1920"/>
+<div class="absolute -bottom-[2px] left-0 w-0 h-[2px] bg-tertiary transition-all duration-500 group-hover:w-full"></div>
+</div>
+</div>
+<!-- Height Input -->
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<label class="text-[10px] font-bold uppercase tracking-[0.2em] text-outline">Pixel Height</label>
+<span class="text-xs font-headline text-tertiary">1080 PX</span>
+</div>
+<div class="relative bg-surface-container-lowest px-4 py-3 border-b-2 border-outline-variant transition-all">
+<input class="bg-transparent border-none focus:ring-0 text-xl font-headline font-bold text-on-surface w-full p-0" type="number" value="1080"/>
+</div>
+</div>
+<!-- Color Choice -->
+<div class="space-y-3">
+<label class="text-[10px] font-bold uppercase tracking-[0.2em] text-outline">Hex Overlay</label>
+<div class="grid grid-cols-4 gap-3">
+<button class="h-10 w-full bg-[#abc7ff] border-2 border-white/20"></button>
+<button class="h-10 w-full bg-[#ddb7ff] border-2 border-white/20 ring-2 ring-secondary ring-offset-4 ring-offset-background"></button>
+<button class="h-10 w-full bg-[#2fd9f4] border-2 border-white/20"></button>
+<button class="h-10 w-full bg-[#2e3545] border-2 border-white/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-xs">colorize</span>
+</button>
+</div>
+</div>
+<button class="w-full liquid-chrome p-4 font-headline font-black text-on-primary-container uppercase tracking-[0.3em] text-sm shadow-[0_0_20px_rgba(171,199,255,0.3)] hover:scale-[1.02] active:scale-95 transition-all">
+                                    Generate Stream
+                                </button>
+</div>
+</div>
+<!-- Mini Readout -->
+<div class="bg-surface-container p-6 border-l-4 border-tertiary">
+<div class="flex items-center justify-between mb-4">
+<span class="text-[10px] font-bold uppercase tracking-widest text-outline">Node Health</span>
+<span class="text-[10px] font-headline text-tertiary">99.8%</span>
+</div>
+<div class="h-1 bg-surface-container-highest w-full rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[99.8%] shadow-[0_0_8px_rgba(47,217,244,0.5)]"></div>
+</div>
+</div>
+</div>
+<!-- Preview Area -->
+<div class="col-span-12 lg:col-span-8">
+<div class="bg-surface-container-highest/30 glass-panel p-2 border border-outline-variant/15 relative">
+<!-- Technical Overlays -->
+<div class="absolute top-6 left-6 z-10 flex items-center gap-4">
+<div class="bg-surface-container-lowest/80 backdrop-blur-md px-3 py-1 text-[9px] font-headline font-bold uppercase text-tertiary tracking-widest border border-tertiary/20">
+                                    PREVIEW_MODE // LIVE
+                                </div>
+<div class="bg-surface-container-lowest/80 backdrop-blur-md px-3 py-1 text-[9px] font-headline font-bold uppercase text-on-surface/60 tracking-widest border border-outline-variant/20">
+                                    FPS: 60.00
+                                </div>
+</div>
+<div class="aspect-video w-full bg-surface-container-lowest relative overflow-hidden group">
+<!-- Placeholder Image with Glow -->
+<img alt="Preview Output" class="w-full h-full object-cover mix-blend-screen opacity-80" data-alt="Abstract vibrant neon cybernetic light patterns and textures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBeo0qfaRHebztaIWMC7CNmoEy4puCDIgAtVq1jXUqKM0R3lP8a2J4jEtmxDa9b8hFvNZ8SIyPsYyBb_PIJ2TOuT8jhm0zzeacVUEJo2ke766-SiFXD0uSuuj8GwsmfBr8hDbkpGoDopD7CbtvK1FoJRKwTDcJ3r9SMQshe0mzQp_bTHjl5FxZoEa0nBdDforY_kCCwb8i7nEgQwSUodFPMK2G2MFCxkRGoQxZpF9UdvqHDjE83gEHCwlhGEIub3M-YMri7Rb_NxPq"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-60"></div>
+<!-- Center UI Crosshair -->
+<div class="absolute inset-0 flex items-center justify-center opacity-20 group-hover:opacity-40 transition-opacity">
+<div class="w-16 h-16 border border-primary relative">
+<div class="absolute -top-1 -left-1 w-2 h-2 bg-primary"></div>
+<div class="absolute -top-1 -right-1 w-2 h-2 bg-primary"></div>
+<div class="absolute -bottom-1 -left-1 w-2 h-2 bg-primary"></div>
+<div class="absolute -bottom-1 -right-1 w-2 h-2 bg-primary"></div>
+</div>
+</div>
+<!-- Metadata Readout -->
+<div class="absolute bottom-6 left-6 z-10">
+<div class="text-[48px] font-headline font-black text-on-surface/10 leading-none select-none">1920x1080</div>
+</div>
+</div>
+<div class="flex justify-between items-center p-4">
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-2 text-outline hover:text-secondary transition-all">
+<span class="material-symbols-outlined text-sm">download</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Download PNG</span>
+</button>
+<button class="flex items-center gap-2 text-outline hover:text-secondary transition-all">
+<span class="material-symbols-outlined text-sm">share</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Copy Link</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-sm">history</span>
+<span class="text-[10px] font-headline text-outline uppercase tracking-widest">Last Render: 12ms ago</span>
+</div>
+</div>
+</div>
+<!-- Console Area -->
+<div class="mt-8 bg-surface-container-lowest p-6 border-t-2 border-outline-variant font-mono text-[11px] space-y-2 opacity-70">
+<div class="flex gap-4">
+<span class="text-secondary">[SYSTEM]</span>
+<span class="text-on-surface/60">Initializing Kinetic Engine core...</span>
+</div>
+<div class="flex gap-4">
+<span class="text-tertiary">[RENDER]</span>
+<span class="text-on-surface/60">Buffering texture maps for node 0x7F...</span>
+</div>
+<div class="flex gap-4">
+<span class="text-primary">[SOURCE]</span>
+<span class="text-on-surface/60">https://placehold.cloud/render/1920/1080/ddb7ff</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-12 px-8 mt-24 border-t border-[#414754]/10 bg-[#070e1d] flex flex-col md:flex-row justify-between items-start">
+<div>
+<span class="text-[#abc7ff] font-bold font-headline tracking-tighter text-xl mb-4 block">PLACEHOLD.CLOUD</span>
+<p class="font-['Inter'] text-[11px] uppercase tracking-widest text-[#414754]">© 2024 PLACEHOLD.CLOUD - KINETIC ENGINE</p>
+</div>
+<div class="flex flex-wrap gap-x-12 gap-y-4 mt-8 md:mt-0">
+<div class="flex flex-col gap-2">
+<span class="font-['Inter'] text-[11px] uppercase tracking-widest text-[#2fd9f4] mb-2">Technical</span>
+<a class="font-['Inter'] text-[11px] uppercase tracking-widest text-[#414754] hover:text-[#ddb7ff] transition-opacity" href="#">System Status</a>
+<a class="font-['Inter'] text-[11px] uppercase tracking-widest text-[#414754] hover:text-[#ddb7ff] transition-opacity" href="#">API Changelog</a>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-['Inter'] text-[11px] uppercase tracking-widest text-[#2fd9f4] mb-2">Legal</span>
+<a class="font-['Inter'] text-[11px] uppercase tracking-widest text-[#414754] hover:text-[#ddb7ff] transition-opacity" href="#">Privacy Protocol</a>
+<a class="font-['Inter'] text-[11px] uppercase tracking-widest text-[#414754] hover:text-[#ddb7ff] transition-opacity" href="#">Terminal Terms</a>
+</div>
+</div>
+</footer>
+</main>
+<!-- Floating Action Beacon -->
+<div class="fixed bottom-10 right-10 z-50">
+<button class="w-14 h-14 bg-secondary shadow-[0_0_20px_rgba(221,183,255,0.4)] rounded-full flex items-center justify-center text-on-secondary hover:scale-110 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</button>
+</div>
+</body></html>
