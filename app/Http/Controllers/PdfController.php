@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\GeneratePdfJob;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PdfController extends Controller
 {
@@ -13,6 +15,18 @@ class PdfController extends Controller
         $title = substr($request->query('title', 'Sample Document'), 0, 200);
         $pageSize = in_array($request->query('size', 'a4'), ['a4', 'letter', 'legal']) ? $request->query('size', 'a4') : 'a4';
         $orientation = $request->query('orientation', 'portrait') === 'landscape' ? 'landscape' : 'portrait';
+
+        $callbackUrl = $request->query('callback_url');
+        if ($callbackUrl && $this->isValidCallbackUrl($callbackUrl)) {
+            $jobId = $request->query('job_id') ?? (string) Str::uuid();
+            GeneratePdfJob::dispatch($pages, $title, $pageSize, $orientation, $callbackUrl, $jobId);
+
+            return response()->json([
+                'status' => 'accepted',
+                'job_id' => $jobId,
+                'message' => 'PDF generation started. You will receive a POST to your callback URL when ready.',
+            ], 202);
+        }
 
         $faker = \Faker\Factory::create();
         $content = [];
@@ -63,5 +77,16 @@ class PdfController extends Controller
         }
 
         return "<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><style>body{font-family:DejaVu Sans,sans-serif;font-size:13px;margin:40px;color:#374151;}</style></head><body>{$pages}</body></html>";
+    }
+
+    private function isValidCallbackUrl(?string $url): bool
+    {
+        if (! $url || ! filter_var($url, FILTER_VALIDATE_URL)) {
+            return false;
+        }
+        if (app()->environment('production') && ! str_starts_with(strtolower($url), 'https://')) {
+            return false;
+        }
+        return true;
     }
 }

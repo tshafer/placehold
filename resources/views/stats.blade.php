@@ -48,6 +48,7 @@
                             <th class="px-6 lg:px-8 py-3 meta-label">Endpoint</th>
                             <th class="px-6 lg:px-8 py-3 meta-label text-right">Today</th>
                             <th class="px-6 lg:px-8 py-3 meta-label text-right">All Time</th>
+                            <th class="px-6 lg:px-8 py-3 meta-label text-right">Avg (ms)</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,6 +57,7 @@
                                 <td class="px-6 lg:px-8 py-3 font-mono text-xs font-bold text-primary" x-text="ep.endpoint"></td>
                                 <td class="px-6 lg:px-8 py-3 text-right text-outline text-xs" x-text="ep.today.toLocaleString()"></td>
                                 <td class="px-6 lg:px-8 py-3 text-right font-headline font-bold text-on-surface text-xs" x-text="ep.total.toLocaleString()"></td>
+                                <td class="px-6 lg:px-8 py-3 text-right text-outline text-xs" x-text="ep.avg_response_ms != null ? ep.avg_response_ms + ' ms' : '—'"></td>
                             </tr>
                         </template>
                     </tbody>

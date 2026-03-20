@@ -15,10 +15,12 @@ class ApiStatsController extends Controller
         $stats = [];
 
         foreach ($endpoints as $endpoint) {
+            $avgMs = Cache::get("api_stats:avg_ms:{$endpoint}");
             $stats[] = [
                 'endpoint' => $endpoint,
                 'today' => (int) Cache::get("api_stats:{$today}:{$endpoint}", 0),
                 'total' => (int) Cache::get("api_stats:total:{$endpoint}", 0),
+                'avg_response_ms' => $avgMs !== null ? (int) round((float) $avgMs) : null,
             ];
         }
 

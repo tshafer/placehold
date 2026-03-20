@@ -1,0 +1,29 @@
+{
+  "name": "placehold-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for placehold.cloud — generate placeholder images, quotes, jokes, lorem ipsum, and more from AI assistants",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "placehold-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "start:http": "node dist/server-http.js",
+    "dev": "tsc && node dist/index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "express": "^4.21.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

@@ -14,6 +14,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'track.api' => \App\Http\Middleware\TrackApiUsage::class,
             'ratelimit.headers' => \App\Http\Middleware\RateLimitHeaders::class,
+            'cache.headers' => \App\Http\Middleware\AddCacheHeaders::class,
         ]);
+        $middleware->appendToGroup('web', \App\Http\Middleware\AddCacheHeaders::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {})->create();

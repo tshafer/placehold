@@ -1,5 +1,7 @@
 /.phpunit.cache
 /node_modules
+/mcp-server/node_modules
+/mcp-server/dist
 /public/hot
 /public/storage
 /storage/*.key

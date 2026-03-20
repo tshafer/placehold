@@ -4,6 +4,53 @@
 
 [x-cloak] { display: none !important; }
 
+/* Light theme (when .dark is not on html) */
+html:not(.dark) {
+    color-scheme: light;
+}
+html:not(.dark) body,
+html:not(.dark) .bg-background {
+    --tw-bg-opacity: 1;
+    background-color: #f1f5f9 !important;
+}
+html:not(.dark) .text-on-background,
+html:not(.dark) .text-on-surface {
+    color: #0f172a !important;
+}
+html:not(.dark) .bg-surface-container-lowest,
+html:not(.dark) .bg-surface-container-low,
+html:not(.dark) .bg-surface-container,
+html:not(.dark) .bg-surface-container-high,
+html:not(.dark) .bg-surface-container-highest,
+html:not(.dark) .bg-surface {
+    background-color: #e2e8f0 !important;
+}
+html:not(.dark) .bg-surface-container-lowest { background-color: #f8fafc !important; }
+html:not(.dark) .bg-surface-container-low { background-color: #f1f5f9 !important; }
+html:not(.dark) .bg-surface-container-highest { background-color: #cbd5e1 !important; }
+html:not(.dark) .text-outline,
+html:not(.dark) .meta-label {
+    color: #64748b !important;
+}
+html:not(.dark) .border-outline-variant\/15,
+html:not(.dark) .border-outline-variant\/20,
+html:not(.dark) .border-outline-variant\/30,
+html:not(.dark) .border-outline-variant\/40 {
+    border-color: rgba(100, 116, 139, 0.25) !important;
+}
+html:not(.dark) .text-on-surface-variant {
+    color: #475569 !important;
+}
+html:not(.dark) ::-webkit-scrollbar-track {
+    background: #e2e8f0;
+}
+html:not(.dark) ::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+}
+html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}
+
 @layer base {
     ::selection {
         background: rgba(47, 217, 244, 0.3);

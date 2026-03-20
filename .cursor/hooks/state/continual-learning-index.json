@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "transcripts": {
+    "/Users/tomshafer/.cursor/projects/Users-tomshafer-Projects-placeholder/agent-transcripts/64e9dce3-e77e-445c-aa32-ee6a1689027c/64e9dce3-e77e-445c-aa32-ee6a1689027c.jsonl": {
+      "mtimeMs": 1774036391000,
+      "lastProcessedAt": "2026-03-20T19:00:00.000Z"
+    },
+    "/Users/tomshafer/.cursor/projects/Users-tomshafer-Projects-placeholder/agent-transcripts/656ea9a7-e82a-4420-8357-a470450c7a8c/656ea9a7-e82a-4420-8357-a470450c7a8c.jsonl": {
+      "mtimeMs": 1774035200000,
+      "lastProcessedAt": "2026-03-20T19:00:00.000Z"
+    },
+    "/Users/tomshafer/.cursor/projects/Users-tomshafer-Projects-placeholder/agent-transcripts/678a3e6a-f975-46da-b23b-0f2378df2db6/678a3e6a-f975-46da-b23b-0f2378df2db6.jsonl": {
+      "mtimeMs": 1774031011000,
+      "lastProcessedAt": "2026-03-20T19:00:00.000Z"
+    }
+  }
+}

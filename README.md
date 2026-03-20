@@ -1,7 +1,7 @@
 # 🎨 Placehold.cloud - The Ultimate Placeholder Generator
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Laravel-12.x-red" alt="Laravel Version">
+  <img src="https://img.shields.io/badge/Laravel-13.x-red" alt="Laravel Version">
   <img src="https://img.shields.io/badge/PHP-8.3+-blue" alt="PHP Version">
   <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
 </p>
@@ -13,7 +13,7 @@
 
 ## 🌟 Why Placehold.cloud?
 
-**Placehold.cloud** is your one-stop-shop for everything placeholder-related. Built with Laravel 12 and powered by PHP 8.3+, we provide the fastest, most flexible placeholder generation service on the web.
+**Placehold.cloud** is your one-stop-shop for everything placeholder-related. Built with Laravel 13 and powered by PHP 8.3+, we provide the fastest, most flexible placeholder generation service on the web.
 
 ### ✨ Features
 
@@ -76,7 +76,7 @@ https://placehold.cloud/p/500x300?cat=true
 
 ## 🛠️ Technical Stack
 
-- **Framework**: Laravel 12.x
+- **Framework**: Laravel 13.x
 - **PHP**: 8.3+
 - **Image Processing**: Intervention Image 3.8, GD Library
 - **SVG Generation**: PHP-SVG
@@ -149,7 +149,7 @@ GET /download-all-icons - Download icon pack
 ✅ **Flexibility** - Endless customization options  
 ✅ **Free** - No registration, no limits  
 ✅ **Open Standards** - RESTful API, standard formats  
-✅ **Modern Stack** - Built on Laravel 12, PHP 8.3+  
+✅ **Modern Stack** - Built on Laravel 13, PHP 8.3+  
 ✅ **CDN Ready** - Optimized headers for caching  
 
 ## 🤝 Contributing

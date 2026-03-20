@@ -156,6 +156,13 @@
             </ul>
         </section>
 
+        <section class="mb-12">
+            <h2 class="section-title mb-8">AI &amp; MCP</h2>
+            <p class="text-on-surface-variant text-sm mb-4">
+                Using placehold.cloud from an AI assistant or LLM? See our <a href="/ai-docs" class="text-primary hover:text-tertiary transition-colors font-headline font-bold">AI Documentation</a> for direct API usage and our MCP server (Cursor, Claude Desktop, etc.).
+            </p>
+        </section>
+
         <section>
             <h2 class="section-title mb-8">Support</h2>
             <p class="text-on-surface-variant text-sm">

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApiStatsController;
 use App\Http\Controllers\AvatarController;
+use App\Http\Controllers\GeneratedFileController;
 use App\Http\Controllers\Base64Controller;
 use App\Http\Controllers\ColorConverterController;
 use App\Http\Controllers\ColorsController;
@@ -59,6 +60,7 @@ Route::view('terms-of-service', 'terms-of-service');
 Route::view('privacy-policy', 'privacy-policy');
 Route::view('about-us', 'about-us');
 Route::view('api', 'api');
+Route::view('ai-docs', 'ai-docs')->name('ai-docs');
 Route::view('qrcode', 'qrcode');
 Route::view('json-placeholder', 'json-placeholder')->name('json-placeholder');
 Route::get('json/users', [JsonPlaceholderController::class, 'users'])

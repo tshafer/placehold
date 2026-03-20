@@ -35,6 +35,7 @@
         ['url' => '/playground', 'name' => 'Playground', 'icon' => 'terminal', 'match' => 'playground'],
         ['url' => '/stats', 'name' => 'Usage Stats', 'icon' => 'monitoring', 'match' => 'stats'],
         ['url' => '/api', 'name' => 'API Docs', 'icon' => 'api', 'match' => 'api'],
+        ['url' => '/ai-docs', 'name' => 'AI Docs', 'icon' => 'smart_toy', 'match' => 'ai-docs'],
         ['url' => '/changelog', 'name' => 'Changelog', 'icon' => 'new_releases', 'match' => 'changelog'],
     ];
 @endphp

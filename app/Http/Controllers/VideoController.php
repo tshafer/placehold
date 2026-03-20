@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\GenerateVideoJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Process;
+use Illuminate\Support\Str;
 
 class VideoController extends Controller
 {
@@ -20,6 +22,18 @@ class VideoController extends Controller
         // Ensure even dimensions for H.264
         $width = $width % 2 === 0 ? $width : $width + 1;
         $height = $height % 2 === 0 ? $height : $height + 1;
+
+        $callbackUrl = $request->query('callback_url');
+        if ($callbackUrl && $this->isValidCallbackUrl($callbackUrl)) {
+            $jobId = $request->query('job_id') ?? (string) Str::uuid();
+            GenerateVideoJob::dispatch($width, $height, $duration, $bg, $fg, $text, $fps, $callbackUrl, $jobId);
+
+            return response()->json([
+                'status' => 'accepted',
+                'job_id' => $jobId,
+                'message' => 'Video generation started. You will receive a POST to your callback URL when ready.',
+            ], 202);
+        }
 
         $outputPath = tempnam(sys_get_temp_dir(), 'phvid_') . '.mp4';
 
@@ -79,5 +93,16 @@ class VideoController extends Controller
             $hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
         }
         return preg_match('/^[0-9a-fA-F]{6}$/', $hex) ? $hex : '374151';
+    }
+
+    private function isValidCallbackUrl(?string $url): bool
+    {
+        if (! $url || ! filter_var($url, FILTER_VALIDATE_URL)) {
+            return false;
+        }
+        if (app()->environment('production') && ! str_starts_with(strtolower($url), 'https://')) {
+            return false;
+        }
+        return true;
     }
 }

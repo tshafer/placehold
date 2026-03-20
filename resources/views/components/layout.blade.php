@@ -1,6 +1,16 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark h-full">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full"
+    x-data="{ dark: true }"
+    x-init="dark = localStorage.getItem('theme') !== 'light'; $nextTick(() => document.documentElement.classList.toggle('dark', dark))"
+    x-effect="document.documentElement.classList.toggle('dark', dark); localStorage.setItem('theme', dark ? 'dark' : 'light'); $dispatch('theme-change', { dark })"
+    @theme-toggle.window="dark = !dark">
     <head>
+        <script>
+            (function() {
+                var theme = localStorage.getItem('theme');
+                document.documentElement.classList.toggle('dark', theme !== 'light');
+            })();
+        </script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="{{ $description ?? 'Generate custom placeholder images, text, quotes, and more with placehold.cloud. Free, fast, and production-ready API for developers and designers.' }}">

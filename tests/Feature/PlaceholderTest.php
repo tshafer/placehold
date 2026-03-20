@@ -92,7 +92,7 @@ it('sets proper cache headers', function () {
     $response = get('/p/100x100?format=svg');
 
     $response->assertOk()
-        ->assertHeader('Cache-Control', 'max-age=604800, public')
+        ->assertHeader('Cache-Control', 'max-age=86400, public, s-maxage=86400, stale-while-revalidate=3600')
         ->assertHeader('X-Content-Type-Options', 'nosniff')
         ->assertHeader('X-Frame-Options', 'DENY');
 });

@@ -21,11 +21,27 @@
             <a href="/api" class="hover:text-primary transition-all" title="API Docs">
                 <span class="material-symbols-outlined text-[20px]">api</span>
             </a>
+            <a href="/ai-docs" class="hover:text-primary transition-all" title="AI Docs">
+                <span class="material-symbols-outlined text-[20px]">smart_toy</span>
+            </a>
         </div>
         <div class="h-6 w-[1px] bg-outline-variant/30 hidden sm:block"></div>
-        <div class="items-center gap-2 hidden sm:flex">
-            <span class="w-2 h-2 rounded-full bg-tertiary animate-beacon-pulse"></span>
-            <span class="meta-label text-tertiary">Online</span>
+        <div class="flex items-center gap-3" x-data="{ dark: document.documentElement.classList.contains('dark') }" x-init="dark = document.documentElement.classList.contains('dark')" @theme-change.window="dark = $event.detail.dark">
+            <button type="button" @click="$dispatch('theme-toggle')"
+                class="flex items-center rounded-full p-1 w-14 h-8 bg-surface-container-high border border-outline-variant/30 transition-all duration-200 hover:border-outline/50 focus:outline-none focus:ring-2 focus:ring-tertiary/40 focus:ring-offset-2 focus:ring-offset-surface"
+                :class="dark ? 'justify-start' : 'justify-end'"
+                :title="dark ? 'Switch to light mode' : 'Switch to dark mode'"
+                aria-label="Toggle theme">
+                <span class="flex h-6 w-6 items-center justify-center rounded-full bg-surface-container-lowest border border-outline-variant/40 shadow-sm transition-transform duration-200"
+                    :class="dark ? 'text-outline' : 'text-primary'">
+                    <span class="material-symbols-outlined text-[18px]" x-show="dark" x-transition>dark_mode</span>
+                    <span class="material-symbols-outlined text-[18px]" x-show="!dark" x-transition x-cloak>light_mode</span>
+                </span>
+            </button>
+            <div class="items-center gap-2 hidden sm:flex">
+                <span class="w-2 h-2 rounded-full bg-tertiary animate-beacon-pulse"></span>
+                <span class="meta-label text-tertiary">Online</span>
+            </div>
         </div>
     </div>
 </header>
