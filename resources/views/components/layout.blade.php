@@ -51,6 +51,9 @@
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
         <link rel="sitemap" type="application/xml" href="{{ asset('sitemap.xml') }}">
+
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7523116315863058"
+             crossorigin="anonymous"></script>
     </head>
     <body class="antialiased bg-background text-on-background font-body overflow-x-hidden min-h-screen" id="body-el">
         <script>
