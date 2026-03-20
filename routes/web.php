@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiStatsController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\ColorsController;
 use App\Http\Controllers\ContactController;
@@ -22,12 +23,16 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome')->name('home');
+Route::view('stats', 'stats')->name('stats');
+Route::view('playground', 'playground')->name('playground');
+Route::view('changelog', 'changelog')->name('changelog');
+Route::get('api-stats', ApiStatsController::class)->name('api-stats');
 
 // Short format: /640x320?text=...&bg=...&fg=...
 // This must come before other routes to avoid conflicts
 Route::get('/{size}', PlaceholderController::class)
     ->where('size', '^\d+x\d+$')
-    ->middleware('throttle:120,1')
+    ->middleware(['throttle:120,1', 'track.api', 'ratelimit.headers'])
     ->name('placeholder.short');
 
 Route::view('image', 'image');
@@ -41,7 +46,7 @@ Route::view('avatar', 'avatar');
 Route::view('holdicon', 'holdicon');
 Route::view('favicon-generator', 'favicon');
 Route::get('favicon', FaviconController::class)
-    ->middleware('throttle:120,1')
+    ->middleware(['throttle:120,1', 'track.api', 'ratelimit.headers'])
     ->name('favicon');
 Route::view('cookie-policy', 'cookie-policy');
 Route::view('terms-of-service', 'terms-of-service');
@@ -51,16 +56,16 @@ Route::view('api', 'api');
 Route::view('qrcode', 'qrcode');
 Route::view('json-placeholder', 'json-placeholder')->name('json-placeholder');
 Route::get('json/users', [JsonPlaceholderController::class, 'users'])
-    ->middleware('throttle:120,1')
+    ->middleware(['throttle:120,1', 'track.api', 'ratelimit.headers'])
     ->name('json.placeholder.users');
 Route::get('json/posts', [JsonPlaceholderController::class, 'posts'])
-    ->middleware('throttle:120,1')
+    ->middleware(['throttle:120,1', 'track.api', 'ratelimit.headers'])
     ->name('json.placeholder.posts');
 Route::get('json/comments', [JsonPlaceholderController::class, 'comments'])
-    ->middleware('throttle:120,1')
+    ->middleware(['throttle:120,1', 'track.api', 'ratelimit.headers'])
     ->name('json.placeholder.comments');
 Route::get('json/todos', [JsonPlaceholderController::class, 'todos'])
-    ->middleware('throttle:120,1')
+    ->middleware(['throttle:120,1', 'track.api', 'ratelimit.headers'])
     ->name('json.placeholder.todos');
 Route::view('icons', 'icons');
 Route::view('contact', 'contact');
@@ -77,66 +82,64 @@ Route::post('toggle-dark-mode', function () {
 })->name('toggle-dark-mode');
 
 Route::get('/download-all-icons', [IconsController::class, 'downloadAllIcons'])
-
     ->middleware('throttle:10,1')
     ->name('download.all.icons');
 
 Route::get('w', WeatherController::class)
-    ->middleware('throttle:120,1')
+    ->middleware(['throttle:120,1', 'track.api', 'ratelimit.headers'])
     ->name('weather');
 
 Route::get('r', RecipeController::class)
-    ->middleware('throttle:120,1')
+    ->middleware(['throttle:120,1', 'track.api', 'ratelimit.headers'])
     ->name('recipe');
 
 Route::get('q', QuotesController::class)
-    ->middleware('throttle:5,1')
-    ->middleware('throttle:3600,60')
+    ->middleware(['throttle:5,1', 'throttle:3600,60', 'track.api', 'ratelimit.headers'])
     ->name('quote');
 
 Route::get('j', JokesController::class)
-    ->middleware('throttle:120,1')
+    ->middleware(['throttle:120,1', 'track.api', 'ratelimit.headers'])
     ->name('joke');
 
 Route::get('l', LoremIpsumController::class)
-    ->middleware('throttle:120,1');
+    ->middleware(['throttle:120,1', 'track.api', 'ratelimit.headers']);
 
 Route::get('/p/{size?}/{background_color?}/{text_color?}', PlaceholderController::class)
-    ->middleware('throttle:120,1')
+    ->middleware(['throttle:120,1', 'track.api', 'ratelimit.headers'])
     ->name('placeholder');
 
 Route::get('avatar/{seed}', AvatarController::class)
-    ->middleware('throttle:120,1')
+    ->middleware(['throttle:120,1', 'track.api', 'ratelimit.headers'])
     ->name('avatar.show');
 
 Route::get('h', HoldiconController::class)
-    ->middleware('throttle:120,1')
+    ->middleware(['throttle:120,1', 'track.api', 'ratelimit.headers'])
     ->name('holdicon');
 
 Route::get('c', ColorsController::class)
-    ->middleware('throttle:120,1')
+    ->middleware(['throttle:120,1', 'track.api', 'ratelimit.headers'])
     ->name('colors');
 
 Route::get('qr', QrCodeController::class)
-    ->middleware('throttle:120,1')
+    ->middleware(['throttle:120,1', 'track.api', 'ratelimit.headers'])
     ->name('qr');
 
 Route::view('pdf-generator', 'pdf');
 Route::get('pdf', PdfController::class)
-    ->middleware('throttle:30,1')
+    ->middleware(['throttle:30,1', 'track.api', 'ratelimit.headers'])
     ->name('pdf');
 
 Route::view('csv-generator', 'csv');
 Route::get('csv', CsvController::class)
-    ->middleware('throttle:120,1')
+    ->middleware(['throttle:120,1', 'track.api', 'ratelimit.headers'])
     ->name('csv');
 
 Route::view('markdown-generator', 'markdown');
 Route::get('md', MarkdownController::class)
-    ->middleware('throttle:120,1')
+    ->middleware(['throttle:120,1', 'track.api', 'ratelimit.headers'])
     ->name('markdown');
 
 Route::view('video-generator', 'video');
 Route::get('video', VideoController::class)
-    ->middleware('throttle:10,1')
+    ->middleware(['throttle:10,1', 'track.api', 'ratelimit.headers'])
     ->name('video');

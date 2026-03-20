@@ -11,6 +11,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias([
+            'track.api' => \App\Http\Middleware\TrackApiUsage::class,
+            'ratelimit.headers' => \App\Http\Middleware\RateLimitHeaders::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {})->create();

@@ -189,6 +189,33 @@
             </a>
         </div>
 
+        <!-- Explore Section -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            <a href="/playground" class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 hover:shadow-lg transition-all group">
+                <div class="flex items-center mb-3">
+                    <x-heroicon-o-code-bracket-square class="w-8 h-8 mr-3 text-gray-900 dark:text-white group-hover:scale-110 transition-transform" />
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Playground</h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400">Live HTML/CSS/JS editor using the API. Build and share instantly.</p>
+            </a>
+
+            <a href="/stats" class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 hover:shadow-lg transition-all group">
+                <div class="flex items-center mb-3">
+                    <x-heroicon-o-chart-bar class="w-8 h-8 mr-3 text-gray-900 dark:text-white group-hover:scale-110 transition-transform" />
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Usage Dashboard</h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400">Live API usage statistics with per-endpoint breakdown.</p>
+            </a>
+
+            <a href="/changelog" class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 hover:shadow-lg transition-all group">
+                <div class="flex items-center mb-3">
+                    <x-heroicon-o-megaphone class="w-8 h-8 mr-3 text-gray-900 dark:text-white group-hover:scale-110 transition-transform" />
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Changelog</h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400">See what's new and improved. Full release history.</p>
+            </a>
+        </div>
+
         <!-- CTA Section -->
         <div class="bg-gradient-to-r from-primary-600 to-primary-700 rounded-2xl p-12 text-center text-white">
             <h2 class="text-3xl font-bold mb-4">Ready to start generating?</h2>

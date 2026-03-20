@@ -132,19 +132,56 @@
                     </div>
                 </div>
 
-                {{-- API Docs (direct link) --}}
-                <a href="/api"
-                   class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-lg transition-colors {{ $currentRoute === 'api' ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800' }}">
-                    <x-heroicon-o-command-line class="w-4 h-4" />
-                    API Docs
+                {{-- Playground --}}
+                <a href="/playground"
+                   class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-lg transition-colors {{ $currentRoute === 'playground' ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                    <x-heroicon-o-code-bracket-square class="w-4 h-4" />
+                    Playground
                 </a>
 
-                {{-- About --}}
-                <a href="/about-us"
-                   class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-lg transition-colors {{ $currentRoute === 'about-us' ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800' }}">
-                    <x-heroicon-o-information-circle class="w-4 h-4" />
-                    About
-                </a>
+                {{-- More dropdown --}}
+                <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                    <button @click="open = !open"
+                            class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800">
+                        <x-heroicon-o-ellipsis-horizontal class="w-4 h-4" />
+                        More
+                        <x-heroicon-o-chevron-down class="w-3.5 h-3.5 transition-transform" ::class="open && 'rotate-180'" />
+                    </button>
+
+                    <div x-show="open"
+                         x-transition:enter="transition ease-out duration-150"
+                         x-transition:enter-start="opacity-0 translate-y-1"
+                         x-transition:enter-end="opacity-100 translate-y-0"
+                         x-transition:leave="transition ease-in duration-100"
+                         x-transition:leave-start="opacity-100 translate-y-0"
+                         x-transition:leave-end="opacity-0 translate-y-1"
+                         class="absolute right-0 top-full pt-2 w-56"
+                         x-cloak>
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 p-2 ring-1 ring-black/5 dark:ring-white/5">
+                            <a href="/api" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ $currentRoute === 'api' ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50' }}">
+                                <x-heroicon-o-command-line class="w-5 h-5 shrink-0" />
+                                <span class="text-sm font-medium">API Docs</span>
+                            </a>
+                            <a href="/stats" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ $currentRoute === 'stats' ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50' }}">
+                                <x-heroicon-o-chart-bar class="w-5 h-5 shrink-0" />
+                                <span class="text-sm font-medium">Usage Stats</span>
+                            </a>
+                            <a href="/changelog" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ $currentRoute === 'changelog' ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50' }}">
+                                <x-heroicon-o-megaphone class="w-5 h-5 shrink-0" />
+                                <span class="text-sm font-medium">Changelog</span>
+                            </a>
+                            <div class="my-1 border-t border-gray-200 dark:border-gray-700"></div>
+                            <a href="/about-us" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ $currentRoute === 'about-us' ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50' }}">
+                                <x-heroicon-o-information-circle class="w-5 h-5 shrink-0" />
+                                <span class="text-sm font-medium">About</span>
+                            </a>
+                            <a href="/contact" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ $currentRoute === 'contact' ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50' }}">
+                                <x-heroicon-o-envelope class="w-5 h-5 shrink-0" />
+                                <span class="text-sm font-medium">Contact</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </nav>
 
             <!-- Right side actions -->
@@ -239,10 +276,25 @@
 
                 {{-- Bottom links --}}
                 <div class="border-t border-gray-200 dark:border-gray-700 pt-4 space-y-0.5">
+                    <a href="/playground"
+                       class="flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg {{ $currentRoute === 'playground' ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                        <x-heroicon-o-code-bracket-square class="w-5 h-5" />
+                        Playground
+                    </a>
                     <a href="/api"
                        class="flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg {{ $currentRoute === 'api' ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
                         <x-heroicon-o-command-line class="w-5 h-5" />
                         API Docs
+                    </a>
+                    <a href="/stats"
+                       class="flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg {{ $currentRoute === 'stats' ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                        <x-heroicon-o-chart-bar class="w-5 h-5" />
+                        Usage Stats
+                    </a>
+                    <a href="/changelog"
+                       class="flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg {{ $currentRoute === 'changelog' ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                        <x-heroicon-o-megaphone class="w-5 h-5" />
+                        Changelog
                     </a>
                     <a href="/about-us"
                        class="flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg {{ $currentRoute === 'about-us' ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
