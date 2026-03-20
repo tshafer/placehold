@@ -21,9 +21,6 @@
         <meta property="og:title" content="placehold.cloud - Custom Placeholder Image Generator">
         <meta property="og:description" content="Generate custom placeholder images with our powerful API. Create images with specific sizes, colors, text, and effects.">
         <meta property="og:image" content="{{ asset('og-image.svg') }}">
-        <!-- Alpine.js -->
-        <script defer src="https://cdn.jsdelivr.net/npm/[email protected]/dist/cdn.min.js"></script>
-
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image">
         <meta property="twitter:url" content="{{ url('/') }}">
