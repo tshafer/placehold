@@ -45,9 +45,7 @@ class ChangelogGenerate extends Command
             } else {
                 $version = $this->incrementVersion($previous);
                 $this->info("Auto-incremented version: {$previous} -> {$version}");
-                if (! $since) {
-                    $since = 'v'.$previous;
-                }
+                // Don't set $since here - let it use latest git tag (or all commits)
             }
         }
 
