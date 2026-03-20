@@ -8,9 +8,7 @@
         <!-- Quick Start Banner -->
         <div class="bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 rounded-xl p-8 mb-8">
                 <h2 class="text-2xl font-bold mb-2 flex items-center text-gray-900 dark:text-white">
-                    <svg class="w-6 h-6 mr-2 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                    </svg>
+                    <x-heroicon-o-bolt class="w-6 h-6 mr-2 text-gray-900 dark:text-white" />
                     Quick Start
                 </h2>
                 <p class="text-lg mb-4 text-gray-600 dark:text-gray-400">Generate your first placeholder image in seconds:</p>
@@ -50,9 +48,7 @@
                 </div>
                 <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
                     <p class="text-gray-700 dark:text-gray-300 flex items-start gap-2">
-                        <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
+                        <x-heroicon-o-information-circle class="w-5 h-5 flex-shrink-0 mt-0.5" />
                         <span class="text-sm">All endpoints are public and can be accessed directly via GET requests. No authentication required!</span>
                     </p>
                 </div>

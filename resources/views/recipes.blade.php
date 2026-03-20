@@ -9,9 +9,7 @@
             <div class="space-y-8">
                 <section>
                     <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white flex items-center">
-                        <svg class="w-6 h-6 mr-2 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                        </svg>
+                        <x-heroicon-o-book-open class="w-6 h-6 mr-2 text-gray-900 dark:text-white" />
                         Basic Usage
                     </h3>
                     <div class="bg-gray-900 p-4 rounded-lg">
@@ -61,9 +59,7 @@
                     <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Try It Now</h3>
                     <a href="{{ route('recipe') }}" target="_blank" 
                        class="inline-flex items-center px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors shadow-lg">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                        </svg>
+                        <x-heroicon-o-bolt class="w-5 h-5 mr-2" />
                         Get Random Recipes
                     </a>
                 </section>

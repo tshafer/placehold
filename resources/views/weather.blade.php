@@ -9,9 +9,7 @@
             <div class="space-y-8">
                 <section>
                     <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white flex items-center">
-                        <svg class="w-6 h-6 mr-2 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
-                        </svg>
+                        <x-heroicon-o-cloud class="w-6 h-6 mr-2 text-gray-900 dark:text-white" />
                         Basic Usage
                     </h3>
                     <div class="bg-gray-900 p-4 rounded-lg">
@@ -65,9 +63,7 @@
                     <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Try It Now</h3>
                     <a href="{{ route('weather', ['city' => 'London', 'country' => 'GB']) }}" target="_blank" 
                        class="inline-flex items-center px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors shadow-lg">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                        </svg>
+                        <x-heroicon-o-bolt class="w-5 h-5 mr-2" />
                         Get Weather Data
                     </a>
                 </section>
