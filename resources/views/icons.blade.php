@@ -14,8 +14,10 @@
             </a>
         </div>
 
+        <div x-data="{ searchQuery: '', selectedIcon: null }">
+
         <!-- Search Bar -->
-        <div x-data="{ searchQuery: '' }" class="mb-8">
+        <div class="mb-8">
             <div class="relative">
                 <input x-model="searchQuery" type="text" placeholder="Search icons..."
                        class="w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent">
@@ -24,7 +26,7 @@
         </div>
 
         <!-- Icons Grid -->
-        <div x-data="{ selectedIcon: null }" class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6">
+        <div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6">
             @foreach (File::files(resource_path('svg')) as $file)
                 @php
                     $iconName = pathinfo($file, PATHINFO_FILENAME);
@@ -83,6 +85,8 @@
                     </div>
                 </div>
             </div>
+        </div>
+
         </div>
     </div>
 </x-layout>
