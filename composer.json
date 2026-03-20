@@ -7,9 +7,9 @@
     "require": {
         "php": "^8.3",
         "intervention/image": "^3.8",
-        "laravel/framework": "^12.36",
+        "laravel/framework": "^13.0",
         "laravel/octane": "^2.13",
-        "laravel/tinker": "^2.9",
+        "laravel/tinker": "^3.0",
         "meyfa/php-svg": "^0.16.0",
         "spatie/image": "^3.7",
         "symfony/http-client": "^7.1",
@@ -21,7 +21,8 @@
         "laravel/sail": "^1.26",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.0",
-        "phpunit/phpunit": "^11.0.1"
+        "pestphp/pest": "^4.4",
+        "pestphp/pest-plugin-laravel": "^4.1"
     },
     "autoload": {
         "psr-4": {
@@ -30,12 +31,6 @@
             "Database\\Seeders\\": "database/seeders/"
         }
     },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://satis.shafer.llc"
-        }
-    ],
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"

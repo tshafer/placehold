@@ -1,5 +1,5 @@
 
-<header class="w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-50">
+<header class="w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-50" x-data="{ mobileMenuOpen: false }">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
             <!-- Logo -->
@@ -99,7 +99,7 @@
         </div>
 
         <!-- Mobile menu -->
-        <div x-data="{ mobileMenuOpen: false }" x-show="mobileMenuOpen" x-transition
+        <div x-show="mobileMenuOpen" x-transition
              class="md:hidden border-t border-gray-200 dark:border-gray-800 py-4">
             <nav class="flex flex-col space-y-2">
                 <a href="/" class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg flex items-center gap-2">

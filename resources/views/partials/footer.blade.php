@@ -49,7 +49,7 @@
                     &copy; {{ date('Y') }} placehold.cloud. All rights reserved.
                 </p>
                 <p class="text-gray-600 dark:text-gray-400 text-sm mt-4 md:mt-0">
-                    Built with Laravel 12
+                    Built by <a href="https://shafer.llc" class="hover:text-gray-900 dark:hover:text-white transition-colors">Shafer LLC</a>
                 </p>
             </div>
         </div>

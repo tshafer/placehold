@@ -19,7 +19,7 @@ class WeatherController extends Controller
 
     public function __construct()
     {
-        $this->apiKey = env('OPENWEATHER_API_KEY');
+        $this->apiKey = config('services.openweather.api_key');
     }
 
     public function __invoke(Request $request)
