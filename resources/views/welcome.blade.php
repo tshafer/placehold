@@ -123,6 +123,38 @@
                 </div>
                 <p class="text-gray-600 dark:text-gray-400">Browse our collection of beautiful icons.</p>
             </a>
+
+            <a href="/avatar" class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 hover:shadow-lg transition-all group">
+                <div class="flex items-center mb-3">
+                    <x-heroicon-o-user-circle class="w-8 h-8 mr-3 text-gray-900 dark:text-white group-hover:scale-110 transition-transform" />
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Avatar Generator</h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400">Generate unique identicon avatars from any seed.</p>
+            </a>
+
+            <a href="/qrcode" class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 hover:shadow-lg transition-all group">
+                <div class="flex items-center mb-3">
+                    <x-heroicon-o-qr-code class="w-8 h-8 mr-3 text-gray-900 dark:text-white group-hover:scale-110 transition-transform" />
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">QR Codes</h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400">Generate QR codes for any URL or text.</p>
+            </a>
+
+            <a href="/favicon-generator" class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 hover:shadow-lg transition-all group">
+                <div class="flex items-center mb-3">
+                    <x-heroicon-o-star class="w-8 h-8 mr-3 text-gray-900 dark:text-white group-hover:scale-110 transition-transform" />
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Favicon Generator</h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400">Create simple letter favicons for any website.</p>
+            </a>
+
+            <a href="/json-placeholder" class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 hover:shadow-lg transition-all group">
+                <div class="flex items-center mb-3">
+                    <x-heroicon-o-code-bracket class="w-8 h-8 mr-3 text-gray-900 dark:text-white group-hover:scale-110 transition-transform" />
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">JSON Placeholder</h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400">Fake REST API for users, posts, comments, and todos.</p>
+            </a>
         </div>
 
         <!-- CTA Section -->

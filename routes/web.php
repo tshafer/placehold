@@ -1,12 +1,16 @@
 <?php
 
+use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\ColorsController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FaviconController;
 use App\Http\Controllers\HoldiconController;
 use App\Http\Controllers\IconsController;
 use App\Http\Controllers\JokesController;
+use App\Http\Controllers\JsonPlaceholderController;
 use App\Http\Controllers\LoremIpsumController;
 use App\Http\Controllers\PlaceholderController;
+use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\QuotesController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\WeatherController;
@@ -29,12 +33,31 @@ Route::view('quotes', 'quotes');
 Route::view('weather', 'weather');
 Route::view('recipes', 'recipes');
 Route::view('colors', 'colors');
+Route::view('avatar', 'avatar');
 Route::view('holdicon', 'holdicon');
+Route::view('favicon-generator', 'favicon');
+Route::get('favicon', FaviconController::class)
+    ->middleware('throttle:120,1')
+    ->name('favicon');
 Route::view('cookie-policy', 'cookie-policy');
 Route::view('terms-of-service', 'terms-of-service');
 Route::view('privacy-policy', 'privacy-policy');
 Route::view('about-us', 'about-us');
 Route::view('api', 'api');
+Route::view('qrcode', 'qrcode');
+Route::view('json-placeholder', 'json-placeholder')->name('json-placeholder');
+Route::get('json/users', [JsonPlaceholderController::class, 'users'])
+    ->middleware('throttle:120,1')
+    ->name('json.placeholder.users');
+Route::get('json/posts', [JsonPlaceholderController::class, 'posts'])
+    ->middleware('throttle:120,1')
+    ->name('json.placeholder.posts');
+Route::get('json/comments', [JsonPlaceholderController::class, 'comments'])
+    ->middleware('throttle:120,1')
+    ->name('json.placeholder.comments');
+Route::get('json/todos', [JsonPlaceholderController::class, 'todos'])
+    ->middleware('throttle:120,1')
+    ->name('json.placeholder.todos');
 Route::view('icons', 'icons');
 Route::view('contact', 'contact');
 Route::post('contact', action: [ContactController::class, 'store'])->name('contact.submit');
@@ -78,6 +101,10 @@ Route::get('/p/{size?}/{background_color?}/{text_color?}', PlaceholderController
     ->middleware('throttle:120,1')
     ->name('placeholder');
 
+Route::get('avatar/{seed}', AvatarController::class)
+    ->middleware('throttle:120,1')
+    ->name('avatar.show');
+
 Route::get('h', HoldiconController::class)
     ->middleware('throttle:120,1')
     ->name('holdicon');
@@ -85,3 +112,7 @@ Route::get('h', HoldiconController::class)
 Route::get('c', ColorsController::class)
     ->middleware('throttle:120,1')
     ->name('colors');
+
+Route::get('qr', QrCodeController::class)
+    ->middleware('throttle:120,1')
+    ->name('qr');
