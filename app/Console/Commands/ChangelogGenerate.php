@@ -56,6 +56,14 @@ class ChangelogGenerate extends Command
             $since = $result->successful() ? trim($result->output()) : null;
         }
 
+        if ($since) {
+            $verify = Process::run("git rev-parse --verify {$since} 2>/dev/null");
+            if (! $verify->successful()) {
+                $this->warn("Ref \"{$since}\" not found in repo; using all commits.");
+                $since = null;
+            }
+        }
+
         $range = $since ? "{$since}..HEAD" : 'HEAD';
         $format = '%s';
         $result = Process::run("git log {$range} --pretty=format:\"{$format}\" --no-merges");
