@@ -1,6 +1,15 @@
 <?php
 
+use function Pest\Laravel\get;
 use function Pest\Laravel\postJson;
+
+it('responds to GET /mcp with status when no body', function () {
+    $response = get('/mcp');
+
+    $response->assertOk()
+        ->assertJsonPath('mcp', 'placehold-mcp-server')
+        ->assertJsonPath('version', '1.0.0');
+});
 
 it('responds to MCP initialize', function () {
     $response = postJson('/mcp', [

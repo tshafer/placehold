@@ -16,6 +16,16 @@ class McpController extends Controller
         }
 
         $body = $request->getContent();
+
+        // GET with no body: respond with a simple status so the endpoint "works" when hit in a browser
+        if ($request->isMethod('GET') && $body === '') {
+            return response()->json([
+                'mcp' => 'placehold-mcp-server',
+                'version' => '1.0.0',
+                'message' => 'POST JSON-RPC requests here (initialize, tools/list, tools/call).',
+            ], 200);
+        }
+
         if ($body === '') {
             return response()->json(['jsonrpc' => '2.0', 'error' => ['code' => -32700, 'message' => 'Parse error']], 400);
         }
