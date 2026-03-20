@@ -28,6 +28,10 @@
             "description": "PDF, CSV, Markdown generators"
         },
         {
+            "name": "Utilities",
+            "description": "Encoding, hashing, UUID, and color tools"
+        },
+        {
             "name": "Fun",
             "description": "Quotes, jokes, recipes, weather"
         }
@@ -80,6 +84,50 @@
                 }
             }
         },
+        "/base64": {
+            "get": {
+                "summary": "Encode or decode Base64 strings",
+                "operationId": "base64",
+                "tags": [
+                    "Utilities"
+                ],
+                "parameters": [
+                    {
+                        "name": "encode",
+                        "in": "query",
+                        "description": "String to encode to Base64",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "decode",
+                        "in": "query",
+                        "description": "Base64 string to decode",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Rate limit exceeded"
+                    }
+                }
+            }
+        },
         "/c": {
             "get": {
                 "summary": "Generate color palettes",
@@ -106,6 +154,42 @@
                             "type": "string"
                         },
                         "example": "5"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Rate limit exceeded"
+                    }
+                }
+            }
+        },
+        "/color/{hex}": {
+            "get": {
+                "summary": "Convert hex color to RGB, HSL, HSV with contrast analysis",
+                "operationId": "color.convert",
+                "tags": [
+                    "Utilities"
+                ],
+                "parameters": [
+                    {
+                        "name": "hex",
+                        "in": "path",
+                        "description": "3 or 6 character hex color (without #)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "ff5733"
                     }
                 ],
                 "responses": {
@@ -300,6 +384,61 @@
                                 "schema": {
                                     "type": "string",
                                     "format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Rate limit exceeded"
+                    }
+                }
+            }
+        },
+        "/hash": {
+            "get": {
+                "summary": "Generate hash digests",
+                "operationId": "hash",
+                "tags": [
+                    "Utilities"
+                ],
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "query",
+                        "description": "Input string to hash (required)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "hello"
+                    },
+                    {
+                        "name": "algo",
+                        "in": "query",
+                        "description": "Hash algorithm (default: sha256)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "sha256"
+                    },
+                    {
+                        "name": "all",
+                        "in": "query",
+                        "description": "Return all algorithms (true/false)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
                                 }
                             }
                         }
@@ -830,6 +969,70 @@
                             "type": "string"
                         },
                         "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Rate limit exceeded"
+                    }
+                }
+            }
+        },
+        "/uuid": {
+            "get": {
+                "summary": "Generate UUIDs",
+                "operationId": "uuid",
+                "tags": [
+                    "Utilities"
+                ],
+                "parameters": [
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "Number of UUIDs (1-100)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "5"
+                    },
+                    {
+                        "name": "version",
+                        "in": "query",
+                        "description": "UUID version: 4 or 7",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "4"
+                    },
+                    {
+                        "name": "uppercase",
+                        "in": "query",
+                        "description": "Uppercase output (true/false)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nodashes",
+                        "in": "query",
+                        "description": "Remove dashes (true/false)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {

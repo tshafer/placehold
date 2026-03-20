@@ -176,6 +176,40 @@ class GenerateOpenApi extends Command
             ],
             'response_type' => 'image/png',
         ],
+        'base64' => [
+            'summary' => 'Encode or decode Base64 strings',
+            'params' => [
+                ['name' => 'encode', 'in' => 'query', 'description' => 'String to encode to Base64'],
+                ['name' => 'decode', 'in' => 'query', 'description' => 'Base64 string to decode'],
+            ],
+            'response_type' => 'application/json',
+        ],
+        'hash' => [
+            'summary' => 'Generate hash digests',
+            'params' => [
+                ['name' => 'data', 'in' => 'query', 'description' => 'Input string to hash (required)', 'example' => 'hello'],
+                ['name' => 'algo', 'in' => 'query', 'description' => 'Hash algorithm (default: sha256)', 'example' => 'sha256'],
+                ['name' => 'all', 'in' => 'query', 'description' => 'Return all algorithms (true/false)'],
+            ],
+            'response_type' => 'application/json',
+        ],
+        'uuid' => [
+            'summary' => 'Generate UUIDs',
+            'params' => [
+                ['name' => 'count', 'in' => 'query', 'description' => 'Number of UUIDs (1-100)', 'example' => '5'],
+                ['name' => 'version', 'in' => 'query', 'description' => 'UUID version: 4 or 7', 'example' => '4'],
+                ['name' => 'uppercase', 'in' => 'query', 'description' => 'Uppercase output (true/false)'],
+                ['name' => 'nodashes', 'in' => 'query', 'description' => 'Remove dashes (true/false)'],
+            ],
+            'response_type' => 'application/json',
+        ],
+        'color.convert' => [
+            'summary' => 'Convert hex color to RGB, HSL, HSV with contrast analysis',
+            'params' => [
+                ['name' => 'hex', 'in' => 'path', 'description' => '3 or 6 character hex color (without #)', 'example' => 'ff5733'],
+            ],
+            'response_type' => 'application/json',
+        ],
     ];
 
     public function handle(): int
@@ -248,6 +282,7 @@ class GenerateOpenApi extends Command
                 ['name' => 'Images', 'description' => 'Image and visual generators'],
                 ['name' => 'Data', 'description' => 'Structured data and text APIs'],
                 ['name' => 'Documents', 'description' => 'PDF, CSV, Markdown generators'],
+                ['name' => 'Utilities', 'description' => 'Encoding, hashing, UUID, and color tools'],
                 ['name' => 'Fun', 'description' => 'Quotes, jokes, recipes, weather'],
             ],
             'paths' => $paths,
@@ -269,6 +304,7 @@ class GenerateOpenApi extends Command
             $name === 'qr', $name === 'favicon', $name === 'holdicon' => 'Images',
             str_starts_with($name, 'json.'), $name === 'colors', $name === 'csv', $name === 'markdown' => 'Data',
             $name === 'pdf', $name === 'video' => 'Documents',
+            in_array($name, ['base64', 'hash', 'uuid', 'color.convert']) => 'Utilities',
             default => 'Fun',
         };
     }

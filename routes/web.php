@@ -2,8 +2,12 @@
 
 use App\Http\Controllers\ApiStatsController;
 use App\Http\Controllers\AvatarController;
-use App\Http\Controllers\HealthController;
+use App\Http\Controllers\Base64Controller;
+use App\Http\Controllers\ColorConverterController;
 use App\Http\Controllers\ColorsController;
+use App\Http\Controllers\HashController;
+use App\Http\Controllers\HealthController;
+use App\Http\Controllers\UuidController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CsvController;
 use App\Http\Controllers\FaviconController;
@@ -145,3 +149,24 @@ Route::view('video-generator', 'video');
 Route::get('video', VideoController::class)
     ->middleware(['throttle:10,1', 'track.api', 'ratelimit.headers'])
     ->name('video');
+
+Route::view('base64-tool', 'base64');
+Route::get('base64', Base64Controller::class)
+    ->middleware(['throttle:120,1', 'track.api', 'ratelimit.headers'])
+    ->name('base64');
+
+Route::view('hash-tool', 'hash');
+Route::get('hash', HashController::class)
+    ->middleware(['throttle:120,1', 'track.api', 'ratelimit.headers'])
+    ->name('hash');
+
+Route::view('uuid-tool', 'uuid');
+Route::get('uuid', UuidController::class)
+    ->middleware(['throttle:120,1', 'track.api', 'ratelimit.headers'])
+    ->name('uuid');
+
+Route::view('color-converter', 'color-converter');
+Route::get('color/{hex}', ColorConverterController::class)
+    ->where('hex', '[0-9a-fA-F]{3,6}')
+    ->middleware(['throttle:120,1', 'track.api', 'ratelimit.headers'])
+    ->name('color.convert');

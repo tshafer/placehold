@@ -24,6 +24,13 @@
         ['url' => '/recipes', 'name' => 'Recipes', 'icon' => 'restaurant', 'match' => 'recipes'],
     ];
 
+    $utilities = [
+        ['url' => '/base64-tool', 'name' => 'Base64', 'icon' => 'swap_horiz', 'match' => 'base64-tool'],
+        ['url' => '/hash-tool', 'name' => 'Hash Gen', 'icon' => 'fingerprint', 'match' => 'hash-tool'],
+        ['url' => '/uuid-tool', 'name' => 'UUID Gen', 'icon' => 'tag', 'match' => 'uuid-tool'],
+        ['url' => '/color-converter', 'name' => 'Color Convert', 'icon' => 'colorize', 'match' => 'color-converter'],
+    ];
+
     $meta = [
         ['url' => '/playground', 'name' => 'Playground', 'icon' => 'terminal', 'match' => 'playground'],
         ['url' => '/stats', 'name' => 'Usage Stats', 'icon' => 'monitoring', 'match' => 'stats'],
@@ -57,6 +64,14 @@
 
         <p class="meta-label px-4 pt-6 pb-2">Data APIs</p>
         @foreach($dataApis as $item)
+            <a href="{{ $item['url'] }}" class="nav-link {{ $currentRoute === $item['match'] ? 'nav-link-active' : '' }}">
+                <span class="material-symbols-outlined text-[20px]">{{ $item['icon'] }}</span>
+                <span>{{ $item['name'] }}</span>
+            </a>
+        @endforeach
+
+        <p class="meta-label px-4 pt-6 pb-2">Utilities</p>
+        @foreach($utilities as $item)
             <a href="{{ $item['url'] }}" class="nav-link {{ $currentRoute === $item['match'] ? 'nav-link-active' : '' }}">
                 <span class="material-symbols-outlined text-[20px]">{{ $item['icon'] }}</span>
                 <span>{{ $item['name'] }}</span>
@@ -123,6 +138,14 @@
 
             <p class="meta-label px-4 pt-4 pb-1">Data APIs</p>
             @foreach($dataApis as $item)
+                <a href="{{ $item['url'] }}" class="nav-link {{ $currentRoute === $item['match'] ? 'nav-link-active' : '' }}">
+                    <span class="material-symbols-outlined text-[20px]">{{ $item['icon'] }}</span>
+                    <span>{{ $item['name'] }}</span>
+                </a>
+            @endforeach
+
+            <p class="meta-label px-4 pt-4 pb-1">Utilities</p>
+            @foreach($utilities as $item)
                 <a href="{{ $item['url'] }}" class="nav-link {{ $currentRoute === $item['match'] ? 'nav-link-active' : '' }}">
                     <span class="material-symbols-outlined text-[20px]">{{ $item['icon'] }}</span>
                     <span>{{ $item['name'] }}</span>

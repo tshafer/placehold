@@ -23,8 +23,8 @@
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20">
         @foreach([
             ['label' => 'Generators', 'value' => '8', 'icon' => 'image'],
+            ['label' => 'Utilities', 'value' => '4', 'icon' => 'build'],
             ['label' => 'Data APIs', 'value' => '9', 'icon' => 'data_object'],
-            ['label' => 'Rate Limit', 'value' => '120/min', 'icon' => 'speed'],
             ['label' => 'Cost', 'value' => '$0', 'icon' => 'payments'],
         ] as $stat)
             <div class="bg-surface-container-low p-6 border-l-2 border-primary/30 hover:border-primary transition-colors group">
@@ -85,6 +85,25 @@
                             <p class="text-outline text-xs mt-2 leading-relaxed">{{ $tool['desc'] }}</p>
                         </div>
                     </div>
+                </a>
+            @endforeach
+        </div>
+    </div>
+
+    {{-- Utilities Section --}}
+    <div class="mb-20">
+        <h3 class="section-title mb-10">Utilities</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+            @foreach([
+                ['url' => '/base64-tool', 'name' => 'Base64 Encoder', 'desc' => 'Encode and decode Base64 strings instantly.', 'icon' => 'swap_horiz'],
+                ['url' => '/hash-tool', 'name' => 'Hash Generator', 'desc' => 'SHA-256, MD5, and 14 more hash algorithms.', 'icon' => 'fingerprint'],
+                ['url' => '/uuid-tool', 'name' => 'UUID Generator', 'desc' => 'Generate v4 and v7 UUIDs in bulk.', 'icon' => 'tag'],
+                ['url' => '/color-converter', 'name' => 'Color Converter', 'desc' => 'Hex to RGB, HSL, HSV with contrast analysis.', 'icon' => 'colorize'],
+            ] as $tool)
+                <a href="{{ $tool['url'] }}" class="card-panel p-6 group">
+                    <span class="material-symbols-outlined text-outline group-hover:text-secondary transition-colors text-[28px] mb-4 block">{{ $tool['icon'] }}</span>
+                    <h4 class="font-headline font-bold text-on-surface text-sm uppercase tracking-wider group-hover:text-secondary transition-colors">{{ $tool['name'] }}</h4>
+                    <p class="text-outline text-xs mt-2">{{ $tool['desc'] }}</p>
                 </a>
             @endforeach
         </div>
