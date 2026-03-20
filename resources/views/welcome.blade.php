@@ -155,6 +155,38 @@
                 </div>
                 <p class="text-gray-600 dark:text-gray-400">Fake REST API for users, posts, comments, and todos.</p>
             </a>
+
+            <a href="/pdf-generator" class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 hover:shadow-lg transition-all group">
+                <div class="flex items-center mb-3">
+                    <x-heroicon-o-document class="w-8 h-8 mr-3 text-gray-900 dark:text-white group-hover:scale-110 transition-transform" />
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">PDF Placeholder</h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400">Generate dummy PDF documents with lorem ipsum text.</p>
+            </a>
+
+            <a href="/csv-generator" class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 hover:shadow-lg transition-all group">
+                <div class="flex items-center mb-3">
+                    <x-heroicon-o-table-cells class="w-8 h-8 mr-3 text-gray-900 dark:text-white group-hover:scale-110 transition-transform" />
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">CSV / Data Generator</h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400">Fake tabular data with names, emails, addresses, and more.</p>
+            </a>
+
+            <a href="/markdown-generator" class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 hover:shadow-lg transition-all group">
+                <div class="flex items-center mb-3">
+                    <x-heroicon-o-hashtag class="w-8 h-8 mr-3 text-gray-900 dark:text-white group-hover:scale-110 transition-transform" />
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Markdown Placeholder</h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400">Realistic markdown with headings, lists, code blocks, and tables.</p>
+            </a>
+
+            <a href="/video-generator" class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 hover:shadow-lg transition-all group">
+                <div class="flex items-center mb-3">
+                    <x-heroicon-o-film class="w-8 h-8 mr-3 text-gray-900 dark:text-white group-hover:scale-110 transition-transform" />
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Video Placeholder</h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400">Static-color MP4 videos at any resolution and duration.</p>
+            </a>
         </div>
 
         <!-- CTA Section -->

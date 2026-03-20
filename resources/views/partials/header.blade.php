@@ -7,12 +7,16 @@
         ['url' => '/avatar', 'name' => 'Avatar Generator', 'desc' => 'Unique identicons from any seed', 'icon' => 'user-circle'],
         ['url' => '/qrcode', 'name' => 'QR Codes', 'desc' => 'Encode any URL or text', 'icon' => 'qr-code'],
         ['url' => '/favicon-generator', 'name' => 'Favicon Generator', 'desc' => 'Letter & emoji favicons', 'icon' => 'star'],
+        ['url' => '/pdf-generator', 'name' => 'PDF Placeholder', 'desc' => 'Dummy PDFs with lorem ipsum', 'icon' => 'document'],
+        ['url' => '/video-generator', 'name' => 'Video Placeholder', 'desc' => 'Static-color MP4 files', 'icon' => 'film'],
         ['url' => '/holdicon', 'name' => 'Icon Placeholders', 'desc' => 'Placeholder icons with styling', 'icon' => 'view-columns'],
         ['url' => '/icons', 'name' => 'Icon Library', 'desc' => 'Browse & download icons', 'icon' => 'paint-brush'],
     ];
 
     $dataApis = [
         ['url' => '/lorem-ipsum', 'name' => 'Lorem Ipsum', 'desc' => 'Dummy text for layouts', 'icon' => 'document-text'],
+        ['url' => '/markdown-generator', 'name' => 'Markdown', 'desc' => 'Realistic markdown docs', 'icon' => 'hashtag'],
+        ['url' => '/csv-generator', 'name' => 'CSV / Data', 'desc' => 'Fake tabular data (CSV/JSON)', 'icon' => 'table-cells'],
         ['url' => '/json-placeholder', 'name' => 'JSON Placeholder', 'desc' => 'Fake REST API data', 'icon' => 'code-bracket'],
         ['url' => '/colors', 'name' => 'Color Palettes', 'desc' => 'Palettes & hex codes', 'icon' => 'paint-brush'],
         ['url' => '/quotes', 'name' => 'Random Quotes', 'desc' => 'Inspirational quotes', 'icon' => 'chat-bubble-left'],
@@ -67,6 +71,8 @@
                                             @case('user-circle') <x-heroicon-o-user-circle class="w-5 h-5" /> @break
                                             @case('qr-code') <x-heroicon-o-qr-code class="w-5 h-5" /> @break
                                             @case('star') <x-heroicon-o-star class="w-5 h-5" /> @break
+                                            @case('document') <x-heroicon-o-document class="w-5 h-5" /> @break
+                                            @case('film') <x-heroicon-o-film class="w-5 h-5" /> @break
                                             @case('view-columns') <x-heroicon-o-view-columns class="w-5 h-5" /> @break
                                             @case('paint-brush') <x-heroicon-o-paint-brush class="w-5 h-5" /> @break
                                         @endswitch
@@ -106,6 +112,8 @@
                                     <span class="mt-0.5 shrink-0">
                                         @switch($item['icon'])
                                             @case('document-text') <x-heroicon-o-document-text class="w-5 h-5" /> @break
+                                            @case('hashtag') <x-heroicon-o-hashtag class="w-5 h-5" /> @break
+                                            @case('table-cells') <x-heroicon-o-table-cells class="w-5 h-5" /> @break
                                             @case('code-bracket') <x-heroicon-o-code-bracket class="w-5 h-5" /> @break
                                             @case('paint-brush') <x-heroicon-o-paint-brush class="w-5 h-5" /> @break
                                             @case('chat-bubble-left') <x-heroicon-o-chat-bubble-left class="w-5 h-5" /> @break
@@ -191,6 +199,8 @@
                                         @case('user-circle') <x-heroicon-o-user-circle class="w-5 h-5" /> @break
                                         @case('qr-code') <x-heroicon-o-qr-code class="w-5 h-5" /> @break
                                         @case('star') <x-heroicon-o-star class="w-5 h-5" /> @break
+                                        @case('document') <x-heroicon-o-document class="w-5 h-5" /> @break
+                                        @case('film') <x-heroicon-o-film class="w-5 h-5" /> @break
                                         @case('view-columns') <x-heroicon-o-view-columns class="w-5 h-5" /> @break
                                         @case('paint-brush') <x-heroicon-o-paint-brush class="w-5 h-5" /> @break
                                     @endswitch
@@ -211,6 +221,8 @@
                                 <span class="shrink-0">
                                     @switch($item['icon'])
                                         @case('document-text') <x-heroicon-o-document-text class="w-5 h-5" /> @break
+                                        @case('hashtag') <x-heroicon-o-hashtag class="w-5 h-5" /> @break
+                                        @case('table-cells') <x-heroicon-o-table-cells class="w-5 h-5" /> @break
                                         @case('code-bracket') <x-heroicon-o-code-bracket class="w-5 h-5" /> @break
                                         @case('paint-brush') <x-heroicon-o-paint-brush class="w-5 h-5" /> @break
                                         @case('chat-bubble-left') <x-heroicon-o-chat-bubble-left class="w-5 h-5" /> @break

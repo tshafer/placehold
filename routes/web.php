@@ -3,16 +3,20 @@
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\ColorsController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CsvController;
 use App\Http\Controllers\FaviconController;
 use App\Http\Controllers\HoldiconController;
 use App\Http\Controllers\IconsController;
 use App\Http\Controllers\JokesController;
 use App\Http\Controllers\JsonPlaceholderController;
 use App\Http\Controllers\LoremIpsumController;
+use App\Http\Controllers\MarkdownController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\PlaceholderController;
 use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\QuotesController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\VideoController;
 use App\Http\Controllers\WeatherController;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Route;
@@ -116,3 +120,23 @@ Route::get('c', ColorsController::class)
 Route::get('qr', QrCodeController::class)
     ->middleware('throttle:120,1')
     ->name('qr');
+
+Route::view('pdf-generator', 'pdf');
+Route::get('pdf', PdfController::class)
+    ->middleware('throttle:30,1')
+    ->name('pdf');
+
+Route::view('csv-generator', 'csv');
+Route::get('csv', CsvController::class)
+    ->middleware('throttle:120,1')
+    ->name('csv');
+
+Route::view('markdown-generator', 'markdown');
+Route::get('md', MarkdownController::class)
+    ->middleware('throttle:120,1')
+    ->name('markdown');
+
+Route::view('video-generator', 'video');
+Route::get('video', VideoController::class)
+    ->middleware('throttle:10,1')
+    ->name('video');
