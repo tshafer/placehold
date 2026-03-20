@@ -7,6 +7,12 @@ it('renders the changelog page', function () {
 });
 
 it('shows release versions', function () {
+    $dir = storage_path('app');
+    if (! is_dir($dir)) {
+        mkdir($dir, 0755, true);
+    }
+    file_put_contents(storage_path('app/changelog.json'), file_get_contents(base_path('tests/fixtures/changelog.json')));
+
     $response = get('/changelog');
 
     expect($response->getContent())

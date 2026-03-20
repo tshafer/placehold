@@ -51,6 +51,9 @@ jobs:
       - name: Copy env
         run: cp .env.example .env && php artisan key:generate
 
+      - name: Install ffmpeg (for health check tests)
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
       - name: Run tests
         run: php artisan test
 
