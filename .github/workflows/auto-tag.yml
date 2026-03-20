@@ -1,5 +1,5 @@
 # On push to default branch, create and push the next patch tag (v1.2.3 -> v1.2.4).
-# The tag push starts a separate workflow run: Release (test + deploy).
+# Release workflow is triggered via workflow_run when this job completes (no PAT needed).
 
 name: Auto tag
 
@@ -15,7 +15,7 @@ jobs:
   tag:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # push tag so Release workflow can run
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:

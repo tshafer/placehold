@@ -1,6 +1,5 @@
 # Test and deploy when a version tag is pushed (e.g. v1.7.0).
-# Run tests on the tag ref, then trigger Ploi deploy.
-# Triggered by: manual tag push, or by Auto tag workflow when you push to master.
+# Also runs when Auto tag workflow completes (same commit = test + deploy).
 # Secrets: set PLOI_DEPLOY_WEBHOOK in repo Settings → Secrets with the Ploi Quick Deploy URL.
 
 name: Release (test + deploy)
@@ -9,6 +8,10 @@ on:
   push:
     tags:
       - 'v*'
+  workflow_run:
+    workflows: ['Auto tag']
+    types: [completed]
+    branches: [master]
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -16,10 +19,11 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event.workflow_run.conclusion == 'success'
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref }}
+          ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.ref }}
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
@@ -53,11 +57,34 @@ jobs:
     runs-on: ubuntu-latest
     if: success()
     steps:
+      - uses: actions/checkout@v4
+        if: github.event_name == 'workflow_run'
+        with:
+          fetch-depth: 0
+
+      - name: Resolve deploy ref (tag or commit)
+        id: ref
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            echo "ref=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          else
+            REF=$(git tag -l 'v*' | sort -V | tail -1)
+            echo "ref=${REF:-${{ github.event.workflow_run.head_sha }}}" >> $GITHUB_OUTPUT
+          fi
+          echo "Deploy ref: ${{ steps.ref.outputs.ref }}"
+
       - name: Trigger Ploi deploy
         run: |
           if [ -n "${{ secrets.PLOI_DEPLOY_WEBHOOK }}" ]; then
-            curl -sS -X POST "${{ secrets.PLOI_DEPLOY_WEBHOOK }}"
-            echo "Deploy triggered."
+            # Append ref so Ploi can deploy this tag/commit if configured
+            REF="${{ steps.ref.outputs.ref }}"
+            URL="${{ secrets.PLOI_DEPLOY_WEBHOOK }}"
+            if [[ "$URL" == *"?"* ]]; then
+              curl -sS -X POST "${URL}&ref=${REF}"
+            else
+              curl -sS -X POST "${URL}?ref=${REF}"
+            fi
+            echo "Deploy triggered for ref: ${REF}"
           else
             echo "PLOI_DEPLOY_WEBHOOK not set; skipping deploy trigger."
           fi
