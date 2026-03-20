@@ -194,11 +194,11 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div x-show="copied" x-transition class="fixed bottom-6 right-6 bg-tertiary-container text-on-tertiary-container px-6 py-3 shadow-lg z-50 font-headline text-xs uppercase tracking-widest flex items-center gap-2">
-        <span class="material-symbols-outlined text-sm">check_circle</span>
-        Copied to clipboard
+        <div x-show="copied" x-transition class="fixed bottom-6 right-6 bg-tertiary-container text-on-tertiary-container px-6 py-3 shadow-lg z-50 font-headline text-xs uppercase tracking-widest flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">check_circle</span>
+            Copied to clipboard
+        </div>
     </div>
 
     <script>

@@ -138,6 +138,27 @@
         </section>
 
         <section class="mb-12">
+            <h2 class="section-title mb-8">Usage &amp; Response Time</h2>
+            <p class="text-on-surface-variant text-sm mb-4">
+                The <a href="/stats" class="text-primary hover:text-tertiary transition-colors">usage dashboard</a> at <code class="font-mono text-xs">/stats</code> shows live API call counts per endpoint. Stats are also available as JSON at <code class="font-mono text-xs">GET /api-stats</code>. Each endpoint includes <strong class="text-on-surface">avg_response_ms</strong> — a rolling average response time in milliseconds.
+            </p>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="section-title mb-8">Webhooks (Video &amp; PDF)</h2>
+            <p class="text-on-surface-variant text-sm mb-4">
+                For <code class="font-mono text-xs">GET /video</code> and <code class="font-mono text-xs">GET /pdf</code>, you can pass <strong class="text-on-surface">callback_url</strong> (and optional <strong class="text-on-surface">job_id</strong>). We return <strong class="text-on-surface">202 Accepted</strong> and generate the file in the background. When ready, we POST to your callback with <code class="font-mono text-xs">job_id</code>, <code class="font-mono text-xs">status</code>, <code class="font-mono text-xs">url</code> (one-time download), and <code class="font-mono text-xs">expires_in</code>. The download URL is single-use; the file is deleted after the first request.
+            </p>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="section-title mb-8">CDN / Cache</h2>
+            <p class="text-on-surface-variant text-sm mb-4">
+                Responses include <code class="font-mono text-xs">Cache-Control</code> headers per endpoint. Configuration is in <code class="font-mono text-xs">config/cache_headers.php</code>. Use these headers for CDN or browser caching.
+            </p>
+        </section>
+
+        <section class="mb-12">
             <h2 class="section-title mb-8">Rate Limits</h2>
             <p class="text-on-surface-variant text-sm">
                 To ensure fair usage, we limit requests to 100 per hour per IP address. If you exceed this limit, you'll receive a 429 Too Many Requests response. The response will include a Retry-After header indicating how long to wait before making another request.
@@ -159,7 +180,7 @@
         <section class="mb-12">
             <h2 class="section-title mb-8">AI &amp; MCP</h2>
             <p class="text-on-surface-variant text-sm mb-4">
-                Using placehold.cloud from an AI assistant or LLM? See our <a href="/ai-docs" class="text-primary hover:text-tertiary transition-colors font-headline font-bold">AI Documentation</a> for direct API usage and our MCP server (Cursor, Claude Desktop, etc.).
+                Use placehold.cloud from AI assistants (Cursor, Claude Desktop, etc.) via our <strong class="text-on-surface">MCP server</strong>. Send <code class="font-mono text-xs">GET</code> or <code class="font-mono text-xs">POST</code> requests to <code class="font-mono text-xs">/mcp</code> with JSON-RPC (<code class="font-mono text-xs">initialize</code>, <code class="font-mono text-xs">tools/list</code>, <code class="font-mono text-xs">tools/call</code>). No install required — add the URL in your MCP client. Full details: <a href="/ai-docs" class="text-primary hover:text-tertiary transition-colors font-headline font-bold">AI Documentation</a>.
             </p>
         </section>
 

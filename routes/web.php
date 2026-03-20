@@ -38,6 +38,9 @@ Route::get('health', HealthController::class)->name('health');
 
 Route::match(['get', 'post'], 'mcp', McpController::class)->name('mcp');
 
+Route::get('generated/video/{id}', [GeneratedFileController::class, 'video'])->name('generated.video');
+Route::get('generated/pdf/{id}', [GeneratedFileController::class, 'pdf'])->name('generated.pdf');
+
 // Short format: /640x320?text=...&bg=...&fg=...
 // This must come before other routes to avoid conflicts
 Route::get('/{size}', PlaceholderController::class)

@@ -43,6 +43,12 @@
 - **Recipes** - Cooking inspiration and meal ideas
 - **Icon Library** - 117+ beautiful SVG icons
 
+#### 📊 **Usage & API polish**
+- **Usage dashboard** at `/stats` with live API call counts and **response time** (rolling avg ms per endpoint); JSON at `/api-stats` with `avg_response_ms`.
+- **Webhooks** for video and PDF: pass `callback_url` (and optional `job_id`) for async delivery; we POST the one-time download URL when ready.
+- **Per-endpoint cache headers** for CDN and browser caching (see `config/cache_headers.php`).
+- **MCP server** at `GET|POST /mcp` for Cursor, Claude Desktop, and other JSON-RPC clients — no install required.
+
 ## 🚀 Quick Start
 
 ### For Developers
@@ -80,7 +86,7 @@ https://placehold.cloud/p/500x300?cat=true
 - **PHP**: 8.3+
 - **Image Processing**: Intervention Image 3.8, GD Library
 - **SVG Generation**: PHP-SVG
-- **Frontend**: Tailwind CSS, Vite
+- **Frontend**: Tailwind CSS, Vite, Alpine.js
 
 ## 📋 API Endpoints
 
@@ -125,13 +131,25 @@ GET /l?paragraphs={count}&minWords={min}&maxWords={max}
 
 ### Additional Services
 ```
-GET /q       - Random quote
-GET /j       - Random joke
-GET /w       - Weather data
-GET /r       - Recipe suggestion
-GET /h       - Holdicon placeholder
+GET /q         - Random quote
+GET /j         - Random joke
+GET /l         - Lorem ipsum (paragraphs, format)
+GET /w         - Weather data
+GET /r         - Recipe suggestion
+GET /c         - Colors (palette, hex, named)
+GET /h         - Holdicon placeholder
+GET /uuid      - UUID(s)
+GET /video     - Video placeholder (MP4; supports callback_url for async)
+GET /pdf       - PDF placeholder (supports callback_url for async)
+GET /api-stats - Usage stats JSON (counts, avg_response_ms)
 GET /download-all-icons - Download icon pack
 ```
+
+### MCP (AI assistants)
+```
+GET|POST /mcp  - JSON-RPC server for Cursor, Claude Desktop, etc. (initialize, tools/list, tools/call)
+```
+See [AI Documentation](https://placehold.cloud/ai-docs) for details.
 
 ## 🎨 Use Cases
 
@@ -171,6 +189,10 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - **Live Site**: [placehold.cloud](https://placehold.cloud)
 - **API Documentation**: [placehold.cloud/api](https://placehold.cloud/api)
+- **AI & MCP**: [placehold.cloud/ai-docs](https://placehold.cloud/ai-docs)
+- **Usage Dashboard**: [placehold.cloud/stats](https://placehold.cloud/stats)
+- **Playground**: [placehold.cloud/playground](https://placehold.cloud/playground)
+- **Changelog**: [placehold.cloud/changelog](https://placehold.cloud/changelog)
 - **About**: [placehold.cloud/about-us](https://placehold.cloud/about-us)
 - **Contact**: [placehold.cloud/contact](https://placehold.cloud/contact)
 

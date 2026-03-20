@@ -38,6 +38,14 @@
                     <span class="font-mono text-xs font-bold text-primary w-24 shrink-0">orientation</span>
                     <span class="text-outline text-xs">portrait or landscape (default: portrait)</span>
                 </div>
+                <div class="flex gap-4 px-4 py-2 bg-surface-container-lowest/50 hover:bg-surface-container-lowest transition-colors">
+                    <span class="font-mono text-xs font-bold text-primary w-24 shrink-0">callback_url</span>
+                    <span class="text-outline text-xs">Optional: we return 202 and POST the download URL here when ready (async)</span>
+                </div>
+                <div class="flex gap-4 px-4 py-2 bg-surface-container-lowest/50 hover:bg-surface-container-lowest transition-colors">
+                    <span class="font-mono text-xs font-bold text-primary w-24 shrink-0">job_id</span>
+                    <span class="text-outline text-xs">Optional: echoed back in the callback payload</span>
+                </div>
             </div>
         </section>
 

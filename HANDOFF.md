@@ -48,9 +48,7 @@ Stack: **Laravel 13**, PHP 8.3+, Octane (RoadRunner), Tailwind, Vite, Alpine.js.
 
 ### Documentation
 
-- **API docs** — add sections for: response time in stats API, webhook/callback for video & PDF (`callback_url`, `job_id`, 202 response, callback payload), and CDN/cache behavior (or link to `config/cache_headers.php`).
-- **Video/PDF tool pages** — document `callback_url` and `job_id` on the generator UI (e.g. video-generator, pdf-generator views).
-- **README** — add: Usage dashboard & response times, webhooks for video/PDF, per-endpoint cache headers; fix Laravel version badge to 13.
+- **README** — Laravel version badge is 13; usage dashboard, webhooks, cache headers, and MCP are documented in Features.
 
 ### Product / UX
 
@@ -91,6 +89,7 @@ Stack: **Laravel 13**, PHP 8.3+, Octane (RoadRunner), Tailwind, Vite, Alpine.js.
 | Theme             | `resources/views/components/layout.blade.php`, `partials/topbar.blade.php`, `resources/css/app.css` (light overrides) |
 | Changelog         | `storage/app/changelog.json`, `resources/views/changelog.blade.php` |
 | API docs          | `resources/views/api.blade.php` |
+| MCP               | `app/Http/Controllers/McpController.php`, `app/Services/McpService.php`, `resources/views/ai-docs.blade.php` |
 
 ---
 
