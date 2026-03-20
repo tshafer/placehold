@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApiStatsController;
 use App\Http\Controllers\AvatarController;
+use App\Http\Controllers\HealthController;
 use App\Http\Controllers\ColorsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CsvController;
@@ -27,6 +28,7 @@ Route::view('stats', 'stats')->name('stats');
 Route::view('playground', 'playground')->name('playground');
 Route::view('changelog', 'changelog')->name('changelog');
 Route::get('api-stats', ApiStatsController::class)->name('api-stats');
+Route::get('health', HealthController::class)->name('health');
 
 // Short format: /640x320?text=...&bg=...&fg=...
 // This must come before other routes to avoid conflicts

@@ -1,0 +1,1041 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "placehold.cloud API",
+        "description": "Free placeholder content API \u2014 images, text, data, documents, and more.",
+        "version": "1.5.0",
+        "contact": {
+            "url": "https://placehold.cloud/contact"
+        }
+    },
+    "servers": [
+        {
+            "url": "https://placehold.cloud",
+            "description": "Production"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Images",
+            "description": "Image and visual generators"
+        },
+        {
+            "name": "Data",
+            "description": "Structured data and text APIs"
+        },
+        {
+            "name": "Documents",
+            "description": "PDF, CSV, Markdown generators"
+        },
+        {
+            "name": "Fun",
+            "description": "Quotes, jokes, recipes, weather"
+        }
+    ],
+    "paths": {
+        "/avatar/{seed}": {
+            "get": {
+                "summary": "Generate identicon avatar",
+                "operationId": "avatar.show",
+                "tags": [
+                    "Images"
+                ],
+                "parameters": [
+                    {
+                        "name": "seed",
+                        "in": "path",
+                        "description": "Seed string for deterministic avatar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "alice"
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "Size in pixels (default 200)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "200"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "image/svg+xml": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Rate limit exceeded"
+                    }
+                }
+            }
+        },
+        "/c": {
+            "get": {
+                "summary": "Generate color palettes",
+                "operationId": "colors",
+                "tags": [
+                    "Data"
+                ],
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "hex, named, or all",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "Number of colors (1-10)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "5"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Rate limit exceeded"
+                    }
+                }
+            }
+        },
+        "/csv": {
+            "get": {
+                "summary": "Generate fake tabular data",
+                "operationId": "csv",
+                "tags": [
+                    "Data"
+                ],
+                "parameters": [
+                    {
+                        "name": "rows",
+                        "in": "query",
+                        "description": "Number of rows (1-1000)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "50"
+                    },
+                    {
+                        "name": "preset",
+                        "in": "query",
+                        "description": "users, products, orders, employees, contacts",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "columns",
+                        "in": "query",
+                        "description": "Comma-separated column types",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "format",
+                        "in": "query",
+                        "description": "csv, tsv, or json",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "text/csv": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Rate limit exceeded"
+                    }
+                }
+            }
+        },
+        "/favicon": {
+            "get": {
+                "summary": "Generate letter/emoji favicon",
+                "operationId": "favicon",
+                "tags": [
+                    "Images"
+                ],
+                "parameters": [
+                    {
+                        "name": "text",
+                        "in": "query",
+                        "description": "Letter or emoji",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "A"
+                    },
+                    {
+                        "name": "bg",
+                        "in": "query",
+                        "description": "Background hex",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "6366f1"
+                    },
+                    {
+                        "name": "fg",
+                        "in": "query",
+                        "description": "Text hex",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "ffffff"
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "Size in pixels",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "image/svg+xml": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Rate limit exceeded"
+                    }
+                }
+            }
+        },
+        "/h": {
+            "get": {
+                "summary": "Generate placeholder icon",
+                "operationId": "holdicon",
+                "tags": [
+                    "Images"
+                ],
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "robot, cat, dog, or identicon",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "Size in pixels",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "bg",
+                        "in": "query",
+                        "description": "Background hex",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "image/png": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Rate limit exceeded"
+                    }
+                }
+            }
+        },
+        "/j": {
+            "get": {
+                "summary": "Get a random joke",
+                "operationId": "joke",
+                "tags": [
+                    "Fun"
+                ],
+                "parameters": [
+                    {
+                        "name": "category",
+                        "in": "query",
+                        "description": "programming, dad, or any",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Rate limit exceeded"
+                    }
+                }
+            }
+        },
+        "/json/comments": {
+            "get": {
+                "summary": "Get fake comments",
+                "operationId": "json.placeholder.comments",
+                "tags": [
+                    "Data"
+                ],
+                "parameters": [
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "Number of records (1-100)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Rate limit exceeded"
+                    }
+                }
+            }
+        },
+        "/json/posts": {
+            "get": {
+                "summary": "Get fake blog posts",
+                "operationId": "json.placeholder.posts",
+                "tags": [
+                    "Data"
+                ],
+                "parameters": [
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "Number of records (1-100)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "10"
+                    },
+                    {
+                        "name": "seed",
+                        "in": "query",
+                        "description": "Deterministic seed",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Rate limit exceeded"
+                    }
+                }
+            }
+        },
+        "/json/todos": {
+            "get": {
+                "summary": "Get fake todo items",
+                "operationId": "json.placeholder.todos",
+                "tags": [
+                    "Data"
+                ],
+                "parameters": [
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "Number of records (1-100)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Rate limit exceeded"
+                    }
+                }
+            }
+        },
+        "/json/users": {
+            "get": {
+                "summary": "Get fake user data",
+                "operationId": "json.placeholder.users",
+                "tags": [
+                    "Data"
+                ],
+                "parameters": [
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "Number of records (1-100)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "10"
+                    },
+                    {
+                        "name": "seed",
+                        "in": "query",
+                        "description": "Deterministic seed",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Rate limit exceeded"
+                    }
+                }
+            }
+        },
+        "/md": {
+            "get": {
+                "summary": "Generate placeholder Markdown",
+                "operationId": "markdown",
+                "tags": [
+                    "Data"
+                ],
+                "parameters": [
+                    {
+                        "name": "sections",
+                        "in": "query",
+                        "description": "Number of sections (1-20)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "5"
+                    },
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "description": "Document title",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "features",
+                        "in": "query",
+                        "description": "Comma-separated: paragraph,list,code,table,blockquote,toc",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "text/markdown": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Rate limit exceeded"
+                    }
+                }
+            }
+        },
+        "/p/{size?}/{background_color?}/{text_color?}": {
+            "get": {
+                "summary": "Generate placeholder image",
+                "operationId": "placeholder",
+                "tags": [
+                    "Images"
+                ],
+                "parameters": [
+                    {
+                        "name": "size",
+                        "in": "path",
+                        "description": "Dimensions (e.g. 300x200)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "300x200"
+                    },
+                    {
+                        "name": "background_color",
+                        "in": "path",
+                        "description": "Hex background color",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "C8C8C8"
+                    },
+                    {
+                        "name": "text_color",
+                        "in": "path",
+                        "description": "Hex text color",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "323232"
+                    },
+                    {
+                        "name": "text",
+                        "in": "query",
+                        "description": "Custom overlay text",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "format",
+                        "in": "query",
+                        "description": "Output format",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "png"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "image/png": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Rate limit exceeded"
+                    }
+                }
+            }
+        },
+        "/pdf": {
+            "get": {
+                "summary": "Generate placeholder PDF",
+                "operationId": "pdf",
+                "tags": [
+                    "Documents"
+                ],
+                "parameters": [
+                    {
+                        "name": "pages",
+                        "in": "query",
+                        "description": "Number of pages (1-50)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "3"
+                    },
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "description": "Document title",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "a4 or letter",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "orientation",
+                        "in": "query",
+                        "description": "portrait or landscape",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/pdf": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Rate limit exceeded"
+                    }
+                }
+            }
+        },
+        "/q": {
+            "get": {
+                "summary": "Get a random quote",
+                "operationId": "quote",
+                "tags": [
+                    "Fun"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Rate limit exceeded"
+                    }
+                }
+            }
+        },
+        "/qr": {
+            "get": {
+                "summary": "Generate QR code",
+                "operationId": "qr",
+                "tags": [
+                    "Images"
+                ],
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "query",
+                        "description": "Data to encode (required)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "https://example.com"
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "Size in pixels",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "200"
+                    },
+                    {
+                        "name": "format",
+                        "in": "query",
+                        "description": "svg or png",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "svg"
+                    },
+                    {
+                        "name": "fg",
+                        "in": "query",
+                        "description": "Foreground hex",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "000000"
+                    },
+                    {
+                        "name": "bg",
+                        "in": "query",
+                        "description": "Background hex",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "ffffff"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "image/svg+xml": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Rate limit exceeded"
+                    }
+                }
+            }
+        },
+        "/r": {
+            "get": {
+                "summary": "Get random recipes",
+                "operationId": "recipe",
+                "tags": [
+                    "Fun"
+                ],
+                "parameters": [
+                    {
+                        "name": "number",
+                        "in": "query",
+                        "description": "Number of recipes (1-10)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Rate limit exceeded"
+                    }
+                }
+            }
+        },
+        "/video": {
+            "get": {
+                "summary": "Generate placeholder MP4 video",
+                "operationId": "video",
+                "tags": [
+                    "Documents"
+                ],
+                "parameters": [
+                    {
+                        "name": "w",
+                        "in": "query",
+                        "description": "Width (default 640)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "640"
+                    },
+                    {
+                        "name": "h",
+                        "in": "query",
+                        "description": "Height (default 480)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "480"
+                    },
+                    {
+                        "name": "duration",
+                        "in": "query",
+                        "description": "Seconds (1-30)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "5"
+                    },
+                    {
+                        "name": "bg",
+                        "in": "query",
+                        "description": "Background hex",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "6366f1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "video/mp4": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Rate limit exceeded"
+                    }
+                }
+            }
+        },
+        "/w": {
+            "get": {
+                "summary": "Get weather data",
+                "operationId": "weather",
+                "tags": [
+                    "Fun"
+                ],
+                "parameters": [
+                    {
+                        "name": "city",
+                        "in": "query",
+                        "description": "City name (required)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "London"
+                    },
+                    {
+                        "name": "country",
+                        "in": "query",
+                        "description": "2-letter country code (required)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "GB"
+                    },
+                    {
+                        "name": "units",
+                        "in": "query",
+                        "description": "metric, imperial, or standard",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Rate limit exceeded"
+                    }
+                }
+            }
+        },
+        "/{size}": {
+            "get": {
+                "summary": "Generate placeholder image (short URL)",
+                "operationId": "placeholder.short",
+                "tags": [
+                    "Images"
+                ],
+                "parameters": [
+                    {
+                        "name": "size",
+                        "in": "path",
+                        "description": "WxH dimensions",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "640x320"
+                    },
+                    {
+                        "name": "text",
+                        "in": "query",
+                        "description": "Custom overlay text",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "bg",
+                        "in": "query",
+                        "description": "Background hex",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "efefef"
+                    },
+                    {
+                        "name": "fg",
+                        "in": "query",
+                        "description": "Text hex",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "374151"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "image/png": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "Rate limit exceeded"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,3 +1,17 @@
+@php
+    $changelogPath = storage_path('app/changelog.json');
+    $releases = file_exists($changelogPath)
+        ? json_decode(file_get_contents($changelogPath), true) ?? []
+        : [];
+
+    $tagColors = [
+        'New'      => 'bg-[#2fd9f4]/20 text-[#2fd9f4]',
+        'Improved' => 'bg-[#abc7ff]/20 text-[#abc7ff]',
+        'Fix'      => 'bg-[#ffb4ab]/20 text-[#ffb4ab]',
+        'Launch'   => 'bg-[#ddb7ff]/20 text-[#ddb7ff]',
+    ];
+@endphp
+
 <x-layout>
     <section class="mb-16">
         <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">Updates</span>
@@ -8,86 +22,12 @@
     </section>
 
     <div class="space-y-px bg-outline-variant/10">
-        @foreach([
-            [
-                'version' => '1.4.0',
-                'date' => 'March 2026',
-                'tag' => 'New',
-                'tagColor' => 'bg-[#2fd9f4]/20 text-[#2fd9f4]',
-                'title' => 'Usage Dashboard, Playground, Changelog & Rate Limit Headers',
-                'items' => [
-                    'Public usage dashboard with live API call stats per endpoint',
-                    'Embed playground with live HTML/CSS/JS editor and shareable links',
-                    'This changelog page to track what\'s new',
-                    'X-RateLimit-* headers on all API responses for consumer self-throttling',
-                    'API usage tracking middleware across all endpoints',
-                ],
-            ],
-            [
-                'version' => '1.3.0',
-                'date' => 'March 2026',
-                'tag' => 'New',
-                'tagColor' => 'bg-[#2fd9f4]/20 text-[#2fd9f4]',
-                'title' => 'PDF, CSV, Markdown & Video Generators',
-                'items' => [
-                    'PDF placeholder generator with configurable pages, title, size, and orientation',
-                    'CSV / data generator with 5 presets, 35+ column types, CSV & JSON output',
-                    'Markdown placeholder with headings, lists, code blocks, tables, and TOC',
-                    'Video placeholder generating static-color MP4 files via FFmpeg',
-                ],
-            ],
-            [
-                'version' => '1.2.0',
-                'date' => 'March 2026',
-                'tag' => 'New',
-                'tagColor' => 'bg-[#2fd9f4]/20 text-[#2fd9f4]',
-                'title' => 'Avatar, QR Code, Favicon & JSON Placeholder',
-                'items' => [
-                    'Deterministic identicon avatar generator from any seed string',
-                    'QR code generator with SVG & PNG output, custom colors, and error correction levels',
-                    'Favicon generator producing letter/emoji SVG favicons',
-                    'JSON placeholder API with users, posts, comments, and todos',
-                    'Categorized dropdown navigation menus',
-                ],
-            ],
-            [
-                'version' => '1.1.0',
-                'date' => 'March 2026',
-                'tag' => 'Improved',
-                'tagColor' => 'bg-[#abc7ff]/20 text-[#abc7ff]',
-                'title' => 'Design Fixes & Infrastructure',
-                'items' => [
-                    'Replaced all inline SVGs with blade-heroicons components',
-                    'Bundled Alpine.js via Vite instead of CDN (Cloudflare compatibility)',
-                    'Fixed cookie consent banner not closing on accept',
-                    'Added custom 403, 404, 429, and 500 error pages',
-                    'Added OG/Twitter social share images',
-                    'Converted 100% of tests to Pest PHP',
-                ],
-            ],
-            [
-                'version' => '1.0.0',
-                'date' => 'March 2026',
-                'tag' => 'Launch',
-                'tagColor' => 'bg-[#ddb7ff]/20 text-[#ddb7ff]',
-                'title' => 'Initial Release',
-                'items' => [
-                    'Placeholder image generator with custom sizes, colors, text, and formats',
-                    'Lorem Ipsum text generator with paragraphs, word count, and seed support',
-                    'Random quotes, jokes, weather, and recipe APIs',
-                    'Color palette and hex code generator',
-                    'Holdicon placeholder icons with robots, cats, and dogs',
-                    'SVG icon library with search and download',
-                    'Dark mode toggle',
-                    'Contact form',
-                ],
-            ],
-        ] as $release)
+        @forelse($releases as $release)
             <div class="bg-surface-container-low">
                 <div class="px-6 lg:px-8 py-4 border-b border-outline-variant/20 flex items-center justify-between flex-wrap gap-3">
                     <div class="flex items-center gap-3">
                         <span class="font-mono text-sm font-bold text-on-surface">v{{ $release['version'] }}</span>
-                        <span class="text-[10px] font-bold uppercase tracking-[0.2em] px-2 py-0.5 {{ $release['tagColor'] }}">{{ $release['tag'] }}</span>
+                        <span class="text-[10px] font-bold uppercase tracking-[0.2em] px-2 py-0.5 {{ $tagColors[$release['tag']] ?? $tagColors['New'] }}">{{ $release['tag'] }}</span>
                     </div>
                     <span class="text-outline text-xs">{{ $release['date'] }}</span>
                 </div>
@@ -103,6 +43,10 @@
                     </ul>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <div class="bg-surface-container-low p-8 text-center">
+                <span class="text-outline text-sm">No changelog entries yet.</span>
+            </div>
+        @endforelse
     </div>
 </x-layout>
