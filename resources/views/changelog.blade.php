@@ -14,7 +14,7 @@
 
 <x-layout>
     <section class="mb-16">
-        <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">Updates</span>
+        <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">CHANGELOG(7)</span>
         <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none mb-4">
             Change<span class="text-on-surface">log</span>
         </h1>
@@ -31,6 +31,7 @@
                     </div>
                     <span class="text-outline text-xs">{{ $release['date'] }}</span>
                 </div>
+                @if(!empty($release['items']))
                 <div class="px-6 lg:px-8 py-6">
                     <h3 class="text-sm font-headline font-bold text-on-surface mb-4">{{ $release['title'] }}</h3>
                     <ul class="space-y-2">
@@ -42,6 +43,7 @@
                         @endforeach
                     </ul>
                 </div>
+                @endif
             </div>
         @empty
             <div class="bg-surface-container-low p-8 text-center">

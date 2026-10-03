@@ -44,7 +44,7 @@
         </div>
 
         <h2 class="mt-8 font-extrabold">DESCRIPTION</h2>
-        <p class="ml-6 sm:ml-12 max-w-2xl">Every endpoint is a plain URL. No keys, no accounts. Responses are cached for a week, so the same request returns the same bytes. Free for any use.</p>
+        <p class="ml-6 sm:ml-12 max-w-2xl">Every endpoint is a plain URL. No keys, no accounts. Image responses are cached for a day, so repeat requests are fast. Free for any use.</p>
 
         <h2 class="mt-8 font-extrabold">COMMANDS</h2>
         @foreach($commands as $group => $items)

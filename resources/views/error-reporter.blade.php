@@ -1,6 +1,6 @@
 <x-layout>
     <section class="mb-16">
-        <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">WordPress Plugin</span>
+        <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">ERROR-REPORTER(1)</span>
         <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none mb-4">
             RadMonitor <span class="text-on-surface">Error Reporter</span>
         </h1>

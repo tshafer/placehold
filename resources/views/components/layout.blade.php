@@ -34,14 +34,14 @@
 
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ url('/') }}">
-        <meta property="og:title" content="PLACEHOLD.CLOUD // The Ultimate Placeholder Generator">
+        <meta property="og:title" content="PLACEHOLD(1) — placehold.cloud">
         <meta property="og:description" content="Generate custom placeholder images with our powerful API. Create images with specific sizes, colors, text, and effects.">
-        <meta property="og:image" content="{{ asset('og-image.svg') }}">
+        <meta property="og:image" content="{{ asset('og-image.png') }}">
         <meta property="twitter:card" content="summary_large_image">
         <meta property="twitter:url" content="{{ url('/') }}">
-        <meta property="twitter:title" content="PLACEHOLD.CLOUD // The Ultimate Placeholder Generator">
+        <meta property="twitter:title" content="PLACEHOLD(1) — placehold.cloud">
         <meta property="twitter:description" content="Generate custom placeholder images with our powerful API.">
-        <meta property="twitter:image" content="{{ asset('og-image.svg') }}">
+        <meta property="twitter:image" content="{{ asset('og-image.png') }}">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

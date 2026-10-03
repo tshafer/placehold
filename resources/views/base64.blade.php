@@ -1,6 +1,6 @@
 <x-layout>
     <div class="mb-16">
-        <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">Utility :: Base64</span>
+        <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">BASE64(1)</span>
         <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none mb-4">
             <span class="text-on-surface">BASE64</span> ENCODER
         </h1>

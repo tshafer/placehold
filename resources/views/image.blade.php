@@ -1,199 +1,128 @@
 <x-layout>
-    {{-- Hero Heading --}}
-    <div class="mb-16 flex flex-col lg:flex-row justify-between items-end gap-8">
-        <div>
-            <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">Generator :: Image</span>
-            <h2 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none">
-                IMAGE<br><span class="text-on-surface">GENERATOR</span>
-            </h2>
-        </div>
-        <div class="flex items-center gap-2 bg-surface-container px-4 py-2 border-l-2 border-secondary">
-            <span class="meta-label text-secondary">Live Preview</span>
-        </div>
-    </div>
+    <div class="max-w-5xl text-[15px] leading-relaxed">
+        <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">IMAGE(1)</span>
+        <h1 class="sr-only">Image Placeholder Generator</h1>
 
-    <div x-data="imageGenerator()" class="grid grid-cols-12 gap-8 items-start">
-        {{-- Controls Panel --}}
-        <div class="col-span-12 lg:col-span-4 space-y-8">
-            <div class="bg-surface-container-low p-8 relative overflow-hidden group">
-                <h3 class="section-title mb-10">Configuration</h3>
-                <div class="space-y-8">
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center">
-                            <label class="terminal-label">Dimensions</label>
-                            <span class="text-xs font-headline text-tertiary" x-text="size"></span>
-                        </div>
-                        <input type="text" x-model="size" @input="updatePreview" placeholder="500x300" class="terminal-input w-full text-xl font-headline font-bold p-0">
+        <x-man-section title="Name">
+            <p>image — placeholder images at any size, color, text and format</p>
+        </x-man-section>
+
+        <x-man-section title="Synopsis">
+            <div class="code-block break-all space-y-1">
+                <div>GET {{ url('/') }}/<u>W</u>x<u>H</u> [?text=<u>str</u>] [&amp;bg=<u>hex</u>] [&amp;fg=<u>hex</u>]</div>
+                <div>GET {{ url('/p') }}/<u>W</u>x<u>H</u>/<u>bg</u>/<u>fg</u> [?format=<u>fmt</u>] [&amp;text=<u>str</u>] [&amp;font=<u>name</u>] [&amp;quality=<u>n</u>]</div>
+            </div>
+        </x-man-section>
+
+        <x-man-section title="Options">
+            <dl class="space-y-3">
+                @foreach([
+                    ['size', 'Dimensions, e.g. 300x200, or 300 for a square.'],
+                    ['format', 'png, jpg, webp, avif, gif, bmp, ico or svg.'],
+                    ['bg', 'Background hex color. Default C8C8C8.'],
+                    ['fg', 'Text hex color. Default 323232.'],
+                    ['text', 'Overlay text. Default "Placeholder".'],
+                    ['font', 'arial, couri, times or tron.'],
+                    ['quality', 'Compression quality, 1–100.'],
+                    ['grayscale, invert', 'Filters; pass true to apply.'],
+                    ['cat, dog, robot', 'Use a photo or robot instead of a flat color; pass true.'],
+                ] as [$param, $desc])
+                    <div><dt class="font-bold text-primary">{{ $param }}</dt><dd class="ml-6">{{ $desc }}</dd></div>
+                @endforeach
+            </dl>
+        </x-man-section>
+
+        <x-man-section title="Examples">
+            <div class="space-y-4 break-all">
+                <div><p class="text-outline">A 640×320 banner with a caption:</p><p class="ml-6"><span class="text-outline">$</span> curl -O "{{ url('/640x320') }}?text=Hello&amp;bg=efefef&amp;fg=374151"</p></div>
+                <div><p class="text-outline">Orange PNG, white text:</p><p class="ml-6"><span class="text-outline">$</span> curl -O "{{ url('/p/300x200/FF5733/FFFFFF') }}?format=png&amp;text=Hello"</p></div>
+            </div>
+        </x-man-section>
+
+        <x-man-section title="Try it">
+            <div x-data="imageGenerator()" class="grid lg:grid-cols-[18rem_minmax(0,1fr)] gap-8 items-start">
+                <div class="space-y-5">
+                    <div>
+                        <label for="img-size" class="font-bold block mb-1">size</label>
+                        <input id="img-size" type="text" x-model="size" placeholder="500x300" class="terminal-input w-full">
                     </div>
-
-                    <div class="space-y-3">
-                        <label class="terminal-label">Background Hex</label>
+                    <div>
+                        <label for="img-bg" class="font-bold block mb-1">bg</label>
                         <div class="flex gap-3 items-center">
-                            <input type="color" x-model="bgColor" @input="updatePreview" class="h-10 w-14 bg-transparent cursor-pointer border-0">
-                            <input type="text" x-model="bgColor" @input="updatePreview" class="terminal-input flex-1 font-headline">
+                            <input type="color" x-model="bgColor" aria-label="Background color picker" class="h-11 w-12 bg-transparent cursor-pointer border border-outline-variant">
+                            <input id="img-bg" type="text" x-model="bgColor" class="terminal-input flex-1 min-w-0">
                         </div>
                     </div>
-
-                    <div class="space-y-3">
-                        <label class="terminal-label">Text Hex</label>
+                    <div>
+                        <label for="img-fg" class="font-bold block mb-1">fg</label>
                         <div class="flex gap-3 items-center">
-                            <input type="color" x-model="textColor" @input="updatePreview" class="h-10 w-14 bg-transparent cursor-pointer border-0">
-                            <input type="text" x-model="textColor" @input="updatePreview" class="terminal-input flex-1 font-headline">
+                            <input type="color" x-model="textColor" aria-label="Text color picker" class="h-11 w-12 bg-transparent cursor-pointer border border-outline-variant">
+                            <input id="img-fg" type="text" x-model="textColor" class="terminal-input flex-1 min-w-0">
                         </div>
                     </div>
-
-                    <div class="space-y-3">
-                        <label class="terminal-label">Overlay Text</label>
-                        <input type="text" x-model="text" @input="updatePreview" placeholder="Your Text" class="terminal-input w-full font-headline">
+                    <div>
+                        <label for="img-text" class="font-bold block mb-1">text</label>
+                        <input id="img-text" type="text" x-model="text" placeholder="Your text" class="terminal-input w-full">
                     </div>
-
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="space-y-3">
-                            <label class="terminal-label">Format</label>
-                            <select x-model="format" @change="updatePreview" class="terminal-input w-full font-headline text-sm">
-                                <option value="png">PNG</option>
-                                <option value="svg">SVG</option>
-                                <option value="jpg">JPG</option>
-                                <option value="webp">WebP</option>
-                                <option value="avif">AVIF</option>
-                                <option value="gif">GIF</option>
+                        <div>
+                            <label for="img-format" class="font-bold block mb-1">format</label>
+                            <select id="img-format" x-model="format" class="terminal-input w-full">
+                                <option value="png">png</option>
+                                <option value="svg">svg</option>
+                                <option value="jpg">jpg</option>
+                                <option value="webp">webp</option>
+                                <option value="avif">avif</option>
+                                <option value="gif">gif</option>
                             </select>
                         </div>
-                        <div class="space-y-3">
-                            <label class="terminal-label">Font</label>
-                            <select x-model="font" @change="updatePreview" class="terminal-input w-full font-headline text-sm">
-                                <option value="arial">Arial</option>
-                                <option value="couri">Courier</option>
-                                <option value="times">Times</option>
-                                <option value="tron">Tron</option>
+                        <div>
+                            <label for="img-font" class="font-bold block mb-1">font</label>
+                            <select id="img-font" x-model="font" class="terminal-input w-full">
+                                <option value="arial">arial</option>
+                                <option value="couri">couri</option>
+                                <option value="times">times</option>
+                                <option value="tron">tron</option>
                             </select>
                         </div>
                     </div>
-
-                    <div class="space-y-3">
-                        <label class="terminal-label">Effects</label>
-                        <div class="flex flex-wrap gap-4 mt-1">
-                            <label class="flex items-center gap-2 cursor-pointer text-outline hover:text-on-surface transition-colors text-xs uppercase tracking-wider">
-                                <input type="checkbox" x-model="grayscale" @change="updatePreview" class="bg-surface-container-lowest border-outline-variant rounded-sm">
-                                Grayscale
-                            </label>
-                            <label class="flex items-center gap-2 cursor-pointer text-outline hover:text-on-surface transition-colors text-xs uppercase tracking-wider">
-                                <input type="checkbox" x-model="invert" @change="updatePreview" class="bg-surface-container-lowest border-outline-variant rounded-sm">
-                                Invert
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="space-y-3">
-                        <label class="terminal-label">Special Sources</label>
-                        <div class="flex flex-wrap gap-4 mt-1">
-                            @foreach(['cat' => 'Cat', 'dog' => 'Dog', 'robot' => 'Robot'] as $key => $label)
-                                <label class="flex items-center gap-2 cursor-pointer text-outline hover:text-on-surface transition-colors text-xs uppercase tracking-wider">
-                                    <input type="checkbox" x-model="{{ $key }}" @change="updatePreview" class="bg-surface-container-lowest border-outline-variant rounded-sm">
-                                    {{ $label }}
+                    <fieldset>
+                        <legend class="font-bold mb-1">flags</legend>
+                        <div class="flex flex-wrap gap-x-5 gap-y-2">
+                            @foreach(['grayscale', 'invert', 'cat', 'dog', 'robot'] as $flag)
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" x-model="{{ $flag }}" class="accent-primary"> {{ $flag }}
                                 </label>
                             @endforeach
                         </div>
+                    </fieldset>
+                </div>
+
+                <div class="min-w-0">
+                    <div class="aspect-video w-full bg-surface-container-lowest border border-outline-variant flex items-center justify-center overflow-hidden">
+                        <img :src="previewUrl" :alt="'Placeholder preview, ' + size" class="max-w-full max-h-full object-contain">
                     </div>
 
-                    <button @click="updatePreview" class="w-full liquid-chrome p-4 font-headline font-black text-on-primary-container uppercase tracking-wide text-sm hover:opacity-80 transition-opacity">
-                        Generate
-                    </button>
-                </div>
-            </div>
-        </div>
+                    <div class="mt-4 code-block space-y-2">
+                        <div class="flex gap-4"><span class="text-primary shrink-0 w-14">url</span><span class="break-all" x-text="previewUrl"></span></div>
+                        <div class="flex gap-4"><span class="text-primary shrink-0 w-14">html</span><span class="break-all" x-text="htmlUrl"></span></div>
+                        <div class="flex gap-4"><span class="text-primary shrink-0 w-14">md</span><span class="break-all" x-text="markdownUrl"></span></div>
+                    </div>
 
-        {{-- Preview Area --}}
-        <div class="col-span-12 lg:col-span-8">
-            <div class="bg-surface-container-highest/30 p-2 border border-outline-variant/15 relative">
-                <div class="absolute top-6 left-6 z-10 flex items-center gap-4">
-                    <div class="bg-surface-container-lowest/80 px-3 py-1 text-[9px] font-headline font-bold uppercase text-tertiary tracking-widest border border-tertiary/20">
-                        Preview
-                    </div>
-                </div>
-                <div class="aspect-video w-full bg-surface-container-lowest relative overflow-hidden flex items-center justify-center">
-                    <img :src="previewUrl" alt="Preview" class="max-w-full max-h-full object-contain">
-                    <div class="absolute bottom-6 left-6 z-10">
-                        <div class="text-[48px] font-headline font-black text-on-surface/10 leading-none select-none" x-text="size"></div>
-                    </div>
-                </div>
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 gap-4">
-                    <div class="flex items-center gap-6">
-                        <button @click="copyToClipboard(previewUrl)" class="flex items-center gap-2 text-outline hover:text-secondary transition-all">
-                            <span class="meta-label">Copy URL</span>
-                        </button>
-                        <button @click="copyToClipboard(htmlUrl)" class="flex items-center gap-2 text-outline hover:text-secondary transition-all">
-                            <span class="meta-label">Copy HTML</span>
-                        </button>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <span class="meta-label text-outline">Cached 1yr</span>
+                    <div class="mt-3 flex flex-wrap gap-x-6 gap-y-2 items-center">
+                        <button type="button" @click="copyToClipboard(previewUrl)" class="text-primary hover:underline">[copy url]</button>
+                        <button type="button" @click="copyToClipboard(htmlUrl)" class="text-primary hover:underline">[copy html]</button>
+                        <button type="button" @click="copyToClipboard(markdownUrl)" class="text-primary hover:underline">[copy md]</button>
+                        <span class="text-outline" role="status" x-text="copied ? 'copied.' : ''"></span>
                     </div>
                 </div>
             </div>
+        </x-man-section>
 
-            {{-- URL Readout --}}
-            <div class="mt-6 code-block space-y-2">
-                <div class="flex gap-4">
-                    <span class="text-secondary">[URL]</span>
-                    <span class="text-on-surface/60 break-all" x-text="previewUrl"></span>
-                </div>
-                <div class="flex gap-4">
-                    <span class="text-primary">[HTML]</span>
-                    <span class="text-on-surface/60 break-all" x-text="htmlUrl"></span>
-                </div>
-                <div class="flex gap-4">
-                    <span class="text-tertiary">[MD]</span>
-                    <span class="text-on-surface/60 break-all" x-text="markdownUrl"></span>
-                </div>
-            </div>
+        <x-man-section title="Caching">
+            <p>Responses are cached for a day (max-age=86400), so repeat requests are fast.</p>
+        </x-man-section>
 
-            {{-- API Docs --}}
-            <div class="mt-10 bg-surface-container-low p-8">
-                <h3 class="section-title mb-8">API Documentation</h3>
-                <div class="space-y-6">
-                    <div>
-                        <span class="terminal-label block mb-3">Short Format</span>
-                        <div class="code-block">
-                            <code class="text-tertiary">/640x320?text=Hello&bg=efefef&fg=374151</code>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="terminal-label block mb-3">Full Format</span>
-                        <div class="code-block">
-                            <code class="text-tertiary">/p/300x200/FF5733/FFFFFF?format=png&text=Hello</code>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="terminal-label block mb-3">Parameters</span>
-                        <div class="space-y-1">
-                            @foreach([
-                                ['size', 'Dimensions (e.g., 300x200 or 300 for square)'],
-                                ['format', 'png, jpg, webp, avif, gif, bmp, ico, svg'],
-                                ['bg', 'Background hex color (default: C8C8C8)'],
-                                ['fg', 'Text hex color (default: 323232)'],
-                                ['text', 'Custom overlay text'],
-                                ['font', 'arial, couri, times, tron'],
-                                ['quality', '1-100 compression quality'],
-                            ] as [$param, $desc])
-                                <div class="flex gap-4 px-4 py-2 bg-surface-container-lowest/50 hover:bg-surface-container-lowest transition-colors">
-                                    <span class="font-mono text-xs font-bold text-primary w-24 shrink-0">{{ $param }}</span>
-                                    <span class="text-outline text-xs">{{ $desc }}</span>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                    <a href="/api" class="inline-flex items-center gap-2 text-primary hover:text-secondary transition-colors font-headline font-bold text-xs uppercase tracking-widest">
-                        Full API Docs
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div x-show="copied" x-transition class="fixed bottom-6 right-6 bg-tertiary-container text-on-tertiary-container px-6 py-3 shadow-lg z-50 font-headline text-xs uppercase tracking-widest flex items-center gap-2">
-            <span aria-hidden="true" class="shrink-0">•</span>
-            Copied to clipboard
-        </div>
     </div>
 
     <script>
