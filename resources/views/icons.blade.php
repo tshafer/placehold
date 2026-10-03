@@ -1,8 +1,8 @@
 <x-layout>
     <div class="mb-16">
-        <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">Asset Library</span>
+        <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">ICONS(1)</span>
         <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none mb-4">
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">SVG</span> Icon Library
+            <span class="text-on-surface">SVG</span> Icon Library
         </h1>
         <p class="text-on-surface-variant text-sm max-w-2xl">Browse and download our collection of beautiful icons.</p>
     </div>
@@ -10,7 +10,6 @@
     <div class="mb-10 flex justify-center">
         <a href="{{ route('download.all.icons') }}"
            class="liquid-chrome p-3 font-headline font-bold text-on-primary-container uppercase tracking-widest text-xs inline-flex items-center gap-2">
-            <span class="material-symbols-outlined text-base">download</span>
             Download All Icons
         </a>
     </div>
@@ -21,7 +20,6 @@
             <div class="relative">
                 <input x-model="searchQuery" type="text" placeholder="Search icons..."
                        class="w-full px-4 py-3 bg-surface-container-lowest border-b-2 border-outline-variant/40 text-on-surface placeholder-outline font-mono text-sm focus:border-primary focus:outline-none transition-colors">
-                <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline">search</span>
             </div>
         </div>
 
@@ -60,7 +58,7 @@
                             <span x-text="selectedIcon?.name || ''" class="font-mono text-primary"></span>
                         </h3>
                         <button x-on:click="selectedIcon = null" class="text-outline hover:text-primary transition-colors">
-                            <span class="material-symbols-outlined">close</span>
+                            [close]
                         </button>
                     </div>
 

@@ -1,63 +1,43 @@
 <x-layout>
-    <div class="mb-16">
-        <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">API Documentation</span>
-        <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none">
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">Lorem Ipsum</span> Generator
-        </h1>
-        <p class="text-on-surface-variant text-sm mt-4">Generate custom placeholder text for your designs</p>
-    </div>
+    <div class="max-w-4xl text-[15px] leading-relaxed">
+        <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">LOREM-IPSUM(1)</span>
+        <h1 class="sr-only">Lorem Ipsum Generator</h1>
 
-    <div class="bg-surface-container-low p-6 lg:p-8">
-        <div class="space-y-10">
-            <section>
-                <h3 class="section-title mb-8 flex items-center gap-3">
-                    <span class="material-symbols-outlined text-primary">terminal</span>
-                    Basic Usage
-                </h3>
-                <div class="code-block">
-                    <code class="break-all">GET {{ url('/l') }}</code>
-                </div>
-                <p class="text-on-surface-variant text-sm mt-3">Generates 3 paragraphs of Lorem Ipsum text by default.</p>
-            </section>
+        <x-man-section title="Name">
+            <p>l — generate lorem ipsum placeholder text</p>
+        </x-man-section>
 
-            <section>
-                <h3 class="section-title mb-8">Parameters</h3>
-                <div class="space-y-1">
-                    <div class="flex gap-4 px-4 py-2 bg-surface-container-lowest/50 hover:bg-surface-container-lowest transition-colors">
-                        <span class="font-mono text-xs font-bold text-primary w-24 shrink-0">paragraphs</span>
-                        <span class="text-outline text-xs">Number of paragraphs (1-100, default: 3)</span>
-                    </div>
-                    <div class="flex gap-4 px-4 py-2 bg-surface-container-lowest/50 hover:bg-surface-container-lowest transition-colors">
-                        <span class="font-mono text-xs font-bold text-primary w-24 shrink-0">minWords</span>
-                        <span class="text-outline text-xs">Minimum words per paragraph (1-100, default: 5)</span>
-                    </div>
-                    <div class="flex gap-4 px-4 py-2 bg-surface-container-lowest/50 hover:bg-surface-container-lowest transition-colors">
-                        <span class="font-mono text-xs font-bold text-primary w-24 shrink-0">maxWords</span>
-                        <span class="text-outline text-xs">Maximum words per paragraph (1-100, default: 20)</span>
-                    </div>
-                    <div class="flex gap-4 px-4 py-2 bg-surface-container-lowest/50 hover:bg-surface-container-lowest transition-colors">
-                        <span class="font-mono text-xs font-bold text-primary w-24 shrink-0">format</span>
-                        <span class="text-outline text-xs">Output format (json/html/text, default: json)</span>
-                    </div>
-                    <div class="flex gap-4 px-4 py-2 bg-surface-container-lowest/50 hover:bg-surface-container-lowest transition-colors">
-                        <span class="font-mono text-xs font-bold text-primary w-24 shrink-0">seed</span>
-                        <span class="text-outline text-xs">Seed for random generation (optional)</span>
-                    </div>
-                </div>
-            </section>
+        <x-man-section title="Synopsis">
+            <div class="code-block break-all">GET {{ url('/l') }} [?paragraphs=<u>n</u>] [&amp;minWords=<u>n</u>] [&amp;maxWords=<u>n</u>] [&amp;format=json|html|text] [&amp;seed=<u>n</u>]</div>
+        </x-man-section>
 
-            <section>
-                <h3 class="section-title mb-8">Example</h3>
-                <div class="code-block mb-4">
-                    <code class="break-all">{{ url('/l?paragraphs=2&minWords=10&maxWords=15&format=html&capitalize=false&addPunctuation=true') }}</code>
-                </div>
-                <p class="text-on-surface-variant text-sm">Generates 2 paragraphs, each with 10-15 words, in HTML format.</p>
-            </section>
+        <x-man-section title="Description">
+            <p class="max-w-2xl">Returns paragraphs of lorem ipsum. With no options you get 3 paragraphs as JSON. Pass a <b>seed</b> to get the same text every time.</p>
+        </x-man-section>
 
-            <section>
-                <h3 class="section-title mb-8">Response Format</h3>
-                <div class="code-block overflow-x-auto">
-                    <pre><code>{
+        <x-man-section title="Options">
+            <dl class="space-y-3">
+                <div><dt class="font-bold text-primary">paragraphs</dt><dd class="ml-6">Number of paragraphs, 1–100. Default 3.</dd></div>
+                <div><dt class="font-bold text-primary">minWords</dt><dd class="ml-6">Minimum words per paragraph, 1–100. Default 5.</dd></div>
+                <div><dt class="font-bold text-primary">maxWords</dt><dd class="ml-6">Maximum words per paragraph, 1–100. Default 20.</dd></div>
+                <div><dt class="font-bold text-primary">format</dt><dd class="ml-6">json, html or text. Default json.</dd></div>
+                <div><dt class="font-bold text-primary">seed</dt><dd class="ml-6">Seed for repeatable output. Optional.</dd></div>
+                <div><dt class="font-bold text-primary">capitalize</dt><dd class="ml-6">Capitalize the first word of each sentence. Default true.</dd></div>
+                <div><dt class="font-bold text-primary">addPunctuation</dt><dd class="ml-6">Add commas and periods inside paragraphs. Default false.</dd></div>
+                <div><dt class="font-bold text-primary">startWithLoremIpsum</dt><dd class="ml-6">Begin with “Lorem ipsum dolor sit amet”. Default true.</dd></div>
+            </dl>
+        </x-man-section>
+
+        <x-man-section title="Examples">
+            <div class="space-y-4 break-all">
+                <div><p class="text-outline">Three paragraphs as JSON:</p><p class="ml-6"><span class="text-outline">$</span> curl {{ url('/l') }}</p></div>
+                <div><p class="text-outline">Two 10–15 word paragraphs as HTML, with punctuation:</p><p class="ml-6"><span class="text-outline">$</span> curl "{{ url('/l') }}?paragraphs=2&amp;minWords=10&amp;maxWords=15&amp;format=html&amp;addPunctuation=true"</p></div>
+                <div><p class="text-outline">Plain text that never changes:</p><p class="ml-6"><span class="text-outline">$</span> curl "{{ url('/l') }}?format=text&amp;seed=42"</p></div>
+            </div>
+        </x-man-section>
+
+        <x-man-section title="Output">
+            <pre class="code-block">{
   "status": "success",
   "data": [ ... ],
   "metadata": {
@@ -68,18 +48,16 @@
     "format": "json",
     "seed": 12345
   }
-}</code></pre>
-                </div>
-            </section>
+}</pre>
+        </x-man-section>
 
-            <section>
-                <h3 class="section-title mb-8">Try It Now</h3>
-                <a href="{{ url('/l') }}" target="_blank"
-                   class="liquid-chrome p-3 font-headline font-bold text-on-primary-container uppercase tracking-widest text-xs inline-flex items-center gap-2">
-                    <span class="material-symbols-outlined text-base">bolt</span>
-                    Generate Lorem Ipsum
-                </a>
-            </section>
-        </div>
+        <x-man-section title="Try it">
+            <a href="{{ url('/l') }}" target="_blank" rel="noopener"
+               class="liquid-chrome text-on-primary-container px-5 py-3 font-bold text-sm inline-block hover:opacity-80 transition-opacity">Open {{ url('/l') }}</a>
+        </x-man-section>
+
+        <x-man-section title="Limits">
+            <p>120 requests per minute per IP.</p>
+        </x-man-section>
     </div>
 </x-layout>

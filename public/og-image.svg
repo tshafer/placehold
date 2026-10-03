@@ -1,7 +1,14 @@
-<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
-  <rect width="100%" height="100%" fill="#0284c7"/>
-  <rect x="1" y="1" width="calc(100% - 2px)" height="calc(100% - 2px)" fill="none" stroke="#0369a1" stroke-width="2"/>
-  <text x="50%" y="42%" font-family="Inter, system-ui, sans-serif" font-size="72" font-weight="800" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">placehold.cloud</text>
-  <text x="50%" y="58%" font-family="Inter, system-ui, sans-serif" font-size="32" fill="#bae6fd" text-anchor="middle" dominant-baseline="middle">The Ultimate Placeholder Generator</text>
-  <text x="50%" y="70%" font-family="Inter, system-ui, sans-serif" font-size="22" fill="#7dd3fc" text-anchor="middle" dominant-baseline="middle">Images · Text · Quotes · Colors · Icons · Free API</text>
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#f6f6f3"/>
+  <g font-family="'JetBrains Mono', ui-monospace, Menlo, monospace" fill="#1a1a1a">
+    <text x="72" y="96" font-size="26" font-weight="700">PLACEHOLD(1)</text>
+    <text x="1128" y="96" font-size="26" font-weight="700" text-anchor="end">PLACEHOLD(1)</text>
+    <line x1="72" y1="124" x2="1128" y2="124" stroke="#1a1a1a" stroke-width="2" stroke-dasharray="8 6"/>
+    <text x="72" y="196" font-size="26" font-weight="800">NAME</text>
+    <text x="120" y="240" font-size="26">placehold â€” stand-in images, text, data and documents</text>
+    <rect x="120" y="290" width="1008" height="190" fill="#1a1a1a"/>
+    <text x="156" y="400" font-size="62" font-weight="800" fill="#f6f6f3">placehold.cloud/<tspan fill="#ffb000">600x400</tspan></text>
+    <text x="156" y="448" font-size="24" fill="#c9c9c4">[/bg[/fg]] [?text=str] [&amp;format=png|jpg|webp|svg]</text>
+    <text x="72" y="560" font-size="24" fill="#5e5e59">Free API Â· no keys Â· no sign-up</text>
+  </g>
 </svg>

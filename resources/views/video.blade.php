@@ -1,8 +1,8 @@
 <x-layout>
     <div class="mb-16">
-        <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">Media Generation</span>
+        <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">VIDEO(1)</span>
         <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none mb-4">
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">Video</span> Placeholder
+            <span class="text-on-surface">Video</span> Placeholder
         </h1>
         <p class="text-on-surface-variant text-sm max-w-2xl">Generate static-color MP4 video files at any resolution and duration. Great for testing video players, uploads, and streaming.</p>
     </div>
@@ -11,7 +11,6 @@
         <div class="space-y-10">
             <section>
                 <h3 class="section-title mb-8 flex items-center gap-2">
-                    <span class="material-symbols-outlined text-base">terminal</span>
                     Endpoint
                 </h3>
                 <div class="code-block">
@@ -73,7 +72,6 @@
                         <div class="overflow-hidden inline-block">
                             <div class="bg-surface-container-lowest flex items-center justify-center text-on-surface font-mono text-sm" style="width:320px;height:180px">
                                 <div class="text-center">
-                                    <span class="material-symbols-outlined text-3xl opacity-60 mb-2 block">movie</span>
                                     640 × 360 &middot; 5s
                                 </div>
                             </div>
@@ -88,7 +86,6 @@
                         <div class="overflow-hidden inline-block">
                             <div class="flex items-center justify-center text-white font-mono text-sm" style="width:384px;height:216px;background:#6366f1">
                                 <div class="text-center">
-                                    <span class="material-symbols-outlined text-3xl opacity-60 mb-2 block">movie</span>
                                     1920 × 1080 &middot; 3s
                                 </div>
                             </div>
@@ -103,7 +100,6 @@
                         <div class="overflow-hidden inline-block">
                             <div class="flex items-center justify-center text-white font-mono text-sm" style="width:320px;height:240px;background:#059669">
                                 <div class="text-center">
-                                    <span class="material-symbols-outlined text-3xl opacity-60 mb-2 block">movie</span>
                                     Loading... &middot; 10s
                                 </div>
                             </div>
@@ -115,7 +111,6 @@
             <section>
                 <h3 class="section-title mb-8">Rate Limiting</h3>
                 <div class="bg-surface-container-lowest border-t-2 border-secondary p-4 flex items-center gap-3">
-                    <span class="w-2 h-2 rounded-full bg-secondary animate-beacon-pulse"></span>
                     <p class="text-on-surface-variant text-sm">10 requests per minute. Video encoding is CPU-intensive; please keep requests reasonable.</p>
                 </div>
             </section>
@@ -124,7 +119,6 @@
                 <h3 class="section-title mb-8">Try It Now</h3>
                 <a href="/video?w=640&h=360&duration=3" target="_blank"
                    class="liquid-chrome p-3 font-headline font-bold text-on-primary-container uppercase tracking-widest text-xs inline-flex items-center gap-2">
-                    <span class="material-symbols-outlined text-base">bolt</span>
                     Download Sample Video
                 </a>
             </section>

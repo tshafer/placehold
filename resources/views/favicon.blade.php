@@ -1,8 +1,8 @@
 <x-layout>
     <section class="mb-16">
-        <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">Icon System</span>
+        <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">FAVICON(1)</span>
         <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none mb-6">
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">Favicon</span> Generator
+            <span class="text-on-surface">Favicon</span> Generator
         </h1>
         <p class="text-on-surface-variant text-sm max-w-2xl">Generate simple letter or emoji favicons as scalable SVGs. Use them as site icons, PWA icons, or quick brand placeholders—no image editor required.</p>
     </section>
@@ -10,7 +10,6 @@
     <div class="space-y-12">
         <section>
             <h3 class="section-title mb-8 flex items-center gap-3">
-                <span class="material-symbols-outlined text-base">terminal</span>
                 Basic Usage
             </h3>
             <p class="text-on-surface-variant text-sm mb-4">Request the endpoint with optional query parameters. The response is an SVG with long-lived caching.</p>
@@ -104,7 +103,6 @@
             <h3 class="section-title mb-8">Try It</h3>
             <a href="{{ route('favicon', ['text' => 'P', 'bg' => '6366f1', 'fg' => 'ffffff', 'size' => 128]) }}" target="_blank" rel="noopener noreferrer"
                class="liquid-chrome p-3 font-headline font-bold text-on-primary-container uppercase tracking-widest text-xs inline-flex items-center gap-2">
-                <span class="material-symbols-outlined text-base">bolt</span>
                 Open favicon URL
             </a>
         </section>

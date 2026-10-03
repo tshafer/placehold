@@ -1,15 +1,14 @@
 <x-layout>
     <section class="mb-16">
-        <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">Reference</span>
+        <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">API(1)</span>
         <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none mb-4">
-            API <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">Documentation</span>
+            API <span class="text-on-surface">Documentation</span>
         </h1>
         <p class="text-on-surface-variant text-sm max-w-xl">Comprehensive guide to our placeholder APIs</p>
     </section>
 
     <div class="bg-surface-container-low p-6 lg:p-8 mb-10 border-l-2 border-tertiary/40">
         <div class="flex items-center gap-3 mb-3">
-            <span class="material-symbols-outlined text-tertiary">bolt</span>
             <h2 class="font-headline font-bold text-on-surface text-lg">Quick Start</h2>
         </div>
         <p class="text-on-surface-variant text-sm mb-4">Generate your first placeholder image in seconds:</p>
@@ -46,7 +45,6 @@
                 <code class="text-tertiary text-sm font-mono">https://placehold.cloud</code>
             </div>
             <div class="bg-surface-container-lowest p-4 border-l-2 border-secondary/40 flex items-start gap-3">
-                <span class="material-symbols-outlined text-secondary text-base mt-0.5 shrink-0">info</span>
                 <span class="text-on-surface-variant text-sm">All endpoints are public and can be accessed directly via GET requests. No authentication required!</span>
             </div>
         </section>

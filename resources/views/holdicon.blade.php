@@ -1,8 +1,8 @@
 <x-layout>
     <div class="mb-16">
-        <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">Icon Generation</span>
+        <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">HOLDICON(1)</span>
         <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none mb-4">
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">Holdicon</span> API
+            <span class="text-on-surface">Holdicon</span> API
         </h1>
         <p class="text-on-surface-variant text-sm max-w-2xl">Create custom placeholder icons with text, robots, cats, or dogs.</p>
     </div>
@@ -11,7 +11,6 @@
         <div class="space-y-10">
             <section>
                 <h3 class="section-title mb-8 flex items-center gap-2">
-                    <span class="material-symbols-outlined text-base">terminal</span>
                     Endpoint
                 </h3>
                 <div class="code-block">
@@ -78,7 +77,6 @@
             <section>
                 <h3 class="section-title mb-8">Rate Limiting</h3>
                 <div class="bg-surface-container-lowest border-t-2 border-secondary p-4 flex items-center gap-3">
-                    <span class="w-2 h-2 rounded-full bg-secondary animate-beacon-pulse"></span>
                     <p class="text-on-surface-variant text-sm">120 requests per minute</p>
                 </div>
             </section>
@@ -87,7 +85,6 @@
                 <h3 class="section-title mb-8">Try It Now</h3>
                 <a href="{{ route('holdicon') }}?width=128&height=128&text=HI" target="_blank"
                    class="liquid-chrome p-3 font-headline font-bold text-on-primary-container uppercase tracking-widest text-xs inline-flex items-center gap-2">
-                    <span class="material-symbols-outlined text-base">bolt</span>
                     Generate Holdicon
                 </a>
             </section>

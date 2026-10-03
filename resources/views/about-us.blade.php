@@ -1,8 +1,8 @@
 <x-layout>
     <section class="mb-16">
-        <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">Company</span>
+        <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">ABOUT(7)</span>
         <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none mb-4">
-            About <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">Us</span>
+            About <span class="text-on-surface">Us</span>
         </h1>
         <p class="text-on-surface-variant text-sm max-w-xl">Learn more about placehold.cloud</p>
     </section>
@@ -11,9 +11,6 @@
         <div class="space-y-12">
             <section>
                 <div class="flex items-start gap-4">
-                    <div class="shrink-0 w-12 h-12 bg-surface-container-lowest flex items-center justify-center">
-                        <span class="material-symbols-outlined text-primary">bolt</span>
-                    </div>
                     <div>
                         <h2 class="section-title mb-4">Our Mission</h2>
                         <p class="text-on-surface-variant text-sm leading-relaxed">
@@ -25,9 +22,6 @@
 
             <section>
                 <div class="flex items-start gap-4">
-                    <div class="shrink-0 w-12 h-12 bg-surface-container-lowest flex items-center justify-center">
-                        <span class="material-symbols-outlined text-primary">group</span>
-                    </div>
                     <div>
                         <h2 class="section-title mb-4">Who We Are</h2>
                         <p class="text-on-surface-variant text-sm leading-relaxed">
@@ -39,34 +33,31 @@
 
             <section>
                 <div class="flex items-start gap-4">
-                    <div class="shrink-0 w-12 h-12 bg-surface-container-lowest flex items-center justify-center">
-                        <span class="material-symbols-outlined text-primary">bar_chart</span>
-                    </div>
                     <div>
                         <h2 class="section-title mb-4">What We Offer</h2>
                         <ul class="space-y-2">
                             <li class="flex items-center gap-3 text-on-surface-variant text-sm">
-                                <span class="material-symbols-outlined text-tertiary text-base">check</span>
+                                <span aria-hidden="true" class="shrink-0">•</span>
                                 Customizable placeholder images
                             </li>
                             <li class="flex items-center gap-3 text-on-surface-variant text-sm">
-                                <span class="material-symbols-outlined text-tertiary text-base">check</span>
+                                <span aria-hidden="true" class="shrink-0">•</span>
                                 Lorem Ipsum text generator
                             </li>
                             <li class="flex items-center gap-3 text-on-surface-variant text-sm">
-                                <span class="material-symbols-outlined text-tertiary text-base">check</span>
+                                <span aria-hidden="true" class="shrink-0">•</span>
                                 Random quotes API
                             </li>
                             <li class="flex items-center gap-3 text-on-surface-variant text-sm">
-                                <span class="material-symbols-outlined text-tertiary text-base">check</span>
+                                <span aria-hidden="true" class="shrink-0">•</span>
                                 Joke generator
                             </li>
                             <li class="flex items-center gap-3 text-on-surface-variant text-sm">
-                                <span class="material-symbols-outlined text-tertiary text-base">check</span>
+                                <span aria-hidden="true" class="shrink-0">•</span>
                                 Weather information API
                             </li>
                             <li class="flex items-center gap-3 text-on-surface-variant text-sm">
-                                <span class="material-symbols-outlined text-tertiary text-base">check</span>
+                                <span aria-hidden="true" class="shrink-0">•</span>
                                 Recipe suggestions
                             </li>
                         </ul>
@@ -76,9 +67,6 @@
 
             <section>
                 <div class="flex items-start gap-4">
-                    <div class="shrink-0 w-12 h-12 bg-surface-container-lowest flex items-center justify-center">
-                        <span class="material-symbols-outlined text-primary">verified_user</span>
-                    </div>
                     <div>
                         <h2 class="section-title mb-4">Our Commitment</h2>
                         <p class="text-on-surface-variant text-sm leading-relaxed">
@@ -90,7 +78,6 @@
 
             <div class="pt-8 border-t border-outline-variant/20">
                 <a href="/contact" class="liquid-chrome p-3 font-headline font-bold text-on-primary-container uppercase tracking-widest text-xs inline-flex items-center gap-2">
-                    <span class="material-symbols-outlined text-sm">mail</span>
                     Get in Touch
                 </a>
             </div>
