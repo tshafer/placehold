@@ -1,8 +1,8 @@
 <x-layout>
     <section class="mb-16">
-        <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">Legal</span>
+        <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">Legal</span>
         <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none mb-4">
-            Cookie <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">Policy</span>
+            Cookie <span class="text-on-surface">Policy</span>
         </h1>
         <p class="text-on-surface-variant text-sm max-w-xl">How we use cookies on our website</p>
     </section>

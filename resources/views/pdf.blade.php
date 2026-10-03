@@ -1,8 +1,8 @@
 <x-layout>
     <section class="mb-16">
-        <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">Document System</span>
+        <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">Document System</span>
         <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none mb-6">
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">PDF</span> Generator
+            <span class="text-on-surface">PDF</span> Generator
         </h1>
         <p class="text-on-surface-variant text-sm max-w-2xl">Generate dummy PDF documents filled with lorem ipsum text. Perfect for testing uploads, previews, and document workflows.</p>
     </section>
@@ -10,7 +10,6 @@
     <div class="space-y-12">
         <section>
             <h3 class="section-title mb-8 flex items-center gap-3">
-                <span class="material-symbols-outlined text-base">terminal</span>
                 Endpoint
             </h3>
             <div class="code-block">
@@ -58,9 +57,6 @@
                         <code class="break-all">/pdf</code>
                     </div>
                     <a href="/pdf" target="_blank" class="bg-surface-container-low p-6 flex items-center gap-4 hover:bg-surface-container-lowest transition-colors group">
-                        <div class="text-secondary">
-                            <span class="material-symbols-outlined text-3xl">picture_as_pdf</span>
-                        </div>
                         <div>
                             <span class="block text-sm font-bold text-on-surface group-hover:text-primary transition-colors">Sample Document.pdf</span>
                             <span class="meta-label">3 pages &middot; A4 &middot; Portrait</span>
@@ -74,9 +70,6 @@
                         <code class="break-all">/pdf?pages=10&title=Project+Report</code>
                     </div>
                     <a href="/pdf?pages=10&title=Project+Report" target="_blank" class="bg-surface-container-low p-6 flex items-center gap-4 hover:bg-surface-container-lowest transition-colors group">
-                        <div class="text-secondary">
-                            <span class="material-symbols-outlined text-3xl">picture_as_pdf</span>
-                        </div>
                         <div>
                             <span class="block text-sm font-bold text-on-surface group-hover:text-primary transition-colors">Project Report.pdf</span>
                             <span class="meta-label">10 pages &middot; A4 &middot; Portrait</span>
@@ -90,9 +83,6 @@
                         <code class="break-all">/pdf?pages=2&size=letter&orientation=landscape</code>
                     </div>
                     <a href="/pdf?pages=2&size=letter&orientation=landscape" target="_blank" class="bg-surface-container-low p-6 flex items-center gap-4 hover:bg-surface-container-lowest transition-colors group">
-                        <div class="text-secondary">
-                            <span class="material-symbols-outlined text-3xl">picture_as_pdf</span>
-                        </div>
                         <div>
                             <span class="block text-sm font-bold text-on-surface group-hover:text-primary transition-colors">Sample Document.pdf</span>
                             <span class="meta-label">2 pages &middot; Letter &middot; Landscape</span>
@@ -105,7 +95,6 @@
         <section>
             <h3 class="section-title mb-8">Rate Limiting</h3>
             <div class="bg-surface-container-low p-6 flex items-start gap-3">
-                <span class="material-symbols-outlined text-secondary text-lg mt-0.5">speed</span>
                 <p class="text-on-surface-variant text-sm"><span class="text-secondary font-bold">30 requests per minute</span></p>
             </div>
         </section>
@@ -114,7 +103,6 @@
             <h3 class="section-title mb-8">Try It Now</h3>
             <a href="/pdf?pages=5&title=Hello+World" target="_blank"
                class="liquid-chrome p-3 font-headline font-bold text-on-primary-container uppercase tracking-widest text-xs inline-flex items-center gap-2">
-                <span class="material-symbols-outlined text-base">bolt</span>
                 Generate PDF
             </a>
         </section>

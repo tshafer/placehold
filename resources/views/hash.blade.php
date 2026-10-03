@@ -1,8 +1,8 @@
 <x-layout>
     <div class="mb-16">
-        <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">Utility :: Hash</span>
+        <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">Utility :: Hash</span>
         <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none mb-4">
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">HASH</span> GENERATOR
+            <span class="text-on-surface">HASH</span> GENERATOR
         </h1>
         <p class="text-on-surface-variant text-sm max-w-2xl">Generate cryptographic hashes from any string. Supports MD5, SHA-1, SHA-256, SHA-512, and more via a simple HTTP API.</p>
     </div>
@@ -11,7 +11,6 @@
         <div class="space-y-10">
             <section>
                 <h3 class="section-title mb-8 flex items-center gap-2">
-                    <span class="material-symbols-outlined text-base">terminal</span>
                     Basic Usage
                 </h3>
                 <div class="space-y-4">
@@ -127,7 +126,6 @@
                         :disabled="loading || !input.trim()"
                         class="liquid-chrome p-3 font-headline font-bold text-on-primary-container uppercase tracking-widest text-xs inline-flex items-center gap-2"
                     >
-                        <span class="material-symbols-outlined text-base">bolt</span>
                         <span x-text="loading ? 'Hashing…' : 'Generate Hash'"></span>
                     </button>
 
@@ -142,7 +140,6 @@
             <section>
                 <h3 class="section-title mb-8">Rate Limiting</h3>
                 <div class="bg-surface-container-lowest border-t-2 border-secondary p-4 flex items-center gap-3">
-                    <span class="w-2 h-2 rounded-full bg-secondary animate-beacon-pulse"></span>
                     <p class="text-on-surface-variant text-sm">120 requests per minute</p>
                 </div>
             </section>

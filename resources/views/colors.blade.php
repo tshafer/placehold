@@ -1,8 +1,8 @@
 <x-layout>
     <div class="mb-16">
-        <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">API Documentation</span>
+        <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">API Documentation</span>
         <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none">
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">Colors</span> API
+            <span class="text-on-surface">Colors</span> API
         </h1>
         <p class="text-on-surface-variant text-sm mt-4">Generate color palettes, hex codes, and named colors</p>
     </div>
@@ -11,7 +11,6 @@
         <div class="space-y-10">
             <section>
                 <h3 class="section-title mb-8 flex items-center gap-3">
-                    <span class="material-symbols-outlined text-primary">terminal</span>
                     Basic Usage
                 </h3>
                 <div class="code-block">
@@ -137,17 +136,14 @@
                 <div class="flex flex-wrap gap-4">
                     <a href="{{ route('colors', ['type' => 'palette']) }}" target="_blank"
                        class="liquid-chrome p-3 font-headline font-bold text-on-primary-container uppercase tracking-widest text-xs inline-flex items-center gap-2">
-                        <span class="material-symbols-outlined text-base">bolt</span>
                         Test Palette
                     </a>
                     <a href="{{ route('colors', ['type' => 'hex', 'count' => 5]) }}" target="_blank"
                        class="text-outline border border-outline-variant/40 hover:text-primary hover:border-primary/40 px-4 py-2 font-headline font-bold text-xs uppercase tracking-widest transition-all inline-flex items-center gap-2">
-                        <span class="material-symbols-outlined text-base">bolt</span>
                         Test Hex
                     </a>
                     <a href="{{ route('colors', ['type' => 'named', 'count' => 5]) }}" target="_blank"
                        class="text-outline border border-outline-variant/40 hover:text-primary hover:border-primary/40 px-4 py-2 font-headline font-bold text-xs uppercase tracking-widest transition-all inline-flex items-center gap-2">
-                        <span class="material-symbols-outlined text-base">bolt</span>
                         Test Named
                     </a>
                 </div>

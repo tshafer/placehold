@@ -4,126 +4,126 @@
 
 [x-cloak] { display: none !important; }
 
-/* Light theme (when .dark is not on html) */
-html:not(.dark) {
+/*
+ * Man-page theme. Paper by default, ink when html.dark.
+ * Values are space-separated RGB channels for tailwind.config.js.
+ */
+:root {
     color-scheme: light;
-}
-html:not(.dark) body,
-html:not(.dark) .bg-background {
-    --tw-bg-opacity: 1;
-    background-color: #f1f5f9 !important;
-}
-html:not(.dark) .text-on-background,
-html:not(.dark) .text-on-surface {
-    color: #0f172a !important;
-}
-html:not(.dark) .bg-surface-container-lowest,
-html:not(.dark) .bg-surface-container-low,
-html:not(.dark) .bg-surface-container,
-html:not(.dark) .bg-surface-container-high,
-html:not(.dark) .bg-surface-container-highest,
-html:not(.dark) .bg-surface {
-    background-color: #e2e8f0 !important;
-}
-html:not(.dark) .bg-surface-container-lowest { background-color: #f8fafc !important; }
-html:not(.dark) .bg-surface-container-low { background-color: #f1f5f9 !important; }
-html:not(.dark) .bg-surface-container-highest { background-color: #cbd5e1 !important; }
-html:not(.dark) .text-outline,
-html:not(.dark) .meta-label {
-    color: #64748b !important;
-}
-html:not(.dark) .border-outline-variant\/15,
-html:not(.dark) .border-outline-variant\/20,
-html:not(.dark) .border-outline-variant\/30,
-html:not(.dark) .border-outline-variant\/40 {
-    border-color: rgba(100, 116, 139, 0.25) !important;
-}
-html:not(.dark) .text-on-surface-variant {
-    color: #475569 !important;
-}
-html:not(.dark) ::-webkit-scrollbar-track {
-    background: #e2e8f0;
-}
-html:not(.dark) ::-webkit-scrollbar-thumb {
-    background: #94a3b8;
-}
-html:not(.dark) ::-webkit-scrollbar-thumb:hover {
-    background: #64748b;
+    --c-surface: 246 246 243;
+    --c-surface-bright: 255 255 255;
+    --c-surface-container-lowest: 236 236 231;
+    --c-surface-container-low: 240 240 236;
+    --c-surface-container: 232 232 227;
+    --c-surface-container-high: 224 224 218;
+    --c-surface-container-highest: 214 214 207;
+    --c-on-surface: 26 26 26;
+    --c-on-surface-variant: 61 61 58;
+    --c-outline: 94 94 89;
+    --c-outline-variant: 196 196 188;
+    --c-primary: 0 71 179;
+    --c-primary-container: 26 26 26;
+    --c-on-primary-container: 246 246 243;
+    --c-secondary: 138 59 0;
+    --c-secondary-container: 255 224 179;
+    --c-on-secondary-container: 58 26 0;
+    --c-tertiary: 26 26 26;
+    --c-tertiary-container: 26 26 26;
+    --c-error: 179 38 30;
+    --c-error-container: 249 222 220;
+    --c-on-error-container: 65 14 11;
+    --code-bg: 26 26 26;
 }
 
+/* Ink theme; code blocks use it in both modes (like the SYNOPSIS box). */
+.dark,
+.code-block {
+    color-scheme: dark;
+    --c-surface: 26 26 26;
+    --c-surface-bright: 53 53 50;
+    --c-surface-container-lowest: 18 18 18;
+    --c-surface-container-low: 33 33 32;
+    --c-surface-container: 38 38 36;
+    --c-surface-container-high: 46 46 44;
+    --c-surface-container-highest: 56 56 53;
+    --c-on-surface: 246 246 243;
+    --c-on-surface-variant: 201 201 196;
+    --c-outline: 160 160 153;
+    --c-outline-variant: 66 66 62;
+    --c-primary: 255 176 0;
+    --c-primary-container: 246 246 243;
+    --c-on-primary-container: 26 26 26;
+    --c-secondary: 128 178 255;
+    --c-secondary-container: 58 40 0;
+    --c-on-secondary-container: 255 224 179;
+    --c-tertiary: 246 246 243;
+    --c-tertiary-container: 246 246 243;
+    --c-error: 255 180 171;
+    --c-error-container: 147 0 10;
+    --c-on-error-container: 255 218 214;
+}
+.dark { --code-bg: 12 12 12; }
+
 @layer base {
+    html, body {
+        background-color: rgb(var(--c-surface));
+        color: rgb(var(--c-on-surface));
+    }
+
     ::selection {
-        background: rgba(47, 217, 244, 0.3);
-        color: #2fd9f4;
+        background: rgb(var(--c-primary) / 0.25);
     }
 
     ::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
+        width: 8px;
+        height: 8px;
     }
     ::-webkit-scrollbar-track {
-        background: #070e1d;
+        background: rgb(var(--c-surface));
     }
     ::-webkit-scrollbar-thumb {
-        background: #414754;
-        border-radius: 3px;
+        background: rgb(var(--c-outline-variant));
     }
     ::-webkit-scrollbar-thumb:hover {
-        background: #8b919f;
+        background: rgb(var(--c-outline));
     }
 }
 
 @layer components {
-    .glass-panel {
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-    }
-
     .liquid-chrome {
-        background: linear-gradient(135deg, #abc7ff 0%, #468fff 100%);
-    }
-
-    .kinetic-glow {
-        box-shadow: 0 0 20px rgba(47, 217, 244, 0.15);
-    }
-
-    .active-glow {
-        box-shadow: 0 0 12px rgba(171, 199, 255, 0.3);
-    }
-
-    .neon-text {
-        text-shadow: 0 0 12px rgba(47, 217, 244, 0.4);
+        @apply bg-primary-container;
     }
 
     .terminal-input {
-        @apply bg-surface-container-lowest border-0 border-b-2 border-outline-variant px-4 py-3 text-on-surface font-headline focus:border-tertiary focus:ring-0 transition-colors;
+        @apply bg-surface-container-lowest border border-outline-variant px-4 py-3 text-on-surface font-mono focus:border-on-surface focus:outline-none focus:ring-0 transition-colors;
     }
 
     .terminal-label {
-        @apply text-[10px] font-bold uppercase tracking-[0.2em] text-outline;
+        @apply text-[11px] font-bold uppercase text-outline;
     }
 
-    .nav-link {
-        @apply flex items-center gap-3 text-outline hover:text-secondary hover:bg-surface-container px-4 py-3 transition-all duration-300 font-headline tracking-tight font-bold uppercase text-[12px];
+    .man-link {
+        @apply block px-6 py-0.5 text-[13px] text-primary hover:underline;
     }
 
-    .nav-link-active {
-        @apply text-tertiary border-l-4 border-tertiary bg-surface-container-highest/50 shadow-[0_0_12px_rgba(47,217,244,0.2)];
+    .man-link-active {
+        @apply font-extrabold text-on-surface before:content-['>_'];
     }
 
     .card-panel {
-        @apply bg-surface-container-low relative overflow-hidden transition-colors hover:bg-surface-container;
+        @apply relative border border-outline-variant bg-transparent transition-colors hover:border-on-surface;
     }
 
     .section-title {
-        @apply font-headline font-bold text-sm uppercase tracking-widest text-on-surface border-b border-outline-variant/20 pb-4;
+        @apply font-headline font-extrabold text-[15px] uppercase text-on-surface border-b border-dashed border-on-surface/40 pb-2;
     }
 
     .meta-label {
-        @apply text-[10px] font-bold uppercase tracking-widest text-outline;
+        @apply text-[11px] font-bold uppercase text-outline;
     }
 
     .code-block {
-        @apply bg-surface-container-lowest p-4 font-mono text-sm text-tertiary border-t-2 border-outline-variant;
+        @apply p-4 font-mono text-sm text-tertiary overflow-x-auto;
+        background-color: rgb(var(--code-bg));
     }
 }

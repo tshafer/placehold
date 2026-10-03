@@ -1,8 +1,8 @@
 <x-layout>
     <section class="mb-16">
-        <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">Encoding System</span>
+        <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">Encoding System</span>
         <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none mb-6">
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">QR Code</span> Generator
+            <span class="text-on-surface">QR Code</span> Generator
         </h1>
         <p class="text-on-surface-variant text-sm max-w-2xl">Generate QR codes as SVG or PNG via a simple HTTP API—embed them in apps, docs, or print layouts.</p>
     </section>
@@ -10,7 +10,6 @@
     <div class="space-y-12">
         <section>
             <h3 class="section-title mb-8 flex items-center gap-3">
-                <span class="material-symbols-outlined text-base">terminal</span>
                 Basic Usage
             </h3>
             <div class="code-block">
@@ -79,7 +78,6 @@
         <section>
             <a href="{{ url('/api') }}"
                class="liquid-chrome p-3 font-headline font-bold text-on-primary-container uppercase tracking-widest text-xs inline-flex items-center gap-2">
-                <span class="material-symbols-outlined text-base">bolt</span>
                 View full API documentation
             </a>
         </section>

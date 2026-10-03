@@ -1,15 +1,14 @@
 <x-layout>
     <section class="mb-16">
-        <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">AI &amp; LLMs</span>
+        <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">AI &amp; LLMs</span>
         <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none mb-4">
-            AI <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">Documentation</span>
+            AI <span class="text-on-surface">Documentation</span>
         </h1>
         <p class="text-on-surface-variant text-sm max-w-xl">Use placehold.cloud from AI assistants, agents, and LLM-powered apps — via direct API or MCP.</p>
     </section>
 
     <div class="bg-surface-container-low p-6 lg:p-8 mb-10 border-l-2 border-tertiary/40">
         <div class="flex items-center gap-3 mb-3">
-            <span class="material-symbols-outlined text-tertiary">smart_toy</span>
             <h2 class="font-headline font-bold text-on-surface text-lg">For AI / LLM use</h2>
         </div>
         <p class="text-on-surface-variant text-sm mb-4">No API keys. No auth. GET-only for most endpoints. Ideal for agents that need placeholder images, mock text, quotes, UUIDs, or colors.</p>

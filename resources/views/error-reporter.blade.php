@@ -1,16 +1,16 @@
 <x-layout>
     <section class="mb-16">
-        <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">WordPress Plugin</span>
+        <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">WordPress Plugin</span>
         <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none mb-4">
-            RadMonitor <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">Error Reporter</span>
+            RadMonitor <span class="text-on-surface">Error Reporter</span>
         </h1>
         <p class="text-on-surface-variant text-sm max-w-2xl mb-8">Official WordPress plugin for RadMonitor: Catch and track all WordPress errors in your RadMonitor dashboard</p>
         <div class="flex flex-wrap gap-4">
             <a href="https://wordpress.org/plugins/radmonitor" class="liquid-chrome p-3 font-headline font-bold text-on-primary-container uppercase tracking-widest text-xs inline-flex items-center gap-2">
-                <span class="material-symbols-outlined text-sm">download</span> Install Plugin
+                 Install Plugin
             </a>
             <a href="https://docs.radmonitor.live/plugins/error-reporter" class="text-outline border border-outline-variant/40 hover:text-primary hover:border-primary/40 px-4 py-2 font-headline font-bold text-xs uppercase tracking-widest transition-all inline-flex items-center gap-2">
-                <span class="material-symbols-outlined text-sm">menu_book</span> Documentation
+                 Documentation
             </a>
         </div>
         <p class="text-outline text-xs mt-4">Requires RadMonitor account &bull; Compatible with WordPress 5.0+</p>
@@ -97,13 +97,12 @@ try {
             ] as $feature)
                 <div class="bg-surface-container-low p-6 lg:p-8 hover:bg-surface-container-lowest transition-colors">
                     <div class="flex items-center gap-3 mb-4">
-                        <span class="material-symbols-outlined text-primary">{{ $feature['icon'] }}</span>
                         <h3 class="font-headline font-bold text-on-surface text-xs uppercase tracking-widest">{{ $feature['title'] }}</h3>
                     </div>
                     <ul class="space-y-2">
                         @foreach($feature['items'] as $item)
                             <li class="flex items-center gap-2 text-on-surface-variant text-sm">
-                                <span class="material-symbols-outlined text-tertiary text-sm">check</span>
+                                <span aria-hidden="true" class="shrink-0">•</span>
                                 {{ $item }}
                             </li>
                         @endforeach
@@ -119,10 +118,10 @@ try {
             <p class="text-on-surface-variant text-sm mb-8">Install the plugin and connect to your RadMonitor account in minutes</p>
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
                 <a href="https://wordpress.org/plugins/radmonitor" class="liquid-chrome p-3 font-headline font-bold text-on-primary-container uppercase tracking-widest text-xs inline-flex items-center gap-2">
-                    <span class="material-symbols-outlined text-sm">download</span> Install Plugin
+                     Install Plugin
                 </a>
                 <a href="https://docs.radmonitor.live/plugins/error-reporter" class="text-outline border border-outline-variant/40 hover:text-primary hover:border-primary/40 px-4 py-2 font-headline font-bold text-xs uppercase tracking-widest transition-all inline-flex items-center gap-2">
-                    <span class="material-symbols-outlined text-sm">menu_book</span> View Documentation
+                     View Documentation
                 </a>
             </div>
         </div>

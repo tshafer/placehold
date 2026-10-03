@@ -1,9 +1,9 @@
 <x-layout>
     <div x-data="playground()">
         <section class="mb-16">
-            <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">Interactive</span>
+            <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">Interactive</span>
             <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none mb-4">
-                Embed <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">Playground</span>
+                Embed <span class="text-on-surface">Playground</span>
             </h1>
             <p class="text-on-surface-variant text-sm max-w-xl">Write HTML, CSS, and JS that use the placehold.cloud API. See live results and share your creations.</p>
         </section>
@@ -17,7 +17,7 @@
                         <button @click="tab = 'js'" :class="tab === 'js' ? 'text-primary border-primary' : 'text-outline border-transparent'" class="px-3 py-1 text-xs font-headline font-bold uppercase tracking-widest border-b-2 transition-all">JS</button>
                     </div>
                     <button @click="run()" class="liquid-chrome p-3 font-headline font-bold text-on-primary-container uppercase tracking-widest text-xs inline-flex items-center gap-2">
-                        <span class="material-symbols-outlined text-sm">play_arrow</span> Run
+                         Run
                     </button>
                 </div>
                 <div class="flex-1 relative">
@@ -31,7 +31,7 @@
                 <div class="flex items-center justify-between px-4 py-3 border-b border-outline-variant/20 bg-surface-container-lowest">
                     <span class="meta-label">Preview</span>
                     <button @click="share()" class="text-outline border border-outline-variant/40 hover:text-primary hover:border-primary/40 px-4 py-2 font-headline font-bold text-xs uppercase tracking-widest transition-all inline-flex items-center gap-2">
-                        <span class="material-symbols-outlined text-sm">share</span> Share
+                         Share
                     </button>
                 </div>
                 <div class="flex-1">

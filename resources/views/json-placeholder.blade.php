@@ -1,8 +1,8 @@
 <x-layout>
     <div class="mb-16">
-        <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">API Documentation</span>
+        <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">API Documentation</span>
         <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none">
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">JSON</span> Placeholder
+            <span class="text-on-surface">JSON</span> Placeholder
         </h1>
         <p class="text-on-surface-variant text-sm mt-4">Fake REST API for prototyping</p>
     </div>
@@ -10,7 +10,6 @@
     {{-- Live playground --}}
     <div class="bg-surface-container-low p-6 lg:p-8 mb-10">
         <h2 class="section-title mb-8 flex items-center gap-3">
-            <span class="material-symbols-outlined text-primary">bolt</span>
             Try It Live
         </h2>
         <div
@@ -92,7 +91,6 @@
         <div class="space-y-10">
             <section>
                 <h2 class="section-title mb-8 flex items-center gap-3">
-                    <span class="material-symbols-outlined text-primary">terminal</span>
                     Parameters
                 </h2>
                 <p class="text-on-surface-variant text-sm mb-4">These query parameters apply to every JSON placeholder endpoint.</p>
@@ -216,22 +214,18 @@
                 <div class="flex flex-wrap gap-4">
                     <a href="{{ route('json.placeholder.users', ['count' => 5, 'seed' => 1]) }}" target="_blank" rel="noopener noreferrer"
                        class="liquid-chrome p-3 font-headline font-bold text-on-primary-container uppercase tracking-widest text-xs inline-flex items-center gap-2">
-                        <span class="material-symbols-outlined text-base">bolt</span>
                         Users
                     </a>
                     <a href="{{ route('json.placeholder.posts', ['count' => 3, 'seed' => 1]) }}" target="_blank" rel="noopener noreferrer"
                        class="text-outline border border-outline-variant/40 hover:text-primary hover:border-primary/40 px-4 py-2 font-headline font-bold text-xs uppercase tracking-widest transition-all inline-flex items-center gap-2">
-                        <span class="material-symbols-outlined text-base">bolt</span>
                         Posts
                     </a>
                     <a href="{{ route('json.placeholder.comments', ['count' => 3, 'seed' => 1]) }}" target="_blank" rel="noopener noreferrer"
                        class="text-outline border border-outline-variant/40 hover:text-primary hover:border-primary/40 px-4 py-2 font-headline font-bold text-xs uppercase tracking-widest transition-all inline-flex items-center gap-2">
-                        <span class="material-symbols-outlined text-base">bolt</span>
                         Comments
                     </a>
                     <a href="{{ route('json.placeholder.todos', ['count' => 5, 'seed' => 1]) }}" target="_blank" rel="noopener noreferrer"
                        class="text-outline border border-outline-variant/40 hover:text-primary hover:border-primary/40 px-4 py-2 font-headline font-bold text-xs uppercase tracking-widest transition-all inline-flex items-center gap-2">
-                        <span class="material-symbols-outlined text-base">bolt</span>
                         Todos
                     </a>
                 </div>

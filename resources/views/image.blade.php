@@ -2,13 +2,12 @@
     {{-- Hero Heading --}}
     <div class="mb-16 flex flex-col lg:flex-row justify-between items-end gap-8">
         <div>
-            <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">Generator :: Image</span>
+            <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">Generator :: Image</span>
             <h2 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none">
-                IMAGE<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">GENERATOR</span>
+                IMAGE<br><span class="text-on-surface">GENERATOR</span>
             </h2>
         </div>
         <div class="flex items-center gap-2 bg-surface-container px-4 py-2 border-l-2 border-secondary">
-            <span class="w-2 h-2 rounded-full bg-secondary animate-beacon-pulse"></span>
             <span class="meta-label text-secondary">Live Preview</span>
         </div>
     </div>
@@ -97,8 +96,8 @@
                         </div>
                     </div>
 
-                    <button @click="updatePreview" class="w-full liquid-chrome p-4 font-headline font-black text-on-primary-container uppercase tracking-[0.3em] text-sm shadow-[0_0_20px_rgba(171,199,255,0.3)] hover:scale-[1.02] active:scale-95 transition-all">
-                        Generate Stream
+                    <button @click="updatePreview" class="w-full liquid-chrome p-4 font-headline font-black text-on-primary-container uppercase tracking-wide text-sm hover:opacity-80 transition-opacity">
+                        Generate
                     </button>
                 </div>
             </div>
@@ -106,10 +105,10 @@
 
         {{-- Preview Area --}}
         <div class="col-span-12 lg:col-span-8">
-            <div class="bg-surface-container-highest/30 glass-panel p-2 border border-outline-variant/15 relative">
+            <div class="bg-surface-container-highest/30 p-2 border border-outline-variant/15 relative">
                 <div class="absolute top-6 left-6 z-10 flex items-center gap-4">
-                    <div class="bg-surface-container-lowest/80 glass-panel px-3 py-1 text-[9px] font-headline font-bold uppercase text-tertiary tracking-widest border border-tertiary/20">
-                        PREVIEW_MODE // LIVE
+                    <div class="bg-surface-container-lowest/80 px-3 py-1 text-[9px] font-headline font-bold uppercase text-tertiary tracking-widest border border-tertiary/20">
+                        Preview
                     </div>
                 </div>
                 <div class="aspect-video w-full bg-surface-container-lowest relative overflow-hidden flex items-center justify-center">
@@ -121,16 +120,13 @@
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 gap-4">
                     <div class="flex items-center gap-6">
                         <button @click="copyToClipboard(previewUrl)" class="flex items-center gap-2 text-outline hover:text-secondary transition-all">
-                            <span class="material-symbols-outlined text-sm">content_copy</span>
                             <span class="meta-label">Copy URL</span>
                         </button>
                         <button @click="copyToClipboard(htmlUrl)" class="flex items-center gap-2 text-outline hover:text-secondary transition-all">
-                            <span class="material-symbols-outlined text-sm">code</span>
                             <span class="meta-label">Copy HTML</span>
                         </button>
                     </div>
                     <div class="flex items-center gap-2">
-                        <span class="material-symbols-outlined text-tertiary text-sm">schedule</span>
                         <span class="meta-label text-outline">Cached 1yr</span>
                     </div>
                 </div>
@@ -188,7 +184,6 @@
                         </div>
                     </div>
                     <a href="/api" class="inline-flex items-center gap-2 text-primary hover:text-secondary transition-colors font-headline font-bold text-xs uppercase tracking-widest">
-                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
                         Full API Docs
                     </a>
                 </div>
@@ -196,7 +191,7 @@
         </div>
 
         <div x-show="copied" x-transition class="fixed bottom-6 right-6 bg-tertiary-container text-on-tertiary-container px-6 py-3 shadow-lg z-50 font-headline text-xs uppercase tracking-widest flex items-center gap-2">
-            <span class="material-symbols-outlined text-sm">check_circle</span>
+            <span aria-hidden="true" class="shrink-0">•</span>
             Copied to clipboard
         </div>
     </div>

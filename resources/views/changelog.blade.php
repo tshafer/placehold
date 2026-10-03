@@ -5,18 +5,18 @@
         : [];
 
     $tagColors = [
-        'New'      => 'bg-[#2fd9f4]/20 text-[#2fd9f4]',
-        'Improved' => 'bg-[#abc7ff]/20 text-[#abc7ff]',
-        'Fix'      => 'bg-[#ffb4ab]/20 text-[#ffb4ab]',
-        'Launch'   => 'bg-[#ddb7ff]/20 text-[#ddb7ff]',
+        'New'      => 'bg-primary/10 text-primary',
+        'Improved' => 'bg-secondary/10 text-secondary',
+        'Fix'      => 'bg-error/10 text-error',
+        'Launch'   => 'bg-on-surface/10 text-on-surface',
     ];
 @endphp
 
 <x-layout>
     <section class="mb-16">
-        <span class="text-tertiary font-headline font-bold text-xs tracking-[0.3em] uppercase mb-4 block">Updates</span>
+        <span class="text-tertiary font-headline font-bold text-xs tracking-wide uppercase mb-4 block">Updates</span>
         <h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none mb-4">
-            Change<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">log</span>
+            Change<span class="text-on-surface">log</span>
         </h1>
         <p class="text-on-surface-variant text-sm max-w-xl">What's new and improved in placehold.cloud</p>
     </section>
@@ -27,7 +27,7 @@
                 <div class="px-6 lg:px-8 py-4 border-b border-outline-variant/20 flex items-center justify-between flex-wrap gap-3">
                     <div class="flex items-center gap-3">
                         <span class="font-mono text-sm font-bold text-on-surface">v{{ $release['version'] }}</span>
-                        <span class="text-[10px] font-bold uppercase tracking-[0.2em] px-2 py-0.5 {{ $tagColors[$release['tag']] ?? $tagColors['New'] }}">{{ $release['tag'] }}</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 {{ $tagColors[$release['tag']] ?? $tagColors['New'] }}">{{ $release['tag'] }}</span>
                     </div>
                     <span class="text-outline text-xs">{{ $release['date'] }}</span>
                 </div>
@@ -36,7 +36,7 @@
                     <ul class="space-y-2">
                         @foreach($release['items'] as $item)
                             <li class="flex items-start gap-3 text-on-surface-variant text-sm">
-                                <span class="material-symbols-outlined text-tertiary text-base mt-0.5 shrink-0">check_circle</span>
+                                <span aria-hidden="true" class="shrink-0">•</span>
                                 {{ $item }}
                             </li>
                         @endforeach
