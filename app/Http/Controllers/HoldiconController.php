@@ -44,7 +44,7 @@ class HoldiconController extends Controller
             return $this->generateImage($width, $height, $backgroundColor, $textColor, $text, $isRobot, $isCat, $isDog, $isRandomAnimal, $seed);
         }
 
-        return Cache::remember($cacheKey, now()->addDays(7), function () use ($width, $height, $backgroundColor, $textColor, $text, $isRobot, $isCat, $isDog, $isRandomAnimal, $seed) {
+        return $this->rememberResponse($cacheKey, now()->addDays(7), function () use ($width, $height, $backgroundColor, $textColor, $text, $isRobot, $isCat, $isDog, $isRandomAnimal, $seed) {
             return $this->generateImage($width, $height, $backgroundColor, $textColor, $text, $isRobot, $isCat, $isDog, $isRandomAnimal, $seed);
         });
     }

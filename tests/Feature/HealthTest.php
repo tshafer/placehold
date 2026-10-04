@@ -17,6 +17,7 @@ it('returns health check JSON', function () {
                 'database',
                 'storage',
                 'ffmpeg',
+                'gd',
             ],
         ]);
 });

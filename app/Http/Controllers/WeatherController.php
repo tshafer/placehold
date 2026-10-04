@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -26,13 +26,13 @@ class WeatherController extends Controller
     {
         $validated = $this->validateRequest($request);
 
-        if ($validated instanceof \Illuminate\Http\JsonResponse) {
+        if ($validated instanceof JsonResponse) {
             return $validated;
         }
 
         $cacheKey = $this->generateCacheKey($validated);
 
-        return Cache::remember($cacheKey, self::DEFAULT_CACHE_TIME, function () use ($validated) {
+        return $this->rememberResponse($cacheKey, self::DEFAULT_CACHE_TIME, function () use ($validated) {
             return $this->fetchWeatherData($validated);
         });
     }
@@ -76,7 +76,7 @@ class WeatherController extends Controller
         if (! $response->successful()) {
             Log::error('Weather API Error', ['response' => $response->body()]);
 
-            return response()->json(['status' => 'error', 'message' => 'Unable to fetch weather data'], 500);
+            return response()->json(['status' => 'error', 'message' => 'Unable to fetch weather data'], 502);
         }
 
         $data = $response->json();

@@ -18,6 +18,9 @@ class HealthController extends Controller
         $checks['database'] = $this->checkDatabase();
         $checks['storage'] = $this->checkStorage();
         $checks['ffmpeg'] = $this->checkFfmpeg();
+        $checks['gd'] = function_exists('imagettftext')
+            ? ['status' => 'ok']
+            : ['status' => 'unavailable', 'message' => 'GD with FreeType is required for raster images'];
 
         foreach ($checks as $check) {
             if ($check['status'] !== 'ok') {
@@ -47,7 +50,7 @@ class HealthController extends Controller
     private function checkCache(): array
     {
         try {
-            $key = 'health_check_' . uniqid();
+            $key = 'health_check_'.uniqid();
             Cache::put($key, 'ok', 10);
             $value = Cache::get($key);
             Cache::forget($key);
@@ -64,6 +67,7 @@ class HealthController extends Controller
     {
         try {
             DB::connection()->getPdo();
+
             return ['status' => 'ok', 'driver' => config('database.default')];
         } catch (\Throwable $e) {
             return ['status' => 'error', 'message' => $e->getMessage()];
@@ -89,9 +93,10 @@ class HealthController extends Controller
     private function checkFfmpeg(): array
     {
         try {
-            $result = Process::timeout(5)->run('ffmpeg -version 2>&1 | head -1');
+            $result = Process::timeout(5)->run(['ffmpeg', '-version']);
+
             return $result->successful()
-                ? ['status' => 'ok', 'version' => trim($result->output())]
+                ? ['status' => 'ok', 'version' => strtok($result->output(), "\n")]
                 : ['status' => 'unavailable', 'message' => 'ffmpeg not found'];
         } catch (\Throwable) {
             return ['status' => 'unavailable', 'message' => 'Could not execute ffmpeg'];
@@ -103,8 +108,10 @@ class HealthController extends Controller
         $path = storage_path('app/changelog.json');
         if (file_exists($path)) {
             $entries = json_decode(file_get_contents($path), true) ?? [];
+
             return ! empty($entries) ? $entries[0]['version'] : '0.0.0';
         }
+
         return '0.0.0';
     }
 
@@ -116,6 +123,6 @@ class HealthController extends Controller
 
         $seconds = (int) (microtime(true) - LARAVEL_START);
 
-        return $seconds . 's (request lifetime)';
+        return $seconds.'s (request lifetime)';
     }
 }

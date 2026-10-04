@@ -35,7 +35,7 @@ class VideoController extends Controller
             ], 202);
         }
 
-        $outputPath = tempnam(sys_get_temp_dir(), 'phvid_') . '.mp4';
+        $outputPath = tempnam(sys_get_temp_dir(), 'phvid_').'.mp4';
 
         $cmd = [
             'ffmpeg', '-y',
@@ -44,7 +44,7 @@ class VideoController extends Controller
         ];
 
         if ($this->hasDrawtextFilter()) {
-            $escapedText = str_replace(["'", ":", "\\"], ["'\\\''", "\\:", "\\\\"], $text);
+            $escapedText = str_replace(["'", ':', '\\'], ["'\\\''", '\\:', '\\\\'], $text);
             $fontSize = (int) (min($width, $height) / 6);
             $cmd = array_merge($cmd, [
                 '-vf', "drawtext=text='{$escapedText}':fontsize={$fontSize}:fontcolor=0x{$fg}:x=(w-text_w)/2:y=(h-text_h)/2",
@@ -60,14 +60,19 @@ class VideoController extends Controller
             $outputPath,
         ]);
 
-        $result = Process::timeout(30)->run($cmd);
+        try {
+            $ok = Process::timeout(30)->run($cmd)->successful();
+        } catch (\Throwable) {
+            $ok = false;
+        }
 
-        if (!$result->successful() || !file_exists($outputPath)) {
+        if (! $ok || ! file_exists($outputPath)) {
             @unlink($outputPath);
+
             return response()->json([
                 'status' => 'error',
                 'message' => 'Video generation failed. FFmpeg may not be available.',
-            ], 500);
+            ], 503);
         }
 
         return response()->download($outputPath, 'placeholder.mp4', [
@@ -80,9 +85,14 @@ class VideoController extends Controller
     {
         static $has = null;
         if ($has === null) {
-            $result = Process::timeout(5)->run(['ffmpeg', '-filters']);
-            $has = $result->successful() && str_contains($result->output(), 'drawtext');
+            try {
+                $result = Process::timeout(5)->run(['ffmpeg', '-filters']);
+                $has = $result->successful() && str_contains($result->output(), 'drawtext');
+            } catch (\Throwable) {
+                $has = false;
+            }
         }
+
         return $has;
     }
 
@@ -90,8 +100,9 @@ class VideoController extends Controller
     {
         $hex = ltrim($hex, '#');
         if (preg_match('/^[0-9a-fA-F]{3}$/', $hex)) {
-            $hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+            $hex = $hex[0].$hex[0].$hex[1].$hex[1].$hex[2].$hex[2];
         }
+
         return preg_match('/^[0-9a-fA-F]{6}$/', $hex) ? $hex : '374151';
     }
 
@@ -103,6 +114,7 @@ class VideoController extends Controller
         if (app()->environment('production') && ! str_starts_with(strtolower($url), 'https://')) {
             return false;
         }
+
         return true;
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 class ColorsController extends Controller
 {
@@ -14,9 +13,9 @@ class ColorsController extends Controller
         $type = $request->query('type', 'palette');
         $count = min(max((int) $request->query('count', 5), 1), 10); // Between 1 and 10
 
-        $cacheKey = "colors_{$type}_{$count}_" . now()->format('Y-m-d');
+        $cacheKey = "colors_{$type}_{$count}_".now()->format('Y-m-d');
 
-        return Cache::remember($cacheKey, self::DEFAULT_CACHE_TIME, function () use ($type, $count) {
+        return $this->rememberResponse($cacheKey, self::DEFAULT_CACHE_TIME, function () use ($type, $count) {
             return $this->generateColors($type, $count);
         });
     }
@@ -33,7 +32,7 @@ class ColorsController extends Controller
             default:
                 return response()->json([
                     'status' => 'error',
-                    'message' => 'Invalid type. Use: palette, hex, or named'
+                    'message' => 'Invalid type. Use: palette, hex, or named',
                 ], 400);
         }
     }
@@ -69,7 +68,7 @@ class ColorsController extends Controller
     {
         $colors = [];
         for ($i = 0; $i < $count; $i++) {
-            $colors[] = '#' . str_pad(dechex(rand(0, 16777215)), 6, '0', STR_PAD_LEFT);
+            $colors[] = '#'.str_pad(dechex(rand(0, 16777215)), 6, '0', STR_PAD_LEFT);
         }
 
         return response()->json([
@@ -108,4 +107,3 @@ class ColorsController extends Controller
         ]);
     }
 }
-

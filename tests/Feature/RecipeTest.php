@@ -57,6 +57,6 @@ it('handles API failure gracefully', function () {
 
     $response = get('/r?number=1');
 
-    $response->assertStatus(500)
+    $response->assertStatus(502)
         ->assertJson(['status' => 'error']);
 });

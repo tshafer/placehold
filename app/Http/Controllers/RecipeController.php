@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -21,13 +21,13 @@ class RecipeController extends Controller
     {
         $validated = $this->validateRequest($request);
 
-        if ($validated instanceof \Illuminate\Http\JsonResponse) {
+        if ($validated instanceof JsonResponse) {
             return $validated;
         }
 
         $cacheKey = $this->generateCacheKey($validated);
 
-        return Cache::remember($cacheKey, self::CACHE_TTL, function () use ($validated) {
+        return $this->rememberResponse($cacheKey, self::CACHE_TTL, function () use ($validated) {
             return $this->fetchRecipe($validated);
         });
     }
@@ -67,7 +67,7 @@ class RecipeController extends Controller
                 if (! $response->successful()) {
                     Log::error('Recipe API Error', ['response' => $response->body()]);
 
-                    return response()->json(['status' => 'error', 'message' => 'Unable to fetch recipes'], 500);
+                    return response()->json(['status' => 'error', 'message' => 'Unable to fetch recipes'], 502);
                 }
 
                 $data = $response->json();
@@ -94,7 +94,7 @@ class RecipeController extends Controller
         } catch (\Exception $e) {
             Log::error('Recipe API Exception', ['error' => $e->getMessage()]);
 
-            return response()->json(['status' => 'error', 'message' => 'An error occurred while fetching recipes'], 500);
+            return response()->json(['status' => 'error', 'message' => 'An error occurred while fetching recipes'], 502);
         }
     }
 
