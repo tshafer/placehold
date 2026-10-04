@@ -6,6 +6,10 @@
     "license": "MIT",
     "require": {
         "php": "^8.3",
+        "ext-gd": "*",
+        "ext-mbstring": "*",
+        "ext-pdo_sqlite": "*",
+        "ext-zip": "*",
         "barryvdh/laravel-dompdf": "^3.1",
         "blade-ui-kit/blade-heroicons": "^2.7",
         "chillerlan/php-qrcode": "^6.0",
